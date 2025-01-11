@@ -3,6 +3,7 @@ import { Code, Lightbulb, Rocket, School, Cpu, Cloud } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LockIcon, CircuitBoardIcon, SearchIcon, BarChartIcon } from "lucide-react"
 import image1 from './images/image1.png';
+import foxIcon from './assets/icon.svg';
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -15,8 +16,8 @@ function App() {
   }, []);
 
   const logoVariants = {
-    expanded: { width: "11ch" },
-    collapsed: { width: "3ch" }
+    expanded: { width: "16ch" },
+    collapsed: { width: "6ch" }
   };
 
   const fullNameVariants = {
@@ -39,8 +40,8 @@ function App() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Code className="h-8 w-8 text-sky-900 mr-2" />
-            <motion.div
+        <img src={foxIcon} alt="Fox Icon" className="h-10 w-10 text-sky-900 " />           
+        <motion.div
               className="relative font-bold text-xl text-gray-800 overflow-hidden"
               variants={logoVariants}
               initial="expanded"
@@ -54,7 +55,7 @@ function App() {
                 animate={isScrolled ? "collapsed" : "expanded"}
                 transition={{ duration: 0.5, ease: "easeInOut" }}
               >
-                IdeaToCode
+                ARTIC FOX AI
               </motion.span>
               <motion.span
                 className="inline-block"
@@ -63,7 +64,7 @@ function App() {
                 animate={isScrolled ? "collapsed" : "expanded"}
                 transition={{ duration: 0.5, ease: "easeInOut" }}
               >
-                ITC
+                AFAI
               </motion.span>
             </motion.div>
           </motion.div>
