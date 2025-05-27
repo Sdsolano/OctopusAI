@@ -1,10 +1,42 @@
-// components/sections/home/Hero.jsx
-import React, { useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, Star } from 'lucide-react';
+// components/sections/home/Hero.jsx - Versión con tabs de videos
+import React, { useEffect, useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, Star, Play, MessageSquare, Send } from 'lucide-react';
 
 function Hero() {
   const particlesRef = useRef(null);
+  const [activeTab, setActiveTab] = useState(0);
+  const videoRef = useRef(null);
+  
+  const videos = [
+    {
+      id: 'whatsapp',
+      src: '/src/images/whatsapp.mp4',
+      title: 'WhatsApp AI',
+      subtitle: 'Asistente 24/7',
+      description: 'Automatiza respuestas, agenda citas y gestiona consultas directamente en WhatsApp',
+      icon: MessageSquare,
+      color: 'from-green-500 to-emerald-700'
+    },
+    {
+      id: 'telegram',
+      src: '/src/images/telegram.mp4', 
+      title: 'Telegram Bot',
+      subtitle: 'Inteligencia avanzada',
+      description: 'Bot personalizado que aprende de tu negocio y responde como un experto',
+      icon: Send,
+      color: 'from-blue-500 to-indigo-700'
+    }
+  ];
+
+  // Auto-play del video cuando cambia
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {
+        // Handle autoplay restrictions
+      });
+    }
+  }, [activeTab]);
   
   // Efecto de partículas en el fondo
   useEffect(() => {
@@ -120,12 +152,12 @@ function Hero() {
         }}
       />
       
-      <div className="container mx-auto px-6 pt-32 pb-20 md:pb-32 flex flex-col md:flex-row items-center justify-between relative z-10">
+      <div className="container mx-auto px-6 pt-32 pb-20 md:pb-32 flex flex-col lg:flex-row items-center justify-between relative z-10 gap-8">
         {/* Contenido */}
-        <div className="flex flex-col md:w-1/2 text-center md:text-left order-2 md:order-1 mt-12 md:mt-0">
+        <div className="flex flex-col lg:w-1/2 text-center lg:text-left order-2 lg:order-1">
           {/* Badge */}
           <motion.div 
-            className="inline-block bg-purple-900/30 border border-purple-500/30 rounded-full px-4 py-1 text-sm font-medium text-purple-300 mb-6 mx-auto md:mx-0"
+            className="inline-block bg-purple-900/30 border border-purple-500/30 rounded-full px-4 py-1 text-sm font-medium text-purple-300 mb-6 mx-auto lg:mx-0"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -137,20 +169,20 @@ function Hero() {
           </motion.div>
           
           <motion.h1 
-            className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight text-white mb-6"
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-white mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <span className="inline md:block">Transforma tu</span>{" "}
+            <span className="inline lg:block">Transforma tu</span>{" "}
             <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400 pb-2">
               comunicación empresarial
             </span>{" "}
-            <span className="inline md:block">con IA</span>
+            <span className="inline lg:block">con IA</span>
           </motion.h1>
           
           <motion.p 
-            className="text-lg md:text-xl text-gray-300 leading-relaxed mb-8"
+            className="text-lg lg:text-xl text-gray-300 leading-relaxed mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -159,7 +191,7 @@ function Hero() {
           </motion.p>
           
           <motion.div 
-            className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center md:justify-start"
+            className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center lg:justify-start"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -193,7 +225,7 @@ function Hero() {
           
           {/* Estadísticas */}
           <motion.div 
-            className="flex flex-wrap justify-center md:justify-start gap-6 mt-12 text-center"
+            className="flex flex-wrap justify-center lg:justify-start gap-6 mt-12 text-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
@@ -211,39 +243,124 @@ function Hero() {
           </motion.div>
         </div>
         
-        {/* Imagen o ilustración */}
+        {/* Videos con Tabs */}
         <motion.div 
-          className="relative md:w-1/2 order-1 md:order-2"
+          className="relative lg:w-1/2 order-1 lg:order-2 flex justify-center max-w-xs mx-auto lg:max-w-sm"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
         >
-          <div className="relative">
+          <div className="relative w-full">
             {/* Marco con brillo */}
             <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-2xl blur opacity-30" />
-            <div className="relative bg-gray-800 p-2 rounded-2xl">
-              <img 
-                src="https://picsum.photos/800/600" 
-                alt="AI Assistant" 
-                className="w-full h-auto rounded-xl shadow-2xl" 
-              />
+            
+            <div className="relative bg-gray-800 rounded-2xl overflow-hidden">
+              {/* Tabs Navigation */}
+              <div className="flex p-2 bg-gray-900/50 backdrop-blur-sm">
+                {videos.map((video, index) => {
+                  const Icon = video.icon;
+                  return (
+                    <motion.button
+                      key={video.id}
+                      onClick={() => setActiveTab(index)}
+                      className={`flex-1 flex items-center justify-center space-x-1 py-2 px-2 rounded-lg transition-all duration-300 ${
+                        activeTab === index 
+                          ? `bg-gradient-to-r ${video.color} text-white shadow-lg` 
+                          : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
+                      }`}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Icon className="h-4 w-4" />
+                      <span className="font-medium text-sm">{video.title}</span>
+                    </motion.button>
+                  );
+                })}
+              </div>
+              
+              {/* Video Content */}
+              <div className="relative h-[400px] md:h-[500px]">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeTab}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                    className="absolute inset-0"
+                  >
+                    <video
+                      ref={videoRef}
+                      className="w-full h-full object-cover"
+                      muted
+                      loop
+                      playsInline
+                      autoPlay
+                    >
+                      <source src={videos[activeTab].src} type="video/mp4" />
+                      Tu navegador no soporta videos HTML5.
+                    </video>
+                  </motion.div>
+                </AnimatePresence>
+                
+                {/* Video Info Overlay */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900/95 to-transparent p-4">
+                  <motion.div
+                    key={`info-${activeTab}`}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                  >
+                    <div className="flex items-center mb-2">
+                      <div className={`bg-gradient-to-r ${videos[activeTab].color} p-1.5 rounded-lg mr-2`}>
+                        {React.createElement(videos[activeTab].icon, { className: "h-4 w-4 text-white" })}
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-bold text-white">{videos[activeTab].title}</h3>
+                        <p className="text-xs text-gray-300">{videos[activeTab].subtitle}</p>
+                      </div>
+                    </div>
+                    <p className="text-gray-300 text-xs leading-relaxed">
+                      {videos[activeTab].description}
+                    </p>
+                  </motion.div>
+                </div>
+                
+                {/* Play Button Overlay (opcional) */}
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="absolute top-3 right-3 bg-black/50 backdrop-blur-sm text-white p-2 rounded-full hover:bg-black/70 transition-all duration-300"
+                  onClick={() => {
+                    if (videoRef.current) {
+                      if (videoRef.current.paused) {
+                        videoRef.current.play();
+                      } else {
+                        videoRef.current.pause();
+                      }
+                    }
+                  }}
+                >
+                  <Play className="h-4 w-4" />
+                </motion.button>
+              </div>
             </div>
             
             {/* Elemento decorativo - mensaje flotante */}
             <motion.div 
-              className="absolute -bottom-10 -left-10 bg-gray-800 border border-gray-700 p-4 rounded-lg shadow-xl max-w-xs"
+              className="absolute -bottom-8 -left-8 bg-gray-800 border border-gray-700 p-3 rounded-lg shadow-xl max-w-xs hidden md:block"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
             >
               <div className="flex items-start">
-                <div className="flex-shrink-0 bg-purple-500 rounded-full p-2 mr-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="flex-shrink-0 bg-purple-500 rounded-full p-1.5 mr-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-300">
+                  <p className="text-xs text-gray-300">
                     Automatiza tu atención al cliente y aumenta tus ventas con AI
                   </p>
                 </div>
@@ -252,7 +369,7 @@ function Hero() {
             
             {/* Elemento decorativo - estrella brillante */}
             <motion.div
-              className="absolute -top-5 -right-5 text-yellow-400"
+              className="absolute -top-3 -right-3 text-yellow-400"
               animate={{ 
                 scale: [1, 1.3, 1],
                 rotate: [0, 5, 0],
@@ -264,7 +381,7 @@ function Hero() {
                 repeatType: "reverse"
               }}
             >
-              <Star className="h-10 w-10" fill="currentColor" />
+              <Star className="h-8 w-8" fill="currentColor" />
             </motion.div>
           </div>
         </motion.div>
