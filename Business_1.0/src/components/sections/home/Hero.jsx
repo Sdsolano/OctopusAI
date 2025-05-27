@@ -368,21 +368,7 @@ function Hero() {
             </motion.div>
             
             {/* Elemento decorativo - estrella brillante */}
-            <motion.div
-              className="absolute -top-3 -right-3 text-yellow-400"
-              animate={{ 
-                scale: [1, 1.3, 1],
-                rotate: [0, 5, 0],
-                opacity: [0.7, 1, 0.7]
-              }}
-              transition={{ 
-                duration: 2,
-                repeat: Infinity,
-                repeatType: "reverse"
-              }}
-            >
-              <Star className="h-8 w-8" fill="currentColor" />
-            </motion.div>
+
           </div>
         </motion.div>
       </div>

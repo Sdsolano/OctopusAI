@@ -6,18 +6,6 @@ import { ArrowRight, ExternalLink, ChevronRight } from 'lucide-react';
 
 /**
  * Componente Button reutilizable y personalizable
- * 
- * @param {Object} props - Propiedades del botón
- * @param {string} props.variant - Variante del botón: 'primary', 'secondary', 'outline', 'ghost'
- * @param {string} props.size - Tamaño del botón: 'sm', 'md', 'lg'
- * @param {boolean} props.isFullWidth - Si el botón debe ocupar todo el ancho disponible
- * @param {React.ReactNode} props.leftIcon - Icono a mostrar a la izquierda del texto
- * @param {React.ReactNode} props.rightIcon - Icono a mostrar a la derecha del texto
- * @param {string} props.to - Ruta interna para usar Link de react-router
- * @param {string} props.href - URL externa para usar <a>
- * @param {boolean} props.disabled - Si el botón está deshabilitado
- * @param {boolean} props.isLoading - Si el botón está en estado de carga
- * @param {function} props.onClick - Función a ejecutar al hacer clic
  */
 function Button({
   children,
@@ -37,7 +25,7 @@ function Button({
   // Configuraciones de variantes
   const variants = {
     primary: 
-      'bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:shadow-lg hover:shadow-purple-600/20 border-transparent',
+      'bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:shadow-lg hover:shadow-purple-600/20 border-transparent hover:from-indigo-600 hover:to-purple-600',
     secondary: 
       'bg-purple-900/30 text-purple-300 hover:bg-purple-900/50 border-purple-500/40 hover:border-purple-500/60',
     outline: 
@@ -45,7 +33,7 @@ function Button({
     ghost: 
       'bg-transparent text-purple-400 hover:bg-purple-900/20 border-transparent',
     danger:
-      'bg-gradient-to-r from-red-600 to-rose-600 text-white hover:shadow-lg hover:shadow-red-600/20 border-transparent',
+      'bg-gradient-to-r from-red-600 to-rose-600 text-white hover:shadow-lg hover:shadow-red-600/20 border-transparent hover:from-rose-600 hover:to-red-600',
   };
 
   // Configuraciones de tamaños
@@ -72,7 +60,7 @@ function Button({
 
   // Configuraciones base
   const baseClasses = `
-    inline-flex items-center justify-center font-medium border-2 transition-all duration-300
+    inline-flex items-center justify-center font-medium border-2 transition-all duration-300 relative
     ${sizes[size]}
     ${rounded[size === 'xl' ? 'xl' : 'lg']}
     ${variants[variant]}
@@ -87,20 +75,12 @@ function Button({
   
   return (
     <Component
-      className={`${baseClasses} group`}
+      className={baseClasses}
       onClick={onClick}
       disabled={disabled || isLoading}
       {...routeProps}
       {...props}
     >
-      {/* Overlay para efectos de gradiente hover */}
-      {variant === 'primary' && (
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"
-          style={{ borderRadius: 'inherit' }}
-        />
-      )}
-      
       {/* Indicador de carga */}
       {isLoading && (
         <svg 
@@ -137,14 +117,14 @@ function Button({
       
       {/* Icono derecho */}
       {rightIcon && (
-        <span className={`ml-2 flex-shrink-0 ${iconRightAnimation}`}>
+        <span className={`ml-2 flex-shrink-0 transition-transform duration-300 hover:translate-x-0.5`}>
           {rightIcon}
         </span>
       )}
       
       {/* Icono para enlaces externos */}
       {href && !rightIcon && (
-        <ExternalLink className="ml-2 h-4 w-4 group-hover:translate-x-0.5 transition-transform duration-300" />
+        <ExternalLink className="ml-2 h-4 w-4 transition-transform duration-300 hover:translate-x-0.5" />
       )}
     </Component>
   );
