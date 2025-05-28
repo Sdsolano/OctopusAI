@@ -43,7 +43,7 @@ function ServiceCard({ id, title, description, features, icon, reversed, webhook
 
     const payload = {
       nombre: 'Cliente',
-      content: value,
+      message: value,
     };
 
     try {
@@ -289,7 +289,7 @@ function ServiceCard({ id, title, description, features, icon, reversed, webhook
                   <div className="flex flex-wrap gap-2 justify-center">
                     {[
                       "Hola, ¿qué servicios ofrecen?",
-                      "Quiero agendar una cita",
+                      "¿A que hora cierran?",
                       "¿Cuáles son sus precios?"
                     ].map((suggestion, i) => (
                       <motion.button

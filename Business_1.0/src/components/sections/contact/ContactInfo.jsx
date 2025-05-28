@@ -20,7 +20,7 @@ function ContactInfo() {
             <Mail className="h-6 w-6 text-purple-400 mr-4 mt-1" />
             <div>
               <h3 className="text-lg font-semibold text-gray-200 mb-1">Correo electrónico</h3>
-              <p className="text-gray-400">info@octopusai.com</p>
+              <p className="text-gray-400">info.octopusai@gmail.com</p>
             </div>
           </div>
           
@@ -28,7 +28,7 @@ function ContactInfo() {
             <Phone className="h-6 w-6 text-purple-400 mr-4 mt-1" />
             <div>
               <h3 className="text-lg font-semibold text-gray-200 mb-1">WhatsApp</h3>
-              <p className="text-gray-400">+1 234 567 890</p>
+              <p className="text-gray-400">+57 3243750360</p>
             </div>
           </div>
           

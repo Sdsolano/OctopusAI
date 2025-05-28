@@ -153,7 +153,7 @@ function Footer() {
                   className="flex items-start text-gray-400 hover:text-purple-400 transition-colors duration-300 group"
                 >
                   <Mail className="h-5 w-5 mr-3 mt-0.5 text-purple-500 group-hover:scale-110 transition-transform duration-300" />
-                  <span>info@octopusai.com</span>
+                  <span>info.octopusai@gmail.com</span>
                 </a>
               </li>
               <li>
@@ -162,7 +162,7 @@ function Footer() {
                   className="flex items-start text-gray-400 hover:text-purple-400 transition-colors duration-300 group"
                 >
                   <Phone className="h-5 w-5 mr-3 mt-0.5 text-purple-500 group-hover:scale-110 transition-transform duration-300" />
-                  <span>+1 234 567 890</span>
+                  <span>+57 3243750360</span>
                 </a>
               </li>
               <li>
