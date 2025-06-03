@@ -110,61 +110,7 @@ function Home() {
       {/* Sección de agentes personalizados */}
       <CustomAgents />
       
-      {/* Sección de Beneficios - Mejorada */}
-      <Section 
-        bgColor="default"
-        spacing="xl"
-        className="relative overflow-hidden"
-      >
-        {/* Elementos decorativos */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <motion.div 
-            className="absolute top-40 -left-20 w-72 h-72 bg-purple-600/8 rounded-full filter blur-3xl"
-            animate={{ 
-              scale: [1, 1.1, 1],
-              x: [0, 20, 0],
-            }}
-            transition={{ 
-              duration: 10, 
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-          />
-          
-          {/* Líneas decorativas */}
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-purple-500/20 to-transparent"></div>
-        </div>
-
-        <div className="text-center mb-16 relative z-10">
-          <SectionBadge icon={TrendingUp}>Resultados probados</SectionBadge>
-          
-          <motion.h2 
-            className="text-4xl md:text-5xl font-bold mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">
-              Beneficios
-            </span>
-          </motion.h2>
-          
-          <motion.p 
-            className="text-xl text-gray-300 max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            Optimiza tu negocio con nuestras soluciones de inteligencia artificial hechas a la medida
-          </motion.p>
-        </div>
-
-        <div className="relative z-10">
-          <Benefits showTitle={false} />
-        </div>
-      </Section>
+     
       
       {/* Sección de Cómo Funciona - Mejorada */}
       <Section 
@@ -364,91 +310,7 @@ function Home() {
       {/* Llamada a la acción */}
       <CallToAction />
       
-      {/* Sección de FAQ - Mejorada */}
-      <Section 
-        bgColor="default"
-        spacing="xl"
-        className="relative overflow-hidden"
-      >
-        {/* Elementos decorativos */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-purple-500/20 to-transparent"></div>
-        </div>
-
-        <div className="text-center mb-16 relative z-10">
-          <SectionBadge icon={Sparkles}>Preguntas frecuentes</SectionBadge>
-          
-          <motion.h2 
-            className="text-4xl md:text-5xl font-bold mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">
-              Preguntas Frecuentes
-            </span>
-          </motion.h2>
-        </div>
-
-        <div className="max-w-3xl mx-auto relative z-10">
-          {[
-            {
-              question: "¿Pueden crear un asistente específico para mi industria?",
-              answer: "Absolutamente. Nos especializamos en crear soluciones a medida para cada industria y negocio. Nuestros asistentes se diseñan considerando tus procesos, terminología específica y necesidades particulares."
-            },
-            {
-              question: "¿Cuánto tiempo toma implementar una solución personalizada?",
-              answer: "Generalmente, podemos tener tu asistente personalizado configurado y funcionando en 1-2 semanas, dependiendo de la complejidad. Esto incluye tiempo para entender tus necesidades, desarrollar la solución y realizar ajustes."
-            },
-            {
-              question: "¿Puedo integrar el asistente con mis sistemas actuales?",
-              answer: "Sí, nuestras soluciones son altamente integrables con CRMs, sistemas de reservas, plataformas de e-commerce y otras herramientas que ya utilices en tu negocio."
-            }
-          ].map((faq, index) => (
-            <motion.div
-              key={index}
-              className="mb-4 last:mb-0"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
-              <details className="group bg-gray-800/80 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700 hover:border-purple-500/50 transition-all duration-300">
-                <summary className="flex justify-between items-center cursor-pointer p-6 focus:outline-none group-hover:bg-gray-700/30 transition-colors duration-300">
-                  <h3 className="text-lg font-medium text-white group-hover:text-purple-300 transition-colors duration-300">
-                    {faq.question}
-                  </h3>
-                  <motion.div 
-                    className="text-purple-400 transition-transform duration-300 group-open:rotate-180"
-                    whileHover={{ scale: 1.1 }}
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </motion.div>
-                </summary>
-                <div className="px-6 pb-6 text-gray-300 leading-relaxed">
-                  <p>{faq.answer}</p>
-                </div>
-              </details>
-            </motion.div>
-          ))}
-          
-          <motion.div 
-            className="mt-10 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-          >
-            <Button.Secondary to="/pricing#faq">
-              <span>Ver todas las preguntas frecuentes</span>
-              <ArrowRight className="h-4 w-4 ml-2" />
-            </Button.Secondary>
-          </motion.div>
-        </div>
-      </Section>
+     
     </motion.main>
   );
 }
