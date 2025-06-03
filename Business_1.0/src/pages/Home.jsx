@@ -10,7 +10,6 @@ import Button from '../components/ui/Button';
 // Secciones
 import Hero from '../components/sections/home/Hero';
 import Features from '../components/sections/home/Features';
-import Benefits from '../components/sections/home/Benefits';
 import HowItWorks from '../components/sections/home/HowItWorks';
 import CallToAction from '../components/sections/home/CallToAction';
 import CustomAgents from '../components/sections/home/CustomAgents';
