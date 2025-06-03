@@ -2,6 +2,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Star, Play, MessageSquare, Send } from 'lucide-react';
+import whatsappVideo from '/src/images/whatsapp.mp4';
+import telegramVideo from '/src/images/telegram.mp4';
+import { Link } from 'react-router-dom';
 
 function Hero() {
   const particlesRef = useRef(null);
@@ -11,7 +14,7 @@ function Hero() {
   const videos = [
     {
       id: 'whatsapp',
-      src: '/src/images/whatsapp.mp4',
+      src: whatsappVideo,
       title: 'WhatsApp AI',
       subtitle: 'Asistente 24/7',
       description: 'Automatiza respuestas, agenda citas y gestiona consultas directamente en WhatsApp',
@@ -20,7 +23,7 @@ function Hero() {
     },
     {
       id: 'telegram',
-      src: '/src/images/telegram.mp4', 
+      src: telegramVideo, 
       title: 'Telegram Bot',
       subtitle: 'Inteligencia avanzada',
       description: 'Bot personalizado que aprende de tu negocio y responde como un experto',
@@ -190,38 +193,45 @@ function Hero() {
             Asistentes inteligentes personalizados para WhatsApp, Telegram y Gmail que atienden a tus clientes 24/7.
           </motion.p>
           
-          <motion.div 
-            className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center lg:justify-start"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            <motion.a 
-              href="/contact" 
-              className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold py-4 px-8 rounded-xl hover:shadow-lg hover:shadow-purple-600/20 transition duration-300 relative overflow-hidden group flex items-center justify-center"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <span className="relative z-10">Comenzar ahora</span>
-              <motion.span 
-                className="absolute right-4 opacity-0 group-hover:opacity-100 group-hover:right-6 transition-all duration-300"
-              >
-                <ArrowRight className="h-5 w-5" />
-              </motion.span>
-              <motion.div 
-                className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              />
-            </motion.a>
-            
-            <motion.a 
-              href="/services" 
-              className="border-2 border-purple-500/40 bg-purple-900/10 backdrop-blur-sm text-purple-300 font-bold py-4 px-8 rounded-xl hover:bg-purple-900/30 hover:border-purple-500/60 transition duration-300"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Ver soluciones
-            </motion.a>
-          </motion.div>
+
+<motion.div 
+  className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center lg:justify-start"
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, delay: 0.6 }}
+>
+  <motion.div
+    whileHover={{ scale: 1.02 }}
+    whileTap={{ scale: 0.98 }}
+  >
+    <Link
+      to="/contact"
+      className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold py-4 px-8 rounded-xl hover:shadow-lg hover:shadow-purple-600/20 transition duration-300 relative overflow-hidden group flex items-center justify-center"
+    >
+      <span className="relative z-10">Comenzar ahora</span>
+      <span 
+        className="absolute right-4 opacity-0 group-hover:opacity-100 group-hover:right-6 transition-all duration-300"
+      >
+        <ArrowRight className="h-5 w-5" />
+      </span>
+      <div 
+        className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+      />
+    </Link>
+  </motion.div>
+
+  <motion.div
+    whileHover={{ scale: 1.02 }}
+    whileTap={{ scale: 0.98 }}
+  >
+    <Link
+      to="/services"
+      className="border-2 border-purple-500/40 bg-purple-900/10 backdrop-blur-sm text-purple-300 font-bold py-4 px-8 rounded-xl hover:bg-purple-900/30 hover:border-purple-500/60 transition duration-300 flex items-center justify-center"
+    >
+      Ver soluciones
+    </Link>
+  </motion.div>
+</motion.div>
           
           {/* Estadísticas */}
           <motion.div 

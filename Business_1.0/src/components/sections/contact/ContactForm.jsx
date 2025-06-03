@@ -1,6 +1,7 @@
-// components/sections/contact/ContactForm.jsx - Completamente modernizado para maximizar conversiones
-import React, { useState } from 'react';
+// components/sections/contact/ContactForm.jsx - Con funcionalidad de emailjs integrada
+import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 import { 
   User, 
   Mail, 
@@ -28,6 +29,7 @@ import {
 } from 'lucide-react';
 
 function ContactForm() {
+  const form = useRef();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -112,37 +114,79 @@ function ContactForm() {
       if (!formData.monthlyCustomers) newErrors.monthlyCustomers = 'Selecciona el volumen de clientes';
     }
     
+    // El paso 3 no tiene validaciones obligatorias para navegar, solo para enviar
+    
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const nextStep = () => {
+  const nextStep = (e) => {
+    e.preventDefault(); // Prevenir que el form se envíe
     if (validateStep(currentStep)) {
       setCurrentStep(prev => Math.min(prev + 1, totalSteps));
     }
   };
 
-  const prevStep = () => {
+  const prevStep = (e) => {
+    e.preventDefault(); // Prevenir que el form se envíe
     setCurrentStep(prev => Math.max(prev - 1, 1));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (!validateStep(currentStep)) return;
+    // Solo enviar si estamos en el paso 3 y realmente queremos enviar
+    if (currentStep !== 3) {
+      return;
+    }
+    
+    // Validar que al menos los campos básicos estén llenos
+    if (!validateStep(1) || !validateStep(2)) {
+      return;
+    }
     
     setIsSubmitting(true);
     
-    // Simulate API call
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Preparar los datos para emailjs
+      const emailData = {
+        name: formData.name,
+        email: formData.email,
+        subject: `Nueva solicitud de ${formData.projectType || 'consulta'} - ${formData.company}`,
+        message: `
+INFORMACIÓN BÁSICA:
+- Nombre: ${formData.name}
+- Email: ${formData.email}
+- Teléfono: ${formData.phone}
+- Empresa: ${formData.company}
+
+DETALLES DEL PROYECTO:
+- Industria: ${industryOptions.find(opt => opt.value === formData.industryType)?.label || 'No especificado'}
+- Tipo de proyecto: ${projectTypes.find(opt => opt.value === formData.projectType)?.label || 'No especificado'}
+- Volumen de clientes: ${customerVolumes.find(opt => opt.value === formData.monthlyCustomers)?.label || 'No especificado'}
+- Urgencia: ${urgencyLevels.find(opt => opt.value === formData.urgency)?.label || 'No especificado'}
+
+DESAFÍO ACTUAL:
+${formData.currentChallenge || 'No especificado'}
+
+MENSAJE ADICIONAL:
+${formData.message || 'Ninguno'}
+        `
+      };
+
+      // Enviar con emailjs
+      await emailjs.send(
+        'service_ktgtb6n',     // Service ID
+        'template_t150jh1',    // Template ID
+        emailData,
+        '91LGQkjJK46SJjFex'    // Public Key
+      );
+
       setIsSubmitted(true);
       
-      // Here you would actually send the data to your backend
-      console.log('Form submitted:', formData);
-      
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error('Error sending email:', error);
+      alert('Hubo un problema al enviar el mensaje. Por favor intenta nuevamente o contáctanos por WhatsApp.');
     } finally {
       setIsSubmitting(false);
     }
@@ -217,11 +261,17 @@ function ContactForm() {
               onClick={() => {
                 setIsSubmitted(false);
                 setCurrentStep(1);
+                setErrors({}); // Limpiar errores
+                setIsSubmitting(false); // Asegurar que no está enviando
                 setFormData({
                   name: '', email: '', phone: '', company: '', industryType: '',
                   projectType: '', currentChallenge: '', monthlyCustomers: '',
                   urgency: '', budget: '', message: ''
                 });
+                // Limpiar también el formulario HTML
+                if (form.current) {
+                  form.current.reset();
+                }
               }}
               className="inline-flex items-center justify-center border-2 border-green-500/40 bg-green-900/20 text-green-300 font-bold py-3 px-6 rounded-xl hover:bg-green-900/40 transition-all duration-300"
               whileHover={{ scale: 1.05 }}
@@ -287,7 +337,7 @@ function ContactForm() {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-8">
+        <form ref={form} onSubmit={handleSubmit} className="p-8">
           <AnimatePresence mode="wait">
             {/* Step 1: Basic Information */}
             {currentStep === 1 && (
