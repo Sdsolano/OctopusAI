@@ -241,9 +241,8 @@ function Hero() {
             transition={{ duration: 1, delay: 0.8 }}
           >
             {[
-              { value: '95%', label: 'Satisfacción' },
-              { value: '24/7', label: 'Disponibilidad' },
-              { value: '+200', label: 'Clientes' }
+              { value: '99%', label: 'Satisfacción' },
+              { value: '24/7', label: 'Disponibilidad' }
             ].map((stat, index) => (
               <div key={index} className="flex flex-col">
                 <span className="text-2xl font-bold text-purple-400">{stat.value}</span>

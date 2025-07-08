@@ -153,13 +153,13 @@ function Home() {
       </Section>
       
       {/* Sección de testimonios - Completamente mejorada */}
-      <Section 
+      {/* <Section 
         bgColor="default"
         spacing="xl"
         className="relative overflow-hidden"
-      >
+      > */}
         {/* Elementos decorativos */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <motion.div 
             className="absolute top-20 right-0 w-96 h-96 bg-indigo-600/8 rounded-full filter blur-3xl"
             animate={{ 
@@ -229,7 +229,7 @@ function Home() {
               viewport={{ once: true }}
             >
               {/* Efecto glow */}
-              <motion.div 
+              {/* <motion.div 
                 className={`absolute -inset-1 bg-gradient-to-r ${testimonial.color} rounded-2xl blur opacity-0 group-hover:opacity-20 transition-opacity duration-500`}
               />
               
@@ -237,9 +237,9 @@ function Home() {
                 className="relative bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 border border-gray-700 group-hover:border-purple-500/50 transition-all duration-300 h-full"
                 whileHover={{ y: -5 }}
                 transition={{ type: "spring", stiffness: 300 }}
-              >
+              > */}
                 {/* Header mejorado */}
-                <div className="flex items-center mb-4">
+                {/* <div className="flex items-center mb-4">
                   <div className="relative mr-4 flex-shrink-0">
                     <motion.div 
                       className="h-14 w-14 rounded-full overflow-hidden ring-2 ring-purple-500/20"
@@ -251,10 +251,10 @@ function Home() {
                         alt={testimonial.name} 
                         className="h-full w-full object-cover"
                       />
-                    </motion.div>
+                    </motion.div> */}
                     
                     {/* Badge de resultado */}
-                    <motion.div 
+                    {/* <motion.div 
                       className={`absolute -bottom-2 -right-2 bg-gradient-to-r ${testimonial.color} text-white text-xs font-bold px-2 py-1 rounded-full`}
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
@@ -270,10 +270,10 @@ function Home() {
                   </div>
                 </div>
                 
-                <p className="text-gray-300 mb-4 leading-relaxed">"{testimonial.text}"</p>
+                <p className="text-gray-300 mb-4 leading-relaxed">"{testimonial.text}"</p> */}
                 
                 {/* Rating mejorado */}
-                <div className="flex items-center justify-between">
+                {/* <div className="flex items-center justify-between">
                   <div className="flex">
                     {Array.from({ length: 5 }).map((_, i) => (
                       <motion.div
@@ -303,8 +303,8 @@ function Home() {
               </motion.div>
             </motion.div>
           ))}
-        </div>
-      </Section>
+        </div> */}
+      {/* </Section>  */}
       
       {/* Llamada a la acción */}
       <CallToAction />

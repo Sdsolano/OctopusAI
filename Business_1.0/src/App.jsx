@@ -58,7 +58,7 @@ function App() {
   }
 
   return (
-    <Router basename="/OctopusAI">
+    <Router basename="/">
       <ScrollToTop />
       <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-900 to-gray-900 text-gray-100 flex flex-col">
         <Header isScrolled={isScrolled} />
@@ -83,97 +83,316 @@ function App() {
 }
 
 // Pantalla de carga
+// LoadingScreen - Versión PREMIUM para App.jsx
 function LoadingScreen() {
   return (
-    <motion.div
-      className="fixed inset-0 bg-gradient-to-b from-gray-900 via-gray-900 to-gray-800 flex flex-col items-center justify-center z-50 overflow-hidden"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      {/* Elementos decorativos de fondo sutiles (opcional, como en About.jsx) */}
-      <motion.div
-        className="absolute -top-40 -right-40 w-96 h-96 bg-purple-600/10 rounded-full filter blur-3xl pointer-events-none"
-        animate={{
-          scale: [1, 1.1, 1],
-          rotate: [0, 10, 0],
-          opacity: [0.1, 0.25, 0.1]
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          repeatType: "reverse",
-        }}
-      />
-      <motion.div
-        className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-500/10 rounded-full filter blur-3xl pointer-events-none"
-        animate={{
-          scale: [1, 1.2, 1],
-          rotate: [0, -10, 0],
-          opacity: [0.05, 0.2, 0.05]
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          repeatType: "reverse",
-          delay: 1
-        }}
-      />
-
-      <div className="text-center relative z-10">
-        <motion.div
-          className="mb-6" // Ajusta el margen si es necesario
-          animate={{
-            rotate: 360, // Mantiene la animación de giro del logo original
+    <div className="fixed inset-0 bg-gradient-to-br from-gray-900 via-gray-950 to-black flex items-center justify-center z-50 overflow-hidden">
+      {/* Background Elements - Ultra Premium */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Gradient overlays animados */}
+        <motion.div 
+          className="absolute -top-40 -right-40 w-96 h-96 bg-purple-600/20 rounded-full filter blur-3xl"
+          animate={{ 
+            scale: [1, 1.3, 1],
+            rotate: [0, 180, 360],
+            opacity: [0.2, 0.5, 0.2]
           }}
-          transition={{
-            duration: 1.5, // Igual que el CSS original
+          transition={{ 
+            duration: 4, 
             repeat: Infinity,
-            ease: "linear", // Igual que el CSS original
+            ease: "easeInOut"
           }}
+        />
+        <motion.div 
+          className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-600/20 rounded-full filter blur-3xl"
+          animate={{ 
+            scale: [1, 1.4, 1],
+            rotate: [360, 180, 0],
+            opacity: [0.15, 0.4, 0.15]
+          }}
+          transition={{ 
+            duration: 5, 
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1
+          }}
+        />
+        
+        {/* Líneas de código flotantes */}
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute text-purple-500/10 font-mono text-sm"
+            style={{
+              top: `${10 + Math.random() * 80}%`,
+              left: `${5 + Math.random() * 90}%`,
+            }}
+            animate={{
+              y: [0, -20, 0],
+              opacity: [0.1, 0.3, 0.1],
+              rotate: [0, 5, 0],
+            }}
+            transition={{
+              duration: 3 + Math.random() * 2,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+              ease: "easeInOut"
+            }}
+          >
+            {['{ AI }', '< ML >', '[ NLP ]', '( Bot )', '=> AI', 'async', 'await', 'neural'][i]}
+          </motion.div>
+        ))}
+
+        {/* Grid pattern animado */}
+        <motion.div 
+          className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0ibG9hZGluZy1ncmlkIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMDAgMCBMIDAgMCAwIDEwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOTMzM2VhIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIwLjA1Ii8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2xvYWRpbmctZ3JpZCkiLz48L3N2Zz4=')] opacity-30"
+          animate={{ opacity: [0.2, 0.4, 0.2] }}
+          transition={{ duration: 3, repeat: Infinity }}
+        />
+      </div>
+
+      {/* Main Content Container */}
+      <motion.div 
+        className="text-center relative z-10"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        {/* Logo Container - Espectacular */}
+        <div className="mb-8 relative">
+          {/* Glow rings múltiples */}
+          <motion.div 
+            className="absolute inset-0 w-32 h-32 mx-auto"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+          >
+            <div className="absolute inset-0 rounded-full border-2 border-transparent bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500 opacity-30"
+                 style={{ 
+                   background: 'conic-gradient(from 0deg, #8b5cf6, #ec4899, #3b82f6, #8b5cf6)',
+                   WebkitMask: 'radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 2px))',
+                   mask: 'radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 2px))'
+                 }}>
+            </div>
+          </motion.div>
+          
+          <motion.div 
+            className="absolute inset-0 w-28 h-28 mx-auto mt-2 ml-2"
+            animate={{ rotate: -360 }}
+            transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+          >
+            <div className="absolute inset-0 rounded-full border border-transparent bg-gradient-to-r from-indigo-400 to-purple-400 opacity-20"
+                 style={{ 
+                   background: 'conic-gradient(from 180deg, #3b82f6, #8b5cf6, #3b82f6)',
+                   WebkitMask: 'radial-gradient(farthest-side, transparent calc(100% - 1px), #000 calc(100% - 1px))',
+                   mask: 'radial-gradient(farthest-side, transparent calc(100% - 1px), #000 calc(100% - 1px))'
+                 }}>
+            </div>
+          </motion.div>
+
+          {/* Logo principal con efectos */}
+          <motion.div 
+            className="relative w-24 h-24 mx-auto"
+            animate={{ 
+              rotateY: [0, 360],
+              scale: [1, 1.1, 1]
+            }}
+            transition={{ 
+              duration: 3, 
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            {/* Glow background */}
+            <motion.div 
+              className="absolute -inset-4 bg-gradient-to-r from-purple-600/40 to-indigo-600/40 rounded-full filter blur-xl"
+              animate={{ 
+                scale: [1, 1.2, 1],
+                opacity: [0.4, 0.8, 0.4]
+              }}
+              transition={{ 
+                duration: 2, 
+                repeat: Infinity,
+                repeatType: "reverse"
+              }}
+            />
+            
+            <img 
+              src={octopusLogo} 
+              alt="Octopus AI Logo" 
+              className="w-24 h-24 relative z-10 drop-shadow-2xl"
+            />
+            
+            {/* Sparkles alrededor del logo */}
+            {[...Array(6)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-2 h-2 bg-white rounded-full"
+                style={{
+                  top: `${20 + Math.cos(i * 60 * Math.PI / 180) * 40}px`,
+                  left: `${44 + Math.sin(i * 60 * Math.PI / 180) * 40}px`,
+                }}
+                animate={{
+                  scale: [0, 1, 0],
+                  opacity: [0, 1, 0],
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  delay: i * 0.2,
+                  ease: "easeInOut"
+                }}
+              />
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Texto con typing effect */}
+        <motion.div 
+          className="mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <img
-            src={octopusLogo}
-            alt="Octopus AI Logo"
-            className="w-20 h-20 mx-auto" // Mantiene el tamaño original del logo
-          />
+          <motion.h2 
+            className="text-4xl font-bold mb-2 bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent"
+            animate={{ 
+              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+            }}
+            transition={{ 
+              duration: 3, 
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            style={{
+              backgroundSize: "200% 200%"
+            }}
+          >
+            OCTOPUS AI
+          </motion.h2>
+          
+
         </motion.div>
 
-        <motion.h2
-          className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 mb-2"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
+        {/* Progress Bar Ultra Premium */}
+        <motion.div 
+          className="w-80 mx-auto mb-8"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
         >
-          Octopus AI
-        </motion.h2>
+          <div className="relative">
+            {/* Background de la barra con glow */}
+            <div className="w-full h-2 bg-gray-800 rounded-full overflow-hidden relative">
+              <motion.div 
+                className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-indigo-600/20 rounded-full"
+                animate={{ 
+                  scale: [1, 1.05, 1],
+                }}
+                transition={{ 
+                  duration: 2, 
+                  repeat: Infinity,
+                }}
+              />
+            </div>
+            
+            {/* Barra de progreso animada */}
+            <motion.div 
+              className="absolute top-0 left-0 h-2 bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500 rounded-full shadow-lg shadow-purple-500/50"
+              initial={{ width: "0%" }}
+              animate={{ width: ["0%", "100%", "0%"] }}
+              transition={{ 
+                duration: 3, 
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+            
+            {/* Shine effect en la barra */}
+            <motion.div 
+              className="absolute top-0 left-0 h-2 w-full bg-gradient-to-r from-transparent via-white/30 to-transparent rounded-full"
+              animate={{ x: ["-100%", "100%"] }}
+              transition={{ 
+                duration: 2, 
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+          </div>
+          
+          {/* Porcentaje o estados */}
+          <motion.div 
+            className="flex justify-between text-sm text-gray-400 mt-3"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+          >
+            <motion.span
+              animate={{ opacity: [0.5, 1, 0.5] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              Cargando IA...
+            </motion.span>
+            <motion.span
+              className="text-purple-400 font-mono"
+              animate={{ opacity: [0.5, 1, 0.5] }}
+              transition={{ duration: 1.5, repeat: Infinity, delay: 0.5 }}
+            >
+              99%
+            </motion.span>
+          </motion.div>
+        </motion.div>
 
-        <motion.p
-          className="text-md text-gray-300 mb-8" // Estilo de texto actualizado
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.4 }}
+        {/* Loading dots premium */}
+        <motion.div 
+          className="flex justify-center space-x-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2 }}
         >
-          Iniciando la revolución...
-        </motion.p>
+          {[...Array(3)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="w-3 h-3 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full"
+              animate={{
+                scale: [1, 1.5, 1],
+                opacity: [0.5, 1, 0.5],
+              }}
+              transition={{
+                duration: 1,
+                repeat: Infinity,
+                delay: i * 0.2,
+                ease: "easeInOut"
+              }}
+            />
+          ))}
+        </motion.div>
+      </motion.div>
 
-        {/* Barra de carga modernizada */}
-        <div className="w-40 h-1.5 bg-gray-700/50 rounded-full overflow-hidden mx-auto shadow-inner">
+      {/* Partículas flotantes adicionales */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(12)].map((_, i) => (
           <motion.div
-            className="h-full bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full"
-            style={{ width: '40%' }} // El segmento que se mueve es el 40% del ancho de la barra
-            initial={{ x: "-150%" }} // Comienza fuera de la pantalla a la izquierda
-            animate={{ x: "250%" }}   // Se mueve a través hasta salir por la derecha (100% / 40% = 2.5 -> 250%)
+            key={i}
+            className="absolute w-1 h-1 bg-purple-400/30 rounded-full"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -100],
+              opacity: [0, 1, 0],
+              scale: [0, 1, 0],
+            }}
             transition={{
-              duration: 1.8,
+              duration: 3 + Math.random() * 2,
               repeat: Infinity,
-              ease: "linear", // Velocidad constante para un bucle suave
+              delay: Math.random() * 2,
+              ease: "easeOut"
             }}
           />
-        </div>
+        ))}
       </div>
-    </motion.div>
+    </div>
   );
 }
 

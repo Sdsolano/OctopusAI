@@ -112,9 +112,7 @@ function Services() {
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               {[
-                { icon: Users, value: "+500", label: "Empresas activas", color: "text-blue-400" },
                 { icon: Zap, value: "99.9%", label: "Tiempo activo", color: "text-green-400" },
-                { icon: TrendingUp, value: "+250%", label: "ROI promedio", color: "text-purple-400" },
                 { icon: Shield, value: "100%", label: "Datos seguros", color: "text-indigo-400" }
               ].map((stat, index) => {
                 const Icon = stat.icon;
@@ -212,114 +210,14 @@ function Services() {
             />
 
             <ServiceCard 
-              id="gmail"
-              title="Automatización de correos con Gmail"
-              description="Clasificamos, respondemos y gestionamos correos electrónicos entrantes, con flujos automáticos inteligentes según tus reglas."
-              features={["Clasificación automática de correos", "Respuestas personalizadas", "Priorización inteligente", "Integración con tu flujo de trabajo", "Análisis de sentimiento"]}
-              icon="Mail"
-              reversed={false}
-            />
-
-            <ServiceCard 
               id="excel"
               title="Gestión de pedidos con integración a Excel"
               description="Permite a tus clientes hacer pedidos directamente desde el chat, con toda la información cargada automáticamente en un archivo Excel."
               features={["Captura de datos estructurada", "Actualización en tiempo real", "Notificaciones de nuevos pedidos", "Exportación a múltiples formatos", "Historial de pedidos accesible"]}
               icon="Database"
-              reversed={true}
+              reversed={false}
               webhookUrl="https://primary-production-b1314.up.railway.app/webhook/7d5c5747-3ec7-4a8c-a6b4-c5dcab3f7f72"
             />
-          </div>
-        </div>
-      </section>
-
-      {/* Sección de casos de éxito */}
-      <section className="py-20 bg-gray-900 relative overflow-hidden">
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="text-center mb-16">
-            <SectionBadge icon={Star}>Casos de éxito</SectionBadge>
-            <motion.h2 
-              className="text-4xl font-bold text-white mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              Resultados que hablan por sí mismos
-            </motion.h2>
-            <motion.p 
-              className="text-xl text-gray-300 max-w-3xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              Descubre cómo nuestros clientes han transformado sus negocios con Octopus AI
-            </motion.p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            {[
-              {
-                company: "Clínica Dental Premium",
-                service: "WhatsApp + Gestión de Citas",
-                result: "+120% en reservas",
-                detail: "Automatizamos su sistema de citas y consultas, reduciendo tiempo de gestión en 8 horas diarias.",
-                icon: Calendar,
-                color: "from-blue-500 to-indigo-600"
-              },
-              {
-                company: "E-commerce Fashion",
-                service: "Telegram + Excel Integration",
-                result: "+300% ventas online",
-                detail: "Bot de Telegram procesa pedidos automáticamente y mantiene inventario sincronizado en tiempo real.",
-                icon: MessageSquare,
-                color: "from-green-500 to-emerald-600"
-              },
-              {
-                company: "Consultora Legal",
-                service: "Gmail Automation",
-                result: "5 horas/día ahorradas",
-                detail: "IA clasifica casos urgentes y responde consultas básicas, permitiendo enfoque en casos complejos.",
-                icon: Mail,
-                color: "from-purple-500 to-violet-600"
-              }
-            ].map((case_study, index) => {
-              const Icon = case_study.icon;
-              return (
-                <motion.div
-                  key={index}
-                  className="bg-gray-800/70 backdrop-blur-sm rounded-xl p-6 border border-gray-700 group hover:border-purple-500/50 transition-all duration-300"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -5 }}
-                >
-                  <div className="flex items-center mb-4">
-                    <div className={`bg-gradient-to-br ${case_study.color} p-3 rounded-lg mr-4`}>
-                      <Icon className="h-6 w-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-white">{case_study.company}</h3>
-                      <p className="text-sm text-gray-400">{case_study.service}</p>
-                    </div>
-                  </div>
-                  
-                  <div className={`text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r ${case_study.color} mb-2`}>
-                    {case_study.result}
-                  </div>
-                  
-                  <p className="text-gray-300 text-sm">{case_study.detail}</p>
-                </motion.div>
-              );
-            })}
-          </div>
-
-          <div className="text-center">
-            <Button.Secondary to="/contact">
-              Ver más casos de éxito
-            </Button.Secondary>
           </div>
         </div>
       </section>
@@ -343,7 +241,7 @@ function Services() {
               ¿Listo para automatizar tu negocio?
             </h2>
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Únete a más de 500 empresas que ya confían en Octopus AI para 
+              Únete a las empresas que ya confían en Octopus AI para 
               transformar su comunicación con clientes.
             </p>
             

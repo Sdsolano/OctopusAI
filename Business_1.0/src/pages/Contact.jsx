@@ -321,93 +321,7 @@ function Contact() {
         </div>
       </section>
 
-      {/* Success Stories Preview */}
-      <section className="py-20 bg-gradient-to-b from-gray-900 to-gray-800 relative overflow-hidden">
-        <div className="container mx-auto px-6 relative z-10">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <SectionBadge icon={Award}>Casos de éxito</SectionBadge>
-            
-            <h2 className="text-4xl font-bold text-white mb-6">
-              Empresas que ya dieron el paso
-            </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Estos clientes se contactaron con nosotros y ahora tienen resultados increíbles
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            {[
-              {
-                company: "Clínica Dental Sonrisas",
-                result: "+120% en citas",
-                testimonial: "\"Desde el primer día notamos la diferencia. El proceso de contacto fue súper fácil.\"",
-                timeToROI: "1 semana",
-                color: "from-green-500 to-emerald-600"
-              },
-              {
-                company: "TechShop Online",
-                result: "+300% ventas",
-                testimonial: "\"La propuesta que nos enviaron después del contacto fue exactamente lo que necesitábamos.\"",
-                timeToROI: "3 días",
-                color: "from-blue-500 to-indigo-600"
-              },
-              {
-                company: "Consultora Legal MG",
-                result: "5h/día ahorradas",
-                testimonial: "\"El equipo respondió súper rápido y entendieron perfectamente nuestras necesidades.\"",
-                timeToROI: "1 semana",
-                color: "from-purple-500 to-violet-600"
-              }
-            ].map((story, index) => (
-              <motion.div
-                key={index}
-                className="relative group"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -5 }}
-              >
-                {/* Glow effect */}
-                <motion.div 
-                  className={`absolute -inset-1 bg-gradient-to-r ${story.color} rounded-2xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-500`}
-                />
-                
-                <div className="relative bg-gray-800/90 backdrop-blur-xl rounded-xl p-6 border border-gray-700/50 group-hover:border-purple-500/50 transition-all duration-300 h-full">
-                  <div className="flex items-center mb-4">
-                    <div className={`bg-gradient-to-r ${story.color} p-3 rounded-lg mr-4`}>
-                      <TrendingUp className="h-6 w-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-white">{story.company}</h3>
-                      <p className={`text-sm font-semibold text-transparent bg-clip-text bg-gradient-to-r ${story.color}`}>
-                        ROI en {story.timeToROI}
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div className={`text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r ${story.color} mb-3`}>
-                    {story.result}
-                  </div>
-                  
-                  <p className="text-gray-300 text-sm italic mb-4">{story.testimonial}</p>
-                  
-                  <div className="flex items-center text-green-400 text-sm">
-                    <CheckCircle2 className="h-4 w-4 mr-2" />
-                    <span>Cliente satisfecho desde {story.timeToROI}</span>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+     
 
       {/* Urgency/FOMO Section */}
       <section className="py-20 bg-gradient-to-r from-green-900/20 via-gray-900 to-purple-900/20 relative overflow-hidden">
@@ -467,7 +381,6 @@ function Contact() {
               viewport={{ once: true }}
             >
               {[
-                "⚡ Respuesta garantizada en 2 horas",
                 "🎯 Propuesta sin compromiso",
                 "💰 Sin costos ocultos",
                 "🔒 100% confidencial"

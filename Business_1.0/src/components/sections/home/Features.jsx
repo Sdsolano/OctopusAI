@@ -36,7 +36,7 @@ function Features() {
     },
     { 
       icon: Database, 
-      title: "Excel Integration", 
+      title: "Integración con Excel", 
       description: "Conecta tu asistente con hojas de cálculo para gestionar pedidos y mantener registros actualizados.",
       color: "from-rose-500 via-pink-500 to-purple-600",
       benefits: ["Actualización en tiempo real", "Exportación de datos", "Captura estructurada", "Reportes automatizados"],

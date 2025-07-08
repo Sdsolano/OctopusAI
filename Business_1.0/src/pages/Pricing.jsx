@@ -159,13 +159,7 @@ function Pricing() {
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               {[
-                { 
-                  icon: TrendingUp, 
-                  value: "ROI 250%", 
-                  label: "Promedio en 6 meses", 
-                  color: "from-green-500 to-emerald-600",
-                  description: "Clientes reales"
-                },
+                
                 { 
                   icon: Clock, 
                   value: "72h", 
@@ -251,9 +245,8 @@ function Pricing() {
               transition={{ duration: 0.8, delay: 1.2 }}
             >
               {[
-                "✓ +500 empresas confían en nosotros",
-                "✓ 98% de satisfacción del cliente",
-                "✓ Soporte en español 24/7",
+                "✓ 99% de satisfacción del cliente",
+                "✓ Soporte 24/7",
                 "✓ Sin contratos de permanencia"
               ].map((item, index) => (
                 <motion.div

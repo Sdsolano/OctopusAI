@@ -35,7 +35,9 @@ import {
   Twitter,
   Linkedin,
   Instagram,
-  Youtube
+  Youtube,
+  WholeWord,
+  Earth
 } from 'lucide-react';
 import octopusLogo from "../../assets/octopus-logo.svg";
 
@@ -368,12 +370,11 @@ function Footer() {
                   
                   <li>
                     <div className="flex items-start text-gray-400 group">
-                      <MapPin className="h-5 w-5 mr-3 mt-0.5 text-blue-500 group-hover:scale-110 transition-transform duration-300" />
+                      <Earth className="h-5 w-5 mr-3 mt-0.5 text-blue-500 group-hover:scale-110 transition-transform duration-300" />
                       <div>
                         <span className="hover:text-blue-400 transition-colors duration-300">
-                          Barranquilla, Colombia
+                          Atención global
                         </span>
-                        <div className="text-xs text-gray-500">Atención global</div>
                       </div>
                     </div>
                   </li>

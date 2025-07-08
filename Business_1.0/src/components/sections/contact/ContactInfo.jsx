@@ -89,7 +89,7 @@ function ContactInfo() {
       title: "Demo Personalizada",
       subtitle: "Ve la IA en acción",
       value: "Agenda 30 min",
-      link: "https://calendly.com/octopusai",
+      link: "https://calendly.com/info-octopusai/30min",
       color: "from-purple-500 to-violet-600", 
       description: "Demostración en vivo",
       badge: "🎯 Recomendado",
