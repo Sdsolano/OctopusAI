@@ -18,6 +18,7 @@ import Contact from './pages/Contact';
 
 // Import the octopus logo
 import octopusLogo from './assets/octopus-logo.svg';
+import { LanguageProvider } from './contexts/LanguageContext';
 
 // ScrollToTop component para manejar el scroll en cambios de página
 function ScrollToTop() {
@@ -58,6 +59,7 @@ function App() {
   }
 
   return (
+    <LanguageProvider>
     <Router basename="/">
       <ScrollToTop />
       <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-900 to-gray-900 text-gray-100 flex flex-col">
@@ -79,6 +81,7 @@ function App() {
         <Footer />
       </div>
     </Router>
+    </LanguageProvider>
   );
 }
 

@@ -1,4 +1,4 @@
-// components/common/Header.jsx - Completamente modernizado para impresionar
+// components/common/Header.jsx - Completamente modernizado para impresionar + Idioma
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -15,20 +15,27 @@ import {
   Phone,
   Crown,
   Globe,
-  ExternalLink
+  ExternalLink,
+  Loader2
 } from 'lucide-react';
 import octopusLogo from "../../assets/octopus-logo.svg";
+import { useLanguage } from '../../contexts/LanguageContext';
 
 function Header({ isScrolled }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const location = useLocation();
+  
+  // Language context
+  const { language, changeLanguage, isTranslating, browserLanguage } = useLanguage();
   
   // Close menu when route changes
   useEffect(() => {
     setIsMenuOpen(false);
     setIsServicesOpen(false);
+    setIsLanguageOpen(false);
   }, [location]);
 
   // Close menu when screen resizes to desktop
@@ -36,6 +43,7 @@ function Header({ isScrolled }) {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
         setIsMenuOpen(false);
+        setIsLanguageOpen(false);
       }
     };
     
@@ -106,6 +114,20 @@ function Header({ isScrolled }) {
     { name: 'Precios', path: '/pricing' },
     { name: 'Nosotros', path: '/about' }
   ];
+
+  // Language configuration
+  const languages = [
+    { code: 'es', name: 'Español', flag: '🇪🇸' },
+    { code: 'en', name: 'English', flag: '🇺🇸' }
+  ];
+
+  const currentLanguage = languages.find(lang => lang.code === language);
+  const isBrowserDetected = browserLanguage === language;
+
+  const handleLanguageChange = async (langCode) => {
+    setIsLanguageOpen(false);
+    await changeLanguage(langCode);
+  };
 
   return (
     <motion.header 
@@ -244,6 +266,98 @@ function Header({ isScrolled }) {
                   </Link>
                 </motion.li>
               ))}
+              
+              {/* Language Toggle Button - Desktop */}
+              <motion.li
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+                className="relative"
+              >
+                <motion.button
+                  onClick={() => !isTranslating && setIsLanguageOpen(!isLanguageOpen)}
+                  disabled={isTranslating}
+                  className={`flex items-center space-x-2 bg-purple-900/30 hover:bg-purple-900/50 border border-purple-500/40 hover:border-purple-500/60 rounded-xl px-3 py-3 text-sm font-medium text-purple-300 transition-all duration-300 ml-2 ${
+                    isTranslating ? 'opacity-60 cursor-not-allowed' : ''
+                  }`}
+                  whileHover={!isTranslating ? { scale: 1.05 } : {}}
+                  whileTap={!isTranslating ? { scale: 0.95 } : {}}
+                >
+                  {isTranslating ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <Globe className="h-4 w-4" />
+                  )}
+                  
+                  <span className="hidden sm:inline">{currentLanguage?.flag}</span>
+                  
+                  <span className="hidden md:inline flex items-center space-x-1">
+                    <span>
+                      {isTranslating ? 'Translating...' : currentLanguage?.name}
+                    </span>
+                    {isBrowserDetected && !isTranslating && (
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        className="flex items-center"
+                        title="Auto-detected from browser"
+                      >
+                        <Zap className="h-3 w-3 text-green-400 ml-1" />
+                      </motion.div>
+                    )}
+                  </span>
+                  
+                  <ChevronDown 
+                    className={`h-4 w-4 transition-transform duration-200 ${isLanguageOpen ? 'rotate-180' : ''}`} 
+                  />
+                </motion.button>
+
+                {/* Language Dropdown */}
+                <AnimatePresence>
+                  {isLanguageOpen && !isTranslating && (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.95, y: -10 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.95, y: -10 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute right-0 mt-2 w-48 bg-gray-800/95 backdrop-blur-sm border border-purple-500/30 rounded-lg shadow-xl z-50"
+                    >
+                      <div className="p-2">
+                        <div className="text-xs text-gray-400 px-2 py-1 mb-2 border-b border-gray-700">
+                          {browserLanguage === 'en' ? 'Browser: English' : 'Navegador: Español'}
+                        </div>
+                        
+                        {languages.map((lang) => (
+                          <motion.button
+                            key={lang.code}
+                            onClick={() => handleLanguageChange(lang.code)}
+                            className={`w-full flex items-center space-x-3 px-3 py-2 text-sm font-medium transition-colors duration-200 rounded-md ${
+                              language === lang.code
+                                ? 'bg-purple-600/50 text-white'
+                                : 'text-gray-300 hover:bg-purple-900/30 hover:text-white'
+                            }`}
+                            whileHover={{ x: 4 }}
+                          >
+                            <span className="text-lg">{lang.flag}</span>
+                            <span className="flex-1 text-left">{lang.name}</span>
+                            
+                            {browserLanguage === lang.code && (
+                              <Zap className="h-3 w-3 text-green-400" title="Browser language" />
+                            )}
+                            
+                            {language === lang.code && (
+                              <motion.div
+                                layoutId="activeLanguage"
+                                className="w-2 h-2 bg-purple-400 rounded-full"
+                              />
+                            )}
+                          </motion.button>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.li>
               
               {/* CTA Button - Premium */}
               <motion.li
@@ -387,6 +501,43 @@ function Header({ isScrolled }) {
                   </motion.li>
                 ))}
                 
+                {/* Language Toggle - Mobile */}
+                <motion.li variants={menuItemVariants} className="pt-4 border-t border-gray-700/30">
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-gray-400">
+                        {browserLanguage === 'en' ? 'Language / Idioma' : 'Idioma / Language'}
+                      </span>
+                      {isTranslating && (
+                        <Loader2 className="h-4 w-4 animate-spin text-purple-400" />
+                      )}
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-3">
+                      {languages.map((lang) => (
+                        <motion.button
+                          key={lang.code}
+                          onClick={() => handleLanguageChange(lang.code)}
+                          disabled={isTranslating}
+                          className={`flex items-center space-x-2 px-4 py-3 rounded-lg font-medium transition-all duration-300 ${
+                            language === lang.code
+                              ? 'bg-purple-600/50 text-white border border-purple-500/60'
+                              : 'bg-gray-800/50 text-gray-300 hover:bg-purple-900/30 border border-gray-600/50'
+                          } ${isTranslating ? 'opacity-50 cursor-not-allowed' : ''}`}
+                          whileHover={!isTranslating ? { scale: 1.02 } : {}}
+                          whileTap={!isTranslating ? { scale: 0.98 } : {}}
+                        >
+                          <span className="text-lg">{lang.flag}</span>
+                          <span className="text-sm">{lang.name}</span>
+                          {browserLanguage === lang.code && (
+                            <Zap className="h-3 w-3 text-green-400" />
+                          )}
+                        </motion.button>
+                      ))}
+                    </div>
+                  </div>
+                </motion.li>
+                
                 {/* Mobile CTA */}
                 <motion.li variants={menuItemVariants} className="pt-4">
                   <Link 
@@ -435,6 +586,14 @@ function Header({ isScrolled }) {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Language Dropdown Overlay (Desktop) */}
+      {isLanguageOpen && (
+        <div
+          className="fixed inset-0 z-40"
+          onClick={() => setIsLanguageOpen(false)}
+        />
+      )}
 
       {/* Background particles (subtle) */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
