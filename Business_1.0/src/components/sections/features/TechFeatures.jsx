@@ -24,122 +24,43 @@ import {
   TrendingUp,
   Eye
 } from 'lucide-react';
+import { useTranslation } from '../../../hooks/useTranslation.js';
 
 function TechFeatures() {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState(0);
   const [hoveredFeature, setHoveredFeature] = useState(null);
 
-  const techCategories = [
-    {
-      id: 'infrastructure',
-      name: 'Infraestructura',
-      icon: Server,
-      color: 'from-blue-500 to-indigo-600',
-      description: 'Arquitectura robusta y escalable'
-    },
-    {
-      id: 'ai',
-      name: 'Inteligencia Artificial', 
-      icon: Brain,
-      color: 'from-purple-500 to-violet-600',
-      description: 'IA de última generación'
-    },
-    {
-      id: 'security',
-      name: 'Seguridad',
-      icon: Shield,
-      color: 'from-green-500 to-emerald-600', 
-      description: 'Protección nivel empresarial'
-    }
-  ];
+  const techCategories = t('techFeatures.categories').map((category, index) => ({
+    ...category,
+    icon: [Server, Brain, Shield][index],
+    color: ['from-blue-500 to-indigo-600', 'from-purple-500 to-violet-600', 'from-green-500 to-emerald-600'][index]
+  }));
 
   const techFeatures = [
     // Infraestructura
-    {
+    ...t('techFeatures.features.infrastructure').map(feature => ({
+      ...feature,
       category: 'infrastructure',
-      title: "API REST Robusta",
-      description: "Integración sencilla con tus sistemas existentes mediante nuestra API RESTful de alto rendimiento.",
-      icon: Code2,
-      color: "from-blue-500 to-indigo-700",
-      techSpecs: ["Rate limiting inteligente", "Versionado automático", "Documentación OpenAPI", "SDKs múltiples"],
-      metrics: { uptime: "99.99%", latency: "<50ms", requests: "1M+/día" }
-    },
-    {
-      category: 'infrastructure', 
-      title: "Webhooks Personalizables",
-      description: "Configura notificaciones y acciones basadas en eventos específicos en tiempo real.",
-      icon: Webhook,
-      color: "from-indigo-500 to-purple-700",
-      techSpecs: ["Eventos en tiempo real", "Reintentos automáticos", "Firma de seguridad", "Configuración visual"],
-      metrics: { delivery: "99.9%", speed: "Instantáneo", events: "50+ tipos" }
-    },
-    {
-      category: 'infrastructure',
-      title: "Monitoreo 24/7",
-      description: "Supervisión constante y alertas proactivas para garantizar el funcionamiento óptimo.",
-      icon: Monitor,
-      color: "from-green-500 to-teal-700",
-      techSpecs: ["Métricas en tiempo real", "Alertas inteligentes", "Análisis predictivo", "Dashboard avanzado"],
-      metrics: { monitoring: "24/7", alerts: "Tiempo real", accuracy: "99.8%" }
-    },
+      icon: [Code2, Webhook, Monitor][t('techFeatures.features.infrastructure').indexOf(feature)],
+      color: ['from-blue-500 to-indigo-700', 'from-indigo-500 to-purple-700', 'from-green-500 to-teal-700'][t('techFeatures.features.infrastructure').indexOf(feature)]
+    })),
     
     // IA
-    {
+    ...t('techFeatures.features.ai').map(feature => ({
+      ...feature,
       category: 'ai',
-      title: "Procesamiento de Lenguaje Natural",
-      description: "Tecnología avanzada de NLP para comprender y responder como un humano.",
-      icon: Brain,
-      color: "from-purple-500 to-pink-700",
-      techSpecs: ["Transformers avanzados", "Fine-tuning específico", "Contexto multi-turno", "Análisis semántico"],
-      metrics: { accuracy: "96.8%", languages: "30+", context: "Ilimitado" }
-    },
-    {
-      category: 'ai',
-      title: "Aprendizaje Automático",
-      description: "Modelos que mejoran continuamente con cada interacción para optimizar respuestas.",
-      icon: TrendingUp,
-      color: "from-violet-500 to-indigo-700",
-      techSpecs: ["MLOps automatizado", "A/B testing continuo", "Feedback loops", "Optimización automática"],
-      metrics: { improvement: "+2%/semana", models: "Actualizados", data: "Segura" }
-    },
-    {
-      category: 'ai',
-      title: "Respuesta a Multimedia",
-      description: "Capacidad para procesar y responder a imágenes, audio y documentos.",
-      icon: FileImage,
-      color: "from-pink-500 to-red-700",
-      techSpecs: ["OCR avanzado", "Análisis de imágenes", "Transcripción de audio", "Extracción de texto"],
-      metrics: { formats: "50+", accuracy: "94%", speed: "<2s" }
-    },
+      icon: [Brain, TrendingUp, FileImage][t('techFeatures.features.ai').indexOf(feature)],
+      color: ['from-purple-500 to-pink-700', 'from-violet-500 to-indigo-700', 'from-pink-500 to-red-700'][t('techFeatures.features.ai').indexOf(feature)]
+    })),
     
     // Seguridad
-    {
+    ...t('techFeatures.features.security').map(feature => ({
+      ...feature,
       category: 'security',
-      title: "Encriptación de Extremo a Extremo",
-      description: "Todos los datos protegidos con encriptación AES-256 y protocolos de seguridad militares.",
-      icon: Lock,
-      color: "from-teal-500 to-cyan-700",
-      techSpecs: ["AES-256 encryption", "TLS 1.3", "Certificados SSL", "HSM hardware"],
-      metrics: { encryption: "AES-256", compliance: "SOC2", audits: "Anuales" }
-    },
-    {
-      category: 'security',
-      title: "Cumplimiento Normativo",
-      description: "Certificaciones GDPR, LGPD, SOC2 y auditorías de seguridad regulares.",
-      icon: Shield,
-      color: "from-emerald-500 to-green-700",
-      techSpecs: ["GDPR compliant", "LGPD certified", "SOC2 Type II", "ISO 27001"],
-      metrics: { compliance: "100%", audits: "Trimestrales", certifications: "4+" }
-    },
-    {
-      category: 'security',
-      title: "Backup Automático",
-      description: "Copias de seguridad diarias de todas las conversaciones y configuraciones.",
-      icon: Database,
-      color: "from-blue-500 to-teal-700",
-      techSpecs: ["Backup incremental", "Geo-replicación", "Restauración instantánea", "Versionado"],
-      metrics: { frequency: "Diario", retention: "5 años", recovery: "<1 hora" }
-    }
+      icon: [Lock, Shield, Database][t('techFeatures.features.security').indexOf(feature)],
+      color: ['from-teal-500 to-cyan-700', 'from-emerald-500 to-green-700', 'from-blue-500 to-teal-700'][t('techFeatures.features.security').indexOf(feature)]
+    }))
   ];
 
   const filteredFeatures = techFeatures.filter(
@@ -229,17 +150,16 @@ function TechFeatures() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <SectionBadge icon={Code2}>Stack tecnológico</SectionBadge>
+            <SectionBadge icon={Code2}>{t('techFeatures.badge')}</SectionBadge>
             
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400">
-                Tecnología de Vanguardia
+                {t('techFeatures.title')}
               </span>
             </h2>
             
             <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Construida sobre los frameworks más avanzados y las mejores prácticas de la industria, 
-              nuestra infraestructura garantiza performance, seguridad y escalabilidad.
+              {t('techFeatures.subtitle')}
             </p>
           </motion.div>
         </div>
@@ -385,7 +305,7 @@ function TechFeatures() {
                     <div className="space-y-2 mb-6">
                       <h4 className="text-sm font-semibold text-purple-300 flex items-center">
                         <Layers className="h-4 w-4 mr-2" />
-                        Especificaciones
+                        {t('techFeatures.specsLabel')}
                       </h4>
                       {feature.techSpecs.map((spec, i) => (
                         <motion.div
@@ -422,17 +342,13 @@ function TechFeatures() {
         >
           <div className="bg-gradient-to-r from-gray-800/50 via-purple-900/20 to-gray-800/50 backdrop-blur-xl rounded-2xl p-8 border border-gray-700/50">
             <h3 className="text-2xl font-bold text-white mb-6">
-              Infraestructura de clase empresarial
+              {t('techFeatures.footer.title')}
             </h3>
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {[
-                { icon: Server, value: "99.99%", label: "Uptime garantizado", color: "text-green-400" },
-                { icon: Zap, value: "<50ms", label: "Latencia promedio", color: "text-blue-400" },
-                { icon: Shield, value: "AES-256", label: "Encriptación", color: "text-purple-400" },
-                { icon: Activity, value: "24/7", label: "Monitoreo activo", color: "text-orange-400" }
-              ].map((stat, index) => {
-                const Icon = stat.icon;
+              {t('techFeatures.footer.stats').map((stat, index) => {
+                const Icon = [Server, Zap, Shield, Activity][index];
+                const colors = ["text-green-400", "text-blue-400", "text-purple-400", "text-orange-400"];
                 return (
                   <motion.div
                     key={index}
@@ -443,8 +359,8 @@ function TechFeatures() {
                     viewport={{ once: true }}
                     whileHover={{ y: -5 }}
                   >
-                    <Icon className={`h-8 w-8 ${stat.color} mx-auto mb-2`} />
-                    <div className={`text-2xl font-bold ${stat.color} mb-1`}>{stat.value}</div>
+                    <Icon className={`h-8 w-8 ${colors[index]} mx-auto mb-2`} />
+                    <div className={`text-2xl font-bold ${colors[index]} mb-1`}>{stat.value}</div>
                     <div className="text-gray-400 text-sm">{stat.label}</div>
                   </motion.div>
                 );

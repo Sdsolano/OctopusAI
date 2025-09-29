@@ -18,76 +18,29 @@ import {
   Mail
 } from 'lucide-react';
 import Button from '../../ui/Button';
+import { useTranslation } from '../../../hooks/useTranslation.js';
 
 function FAQ() {
+  const { t } = useTranslation();
   const [openIndex, setOpenIndex] = useState(0); // Primera pregunta abierta por defecto
 
-  const faqs = [
-    {
-      question: "¿Necesito tener conocimientos técnicos para implementar Octopus AI?",
-      answer: "Absolutamente no. Nosotros nos encargamos de toda la configuración técnica de principio a fin. Solo necesitas contarnos cómo quieres que funcione tu asistente y nosotros nos ocupamos del resto. Incluimos training completo para tu equipo sin costo adicional.",
-      icon: Zap,
-      color: "from-blue-500 to-indigo-600",
-      highlight: "Setup 100% manejado por nosotros",
-      tags: ["Sin conocimiento técnico", "Training incluido", "Soporte completo"]
-    },
-    {
-      question: "¿Cuánto tiempo toma implementar una solución?",
-      answer: "En la mayoría de los casos, tu asistente estará configurado y funcionando en 24-48 horas máximo. Para proyectos personalizados complejos, el tiempo puede ser de 1-2 semanas. Te damos una fecha exacta antes de empezar y la cumplimos.",
-      icon: Clock,
-      color: "from-green-500 to-emerald-600",
-      highlight: "Listo en 24-48 horas",
-      tags: ["Setup rápido", "Fechas garantizadas", "Sin demoras"]
-    },
-    {
-      question: "¿Puedo integrar el asistente con mis sistemas actuales?",
-      answer: "Sí, nuestras soluciones se integran perfectamente con CRMs, sistemas de reservas, plataformas de e-commerce, calendarios y prácticamente cualquier herramienta que ya utilices. Si usas un sistema específico, podemos crear la integración.",
-      icon: Users,
-      color: "from-purple-500 to-violet-600",
-      highlight: "Integra con todo",
-      tags: ["CRM compatible", "APIs flexibles", "Sistemas existentes"]
-    },
-    {
-      question: "¿El asistente puede transferir conversaciones a un humano?",
-      answer: "Por supuesto. Configuramos reglas inteligentes para determinar cuándo una conversación debe ser escalada a un agente humano. Puede ser por complejidad de la consulta, solicitud del cliente, o palabras clave específicas que definas.",
-      icon: MessageSquare,
-      color: "from-orange-500 to-red-600",
-      highlight: "Escalación inteligente",
-      tags: ["Transferencia suave", "Reglas personalizadas", "Backup humano"]
-    },
-    {
-      question: "¿Existe algún compromiso de permanencia o contrato largo?",
-      answer: "No, todos nuestros planes son mensuales y puedes cancelar cuando quieras sin penalizaciones ni costos ocultos. Nos enfocamos en ganar tu confianza con resultados excepcionales, no con contratos que te aten.",
-      icon: Shield,
-      color: "from-teal-500 to-cyan-600",
-      highlight: "Sin compromisos",
-      tags: ["Cancelación libre", "Sin contratos", "Sin penalizaciones"]
-    },
-    {
-      question: "¿Qué garantías ofrecen si no veo resultados?",
-      answer: "Ofrecemos garantía de satisfacción de 30 días. Si en el primer mes no ves mejoras measurables en tu atención al cliente o no estás satisfecho por cualquier razón, te devolvemos tu dinero completo. Además, garantizamos ROI positivo en 90 días.",
-      icon: Award,
-      color: "from-yellow-500 to-orange-600",
-      highlight: "Garantía 30 días",
-      tags: ["Dinero de vuelta", "ROI garantizado", "Sin riesgos"]
-    },
-    {
-      question: "¿Cómo manejan la seguridad y privacidad de los datos?",
-      answer: "La seguridad es nuestra prioridad #1. Usamos encriptación AES-256, cumplimos con GDPR y LGPD, realizamos auditorías regulares y nunca compartimos información de clientes. Tus datos y los de tus clientes están 100% protegidos.",
-      icon: Shield,
-      color: "from-green-500 to-teal-600",
-      highlight: "Seguridad militar",
-      tags: ["GDPR compliant", "Encriptación AES-256", "Auditorías regulares"]
-    },
-    {
-      question: "¿Puedo ver ejemplos reales funcionando antes de decidir?",
-      answer: "¡Absolutamente! Tenemos demos interactivos en vivo en nuestra página de servicios. Además, podemos hacer una demostración personalizada con casos específicos de tu industria. También te conectamos con clientes actuales para que veas resultados reales.",
-      icon: Star,
-      color: "from-purple-500 to-pink-600",
-      highlight: "Demos en vivo",
-      tags: ["Prueba real", "Casos de éxito", "Demo personalizada"]
-    }
+  // Iconos y colores para cada pregunta
+  const faqStyles = [
+    { icon: Zap, color: "from-blue-500 to-indigo-600" },
+    { icon: Clock, color: "from-green-500 to-emerald-600" },
+    { icon: Users, color: "from-purple-500 to-violet-600" },
+    { icon: MessageSquare, color: "from-orange-500 to-red-600" },
+    { icon: Shield, color: "from-teal-500 to-cyan-600" },
+    { icon: Award, color: "from-yellow-500 to-orange-600" },
+    { icon: Shield, color: "from-green-500 to-teal-600" },
+    { icon: Star, color: "from-purple-500 to-pink-600" }
   ];
+
+  const faqs = t('faq.items').map((item, index) => ({
+    ...item,
+    icon: faqStyles[index]?.icon || HelpCircle,
+    color: faqStyles[index]?.color || "from-gray-500 to-gray-600"
+  }));
 
   const toggleFAQ = (index) => {
     setOpenIndex(openIndex === index ? -1 : index);
@@ -153,17 +106,17 @@ function FAQ() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <SectionBadge icon={HelpCircle}>Resolvemos tus dudas</SectionBadge>
+            <SectionBadge icon={HelpCircle}>{t('faq.badge')}</SectionBadge>
             
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-green-400 to-blue-400">
-                Preguntas Frecuentes
+                {t('faq.title')}
               </span>
             </h2>
             
             <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Resolvemos todas las dudas que surgen antes de tomar la mejor decisión para tu negocio. 
-              <span className="text-green-400 font-semibold"> Si no encuentras tu respuesta, contáctanos</span>.
+              {t('faq.subtitle')}
+              <span className="text-green-400 font-semibold"> {t('faq.subtitleHighlight')}</span>.
             </p>
           </motion.div>
         </div>
@@ -288,33 +241,27 @@ function FAQ() {
         >
           <div className="bg-gradient-to-r from-purple-900/30 via-gray-800/50 to-green-900/30 backdrop-blur-xl rounded-2xl p-8 border border-purple-500/30 max-w-3xl mx-auto">
             <h3 className="text-2xl font-bold text-white mb-4">
-              ¿Tienes más preguntas?
+              {t('faq.cta.title')}
             </h3>
             <p className="text-gray-300 mb-6">
-              Nuestro equipo está disponible 24/7 para resolver cualquier duda específica sobre tu caso. 
-              Te respondemos en menos de 2 horas.
+              {t('faq.cta.description')}
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button.Action to="/contact">
                 <MessageSquare className="h-5 w-5 mr-2" />
-                Hablar con un especialista
+                {t('faq.cta.primaryButton')}
               </Button.Action>
               
               <Button.Secondary href="https://wa.me/1234567890">
                 <Phone className="h-4 w-4 mr-2" />
-                WhatsApp directo
+                {t('faq.cta.secondaryButton')}
               </Button.Secondary>
             </div>
             
             {/* Trust indicators */}
             <div className="mt-6 flex flex-wrap justify-center gap-6 text-sm text-gray-400">
-              {[
-                "📞 Respuesta en 2 horas máximo",
-                "💬 Soporte en español 24/7", 
-                "🎯 Consulta sin compromiso",
-                "✅ +500 empresas nos eligieron"
-              ].map((item, index) => (
+              {t('faq.cta.trustIndicators').map((item, index) => (
                 <motion.div
                   key={index}
                   className="flex items-center"

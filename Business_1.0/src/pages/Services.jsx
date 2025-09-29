@@ -1,6 +1,7 @@
 // pages/Services.jsx - Versión modernizada manteniendo ServiceCard y CustomDev
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from '../hooks/useTranslation';
 import { 
   Star, 
   Zap, 
@@ -24,6 +25,8 @@ import Button from '../components/ui/Button';
 import { pageVariants } from '../utils/animations';
 
 function Services() {
+  const { t } = useTranslation();
+  
   // Badge component para secciones
   const SectionBadge = ({ children, icon: Icon }) => (
     <motion.div 
@@ -80,7 +83,7 @@ function Services() {
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center">
-            <SectionBadge icon={Sparkles}>Soluciones de automatización</SectionBadge>
+            <SectionBadge icon={Sparkles}>{t('servicesPage.hero.badge')}</SectionBadge>
             
             <motion.h1 
               className="text-5xl md:text-7xl font-bold mb-6"
@@ -89,7 +92,7 @@ function Services() {
               transition={{ duration: 0.8 }}
             >
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400">
-                Nuestros Servicios
+                {t('servicesPage.hero.title')}
               </span>
             </motion.h1>
             
@@ -99,9 +102,8 @@ function Services() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Automatización inteligente para cada canal de comunicación. 
-              <span className="text-purple-400 font-semibold"> Prueba nuestros demos interactivos</span> y 
-              descubre cómo la IA puede transformar tu negocio.
+              {t('servicesPage.hero.subtitle')}{' '}
+              <span className="text-purple-400 font-semibold">{t('servicesPage.hero.description')}</span>
             </motion.p>
 
             {/* Stats Row */}
@@ -112,8 +114,8 @@ function Services() {
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               {[
-                { icon: Zap, value: "99.9%", label: "Tiempo activo", color: "text-green-400" },
-                { icon: Shield, value: "100%", label: "Datos seguros", color: "text-indigo-400" }
+                { icon: Zap, value: t('servicesPage.hero.stats.uptime.value'), label: t('servicesPage.hero.stats.uptime.label'), color: "text-green-400" },
+                { icon: Shield, value: t('servicesPage.hero.stats.security.value'), label: t('servicesPage.hero.stats.security.label'), color: "text-indigo-400" }
               ].map((stat, index) => {
                 const Icon = stat.icon;
                 return (
@@ -144,11 +146,10 @@ function Services() {
               <Button.Primary 
                 onClick={() => document.getElementById('demos')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                Explorar demos interactivos
-                <ArrowRight className="h-5 w-5 ml-2" />
+                {t('servicesPage.hero.buttons.primary')}
               </Button.Primary>
               <Button.Secondary to="/contact">
-                Solicitar consulta gratuita
+                {t('servicesPage.hero.buttons.secondary')}
               </Button.Secondary>
             </motion.div>
           </div>
@@ -165,7 +166,7 @@ function Services() {
         <div className="container mx-auto px-6 relative z-10">
           {/* Header section mejorado */}
           <div className="text-center mb-20">
-            <SectionBadge icon={Play}>Demos en vivo</SectionBadge>
+            <SectionBadge icon={Play}>{t('servicesPage.demos.badge')}</SectionBadge>
             <motion.h2 
               className="text-4xl md:text-5xl font-bold text-white mb-6"
               initial={{ opacity: 0, y: 20 }}
@@ -173,7 +174,7 @@ function Services() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              Prueba nuestras soluciones
+              {t('servicesPage.demos.title')}
             </motion.h2>
             <motion.p 
               className="text-xl text-gray-300 max-w-3xl mx-auto"
@@ -182,8 +183,7 @@ function Services() {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              Cada demo conecta con nuestros sistemas reales. Escribe cualquier consulta y 
-              experimenta la inteligencia de Octopus AI en acción.
+              {t('servicesPage.demos.subtitle')}
             </motion.p>
           </div>
           
@@ -191,9 +191,9 @@ function Services() {
           <div className="space-y-32">
             <ServiceCard 
               id="whatsapp"
-              title="Asistente de WhatsApp y Telegram 24/7"
-              description="Atiende consultas, agenda citas y gestiona tu comunicación automatizada las 24 horas del día. Nuestro asistente entiende el contexto, mantiene conversaciones naturales y se adapta al tono de tu marca."
-              features={["Respuesta instantánea 24/7", "Detección de idioma automática", "Integración con tu CRM", "Personalización completa del asistente", "Analíticas detalladas"]}
+              title={t('servicesPage.demos.cards.whatsapp.title')}
+              description={t('servicesPage.demos.cards.whatsapp.description')}
+              features={t('servicesPage.demos.cards.whatsapp.features')}
               icon="MessageSquare"
               reversed={false}
               webhookUrl="https://primary-production-b1314.up.railway.app/webhook/62cd14c2-e2dd-492b-afab-d527f827fdb5"
@@ -201,9 +201,9 @@ function Services() {
 
             <ServiceCard 
               id="appointments"
-              title="Gestión de citas y reservas automatizadas"
-              description="Integramos tu calendario y permitimos que tus clientes agenden, reprogramen o cancelen citas sin necesidad de hablar contigo."
-              features={["Integración con Google Calendar y otros", "Recordatorios automáticos", "Reprogramación sin fricción", "Confirmaciones automáticas", "Zonificación según disponibilidad"]}
+              title={t('servicesPage.demos.cards.appointments.title')}
+              description={t('servicesPage.demos.cards.appointments.description')}
+              features={t('servicesPage.demos.cards.appointments.features')}
               icon="Calendar"
               reversed={true}
               webhookUrl="https://primary-production-b1314.up.railway.app/webhook/7dc69b64-2c1f-40b2-8203-90e8218ac147"
@@ -211,9 +211,9 @@ function Services() {
 
             <ServiceCard 
               id="excel"
-              title="Gestión de pedidos con integración a Excel"
-              description="Permite a tus clientes hacer pedidos directamente desde el chat, con toda la información cargada automáticamente en un archivo Excel."
-              features={["Captura de datos estructurada", "Actualización en tiempo real", "Notificaciones de nuevos pedidos", "Exportación a múltiples formatos", "Historial de pedidos accesible"]}
+              title={t('servicesPage.demos.cards.excel.title')}
+              description={t('servicesPage.demos.cards.excel.description')}
+              features={t('servicesPage.demos.cards.excel.features')}
               icon="Database"
               reversed={false}
               webhookUrl="https://primary-production-b1314.up.railway.app/webhook/7d5c5747-3ec7-4a8c-a6b4-c5dcab3f7f72"
@@ -238,19 +238,18 @@ function Services() {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl font-bold text-white mb-6">
-              ¿Listo para automatizar tu negocio?
+              {t('servicesPage.cta.title')}
             </h2>
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Únete a las empresas que ya confían en Octopus AI para 
-              transformar su comunicación con clientes.
+              {t('servicesPage.cta.subtitle')}
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button.Action to="/contact">
-                Solicitar demo personalizada
+                {t('servicesPage.cta.buttons.primary')}
               </Button.Action>
               <Button.Secondary to="/pricing">
-                Ver planes y precios
+                {t('servicesPage.cta.buttons.secondary')}
               </Button.Secondary>
             </div>
           </motion.div>

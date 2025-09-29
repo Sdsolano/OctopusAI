@@ -23,84 +23,26 @@ import {
   Play,
   ArrowUpRight
 } from 'lucide-react';
+import { useTranslation } from '../../../hooks/useTranslation.js';
 
 function FeatureCards() {
+  const { t } = useTranslation();
   const [hoveredCard, setHoveredCard] = useState(null);
 
-  const features = [
-    {
-      title: "Personalización Avanzada",
-      description: "Adaptamos cada asistente virtual para que refleje perfectamente la personalidad y valores de tu marca.",
-      details: "Nuestros asistentes pueden aprender tu tono de voz, términos específicos de tu industria, y preferencias de estilo de comunicación. Cada interacción será única y perfectamente alineada con la identidad de tu empresa.",
-      icon: Settings,
-      color: "from-blue-500 via-blue-600 to-indigo-700",
-      features: ["Adaptación de tono y estilo", "Terminología específica", "Branding personalizado", "Flujos únicos"],
-      metrics: { accuracy: "99.2%", setup: "2-3 días", satisfaction: "98%" }
-    },
-    {
-      title: "Reconocimiento de Intención",
-      description: "Nuestros asistentes entienden lo que tus clientes quieren, incluso cuando no lo expresan claramente.",
-      details: "Utilizando avanzados algoritmos de procesamiento de lenguaje natural, detectamos la intención real detrás de las preguntas, incluso cuando son imprecisas o contienen errores. Esto reduce la frustración del cliente y aumenta la tasa de resolución al primer contacto.",
-      icon: Brain,
-      color: "from-amber-500 via-orange-600 to-red-700",
-      features: ["NLP avanzado", "Detección de contexto", "Análisis de sentimiento", "Corrección automática"],
-      metrics: { accuracy: "96.8%", speed: "<150ms", languages: "30+" }
-    },
-    {
-      title: "Multi-idioma Nativo",
-      description: "Comunicación fluida con tus clientes en cualquier idioma, detectando automáticamente su preferencia.",
-      details: "Soporte para más de 30 idiomas con detección automática. Tu asistente puede cambiar de idioma en medio de una conversación sin perder contexto. Ideal para negocios con presencia internacional o en áreas con diversidad lingüística.",
-      icon: Globe,
-      color: "from-emerald-500 via-green-600 to-teal-700",
-      features: ["30+ idiomas soportados", "Detección automática", "Cambio dinámico", "Contexto preservado"],
-      metrics: { languages: "30+", accuracy: "94%", coverage: "Global" }
-    },
-    {
-      title: "Aprendizaje Continuo",
-      description: "El sistema aprende de cada interacción para mejorar constantemente sus respuestas y eficacia.",
-      details: "Utilizamos técnicas de aprendizaje automático para analizar patrones en las conversaciones, identificar brechas de conocimiento y mejorar automáticamente. Tu asistente será cada vez más eficiente con el tiempo, sin necesidad de intervención manual.",
-      icon: Cpu,
-      color: "from-indigo-500 via-purple-600 to-blue-700",
-      features: ["Machine Learning", "Mejora automática", "Análisis de patrones", "Optimización continua"],
-      metrics: { improvement: "+15%/mes", learning: "24/7", updates: "Automáticas" }
-    },
-    {
-      title: "Integración Omnicanal",
-      description: "Conecta sin problemas WhatsApp, Telegram, Gmail y otras plataformas para una experiencia coherente.",
-      details: "Centraliza todas tus comunicaciones en una plataforma unificada. Tu cliente puede comenzar una conversación en WhatsApp y continuarla por email sin perder contexto. Todos los canales sincronizados y con seguimiento integral.",
-      icon: MessageSquare,
-      color: "from-violet-500 via-purple-600 to-indigo-700",
-      features: ["Múltiples canales", "Contexto unificado", "Sincronización real-time", "Historial completo"],
-      metrics: { channels: "10+", sync: "Real-time", uptime: "99.9%" }
-    },
-    {
-      title: "Analytics en Tiempo Real",
-      description: "Monitorea y analiza el rendimiento de tu asistente con métricas detalladas y reportes.",
-      details: "Panel de control con métricas clave como tiempo de respuesta, tasa de resolución, satisfacción del cliente y volumen de conversaciones. Reportes automáticos semanales y alertas personalizables para mantenerte siempre informado.",
-      icon: TrendingUp,
-      color: "from-rose-500 via-pink-600 to-red-700",
-      features: ["Dashboard en tiempo real", "Métricas personalizadas", "Reportes automáticos", "Alertas inteligentes"],
-      metrics: { metrics: "50+", reports: "Automáticos", alerts: "Tiempo real" }
-    },
-    {
-      title: "Seguridad de Datos",
-      description: "Encriptación de extremo a extremo y cumplimiento total con regulaciones de privacidad.",
-      details: "Infraestructura segura con encriptación AES-256, cumplimiento GDPR y LGPD, auditorías de seguridad regulares, y políticas estrictas de retención de datos. Tu información y la de tus clientes siempre protegida bajo los más altos estándares.",
-      icon: Shield,
-      color: "from-teal-500 via-cyan-600 to-blue-700",
-      features: ["Encriptación AES-256", "Cumplimiento GDPR", "Auditorías regulares", "Backup automático"],
-      metrics: { encryption: "AES-256", compliance: "100%", uptime: "99.99%" }
-    },
-    {
-      title: "Escalabilidad Garantizada",
-      description: "Desde pequeñas empresas hasta grandes corporaciones, nuestra plataforma crece contigo.",
-      details: "Arquitectura en la nube que se adapta automáticamente a cualquier volumen de interacciones. Puedes pasar de 10 a 10,000 conversaciones diarias sin degradación del servicio. Ideal para negocios en crecimiento o con temporadas de alta demanda.",
-      icon: Users,
-      color: "from-fuchsia-500 via-pink-600 to-purple-700",
-      features: ["Auto-escalado", "Sin límites", "Performance constante", "Arquitectura cloud"],
-      metrics: { capacity: "Ilimitada", scaling: "Automático", performance: "Constante" }
-    }
-  ];
+  const features = t('featuresPage.featureCards.features').map((feature, index) => ({
+    ...feature,
+    icon: [Settings, Brain, Globe, Cpu, MessageSquare, TrendingUp, Shield, Users][index],
+    color: [
+      "from-blue-500 via-blue-600 to-indigo-700",
+      "from-amber-500 via-orange-600 to-red-700", 
+      "from-emerald-500 via-green-600 to-teal-700",
+      "from-indigo-500 via-purple-600 to-blue-700",
+      "from-violet-500 via-purple-600 to-indigo-700",
+      "from-rose-500 via-pink-600 to-red-700",
+      "from-teal-500 via-cyan-600 to-blue-700",
+      "from-fuchsia-500 via-pink-600 to-purple-700"
+    ][index]
+  }));
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -279,7 +221,7 @@ function FeatureCards() {
                     <div className="p-6 pt-4 border-t border-gray-700/50">
                       <h4 className="text-sm font-semibold text-purple-300 mb-3 flex items-center">
                         <Eye className="h-4 w-4 mr-2" />
-                        Detalles técnicos
+                        {t('featuresPage.featureCards.detailsTitle')}
                       </h4>
                       
                       <p className="text-gray-400 text-sm mb-4 leading-relaxed">
@@ -288,7 +230,7 @@ function FeatureCards() {
                       
                       <div className="space-y-2 mb-4">
                         <h5 className="text-xs font-semibold text-purple-400 uppercase tracking-wide">
-                          Características clave
+                          {t('featuresPage.featureCards.keyFeaturesTitle')}
                         </h5>
                         {feature.features.map((feat, i) => (
                           <motion.div
@@ -336,7 +278,7 @@ function FeatureCards() {
         <div className="inline-flex items-center bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-full px-6 py-3">
           <Star className="h-5 w-5 text-purple-400 mr-2" />
           <span className="text-gray-300">
-            Mostrando <span className="font-bold text-purple-400">{features.length}</span> características
+            {t('featuresPage.featureCards.showingText')} <span className="font-bold text-purple-400">{features.length}</span> {t('featuresPage.featureCards.featuresText')}
           </span>
         </div>
       </motion.div>

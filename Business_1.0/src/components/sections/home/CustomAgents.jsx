@@ -1,96 +1,79 @@
 // components/sections/home/CustomAgents.jsx - Modernizado para sintonía
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Briefcase, Building, Heart, ShoppingBag, Users, BookOpen, Utensils, Home, ArrowRight, Sparkles, CheckCircle2, TrendingUp, Zap } from 'lucide-react';
+import { Briefcase, Building, Heart, ShoppingBag, BookOpen, Utensils, ArrowRight, Sparkles, CheckCircle2, TrendingUp, Zap } from 'lucide-react';
 import Button from '../../ui/Button';
+import { useTranslation } from '../../../hooks/useTranslation';
 
 function CustomAgents() {
+  const { t } = useTranslation();
   const [activeIndustry, setActiveIndustry] = useState(0);
   
   const industries = [
     {
-      name: "Empresas de Servicios",
+      name: t('industries.types.services'),
       icon: Briefcase,
       color: "from-blue-500 to-indigo-700",
       bgPattern: "services",
-      examples: ["Consultoras", "Agencias de marketing", "Servicios legales"],
-      benefits: [
-        "Gestión de citas con prospectos",
-        "Seguimiento automático de clientes",
-        "Respuesta a consultas frecuentes 24/7"
-      ],
-      metrics: { conversion: "+45%", efficiency: "+60%", satisfaction: "94%" },
-      caseStudy: "Consultora Legal MG automatizó respuestas y ahorró 5h/día"
+      examples: t('industries.serviceCompanies.examples'),
+      benefits: t('industries.serviceCompanies.benefits'),
+      metrics: { 
+        conversion: t('industries.serviceCompanies.stats.conversion'), 
+        efficiency: t('industries.serviceCompanies.stats.efficiency'), 
+        satisfaction: t('industries.serviceCompanies.stats.satisfaction') 
+      },
+      description: t('industries.serviceCompanies.description'),
+      caseStudy: t('industries.serviceCompanies.successCase')
     },
     {
-      name: "Bienes Raíces",
+      name: t('industries.types.realestate'),
       icon: Building,
       color: "from-emerald-500 to-green-700",
       bgPattern: "realestate",
-      examples: ["Inmobiliarias", "Corredores independientes", "Administración de propiedades"],
-      benefits: [
-        "Calificación automática de prospectos",
-        "Agendamiento de visitas a propiedades",
-        "Envío de información sobre inmuebles"
-      ],
+      examples: t('industries.realEstate.examples'),
+      benefits: t('industries.realEstate.benefits'),
       metrics: { leads: "+80%", visits: "+35%", closing: "+25%" },
-      caseStudy: "Inmobiliaria Premium aumentó citas en 80% con calificación automática"
+      caseStudy: t('industries.realEstate.successCase')
     },
     {
-      name: "Salud y Bienestar",
+      name: t('industries.types.health'),
       icon: Heart,
       color: "from-rose-500 to-pink-700",
       bgPattern: "health",
-      examples: ["Clínicas médicas", "Consultorios dentales", "Centros de estética"],
-      benefits: [
-        "Recordatorios de citas médicas",
-        "Gestión de cancelaciones y reagendamientos",
-        "Seguimiento post-tratamiento"
-      ],
+      examples: t('industries.health.examples'),
+      benefits: t('industries.health.benefits'),
       metrics: { attendance: "+92%", cancellations: "-70%", satisfaction: "96%" },
-      caseStudy: "Clínica Dental Sonrisas redujo cancelaciones en 70% con recordatorios automáticos"
+      caseStudy: t('industries.health.successCase')
     },
     {
-      name: "Retail",
+      name: t('industries.types.retail'),
       icon: ShoppingBag,
       color: "from-amber-500 to-orange-700",
       bgPattern: "retail",
-      examples: ["Tiendas online", "Boutiques", "Marketplaces"],
-      benefits: [
-        "Atención al cliente automatizada",
-        "Seguimiento de pedidos y envíos",
-        "Recomendación de productos"
-      ],
+      examples: t('industries.retail.examples'),
+      benefits: t('industries.retail.benefits'),
       metrics: { sales: "+120%", support: "+200%", retention: "+40%" },
-      caseStudy: "TechShop aumentó ventas online 120% con asistente de productos"
+      caseStudy: t('industries.retail.successCase')
     },
     {
-      name: "Educación",
+      name: t('industries.types.education'),
       icon: BookOpen,
       color: "from-violet-500 to-purple-700",
       bgPattern: "education",
-      examples: ["Academias", "Colegios", "Universidades"],
-      benefits: [
-        "Consultas sobre programas académicos",
-        "Gestión de inscripciones",
-        "Resolución de dudas administrativas"
-      ],
+      examples: t('industries.education.examples'),
+      benefits: t('industries.education.benefits'),
       metrics: { enrollment: "+55%", queries: "+180%", efficiency: "+75%" },
-      caseStudy: "Academia Digital mejoró inscripciones 55% con asistente educativo"
+      caseStudy: t('industries.education.successCase')
     },
     {
-      name: "Restaurantes",
+      name: t('industries.types.restaurants'),
       icon: Utensils,
       color: "from-red-500 to-rose-700",
       bgPattern: "restaurant",
-      examples: ["Restaurantes", "Cafeterías", "Servicios de catering"],
-      benefits: [
-        "Reservas automatizadas",
-        "Pedidos para llevar o delivery",
-        "Consultas sobre el menú"
-      ],
+      examples: t('industries.restaurants.examples'),
+      benefits: t('industries.restaurants.benefits'),
       metrics: { reservations: "+85%", orders: "+150%", revenue: "+65%" },
-      caseStudy: "Restaurante Gourmet incrementó reservas 85% con sistema automático"
+      caseStudy: t('industries.restaurants.successCase')
     }
   ];
 
@@ -188,7 +171,7 @@ function CustomAgents() {
             whileHover={{ scale: 1.05 }}
           >
             <Sparkles className="h-4 w-4 mr-2 text-purple-400" />
-            Soluciones a la medida
+            {t('industries.title')}
           </motion.div>
           
           <motion.h2 
@@ -199,7 +182,7 @@ function CustomAgents() {
             viewport={{ once: true }}
           >
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400">
-              Asistentes IA adaptados a cada industria
+              {t('industries.subtitle')}
             </span>
           </motion.h2>
           
@@ -210,7 +193,7 @@ function CustomAgents() {
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            Creamos soluciones personalizadas para cada sector, con conocimientos específicos y flujos adaptados a las necesidades de tu negocio.
+            {t('industries.description')}
           </motion.p>
         </div>
 
@@ -334,7 +317,10 @@ function CustomAgents() {
                       </div>
                       
                       <p className="text-gray-300 mb-8 text-lg leading-relaxed">
-                        Nuestros asistentes para <strong>{industries[activeIndustry].name.toLowerCase()}</strong> están diseñados para optimizar la comunicación, automatizar tareas repetitivas y mejorar la experiencia de tus clientes.
+                        {activeIndustry === 0 
+                          ? industries[activeIndustry].description 
+                          : t('industries.genericDescription').replace('{industry}', industries[activeIndustry].name.toLowerCase())
+                        }
                       </p>
                       
                       {/* Métricas destacadas */}
@@ -355,7 +341,7 @@ function CustomAgents() {
                               {value}
                             </div>
                             <div className="text-xs text-gray-400 capitalize">
-                              {key.replace(/([A-Z])/g, ' $1')}
+                              {t(`industries.metricLabels.${key}`) || key.replace(/([A-Z])/g, ' $1')}
                             </div>
                           </motion.div>
                         ))}
@@ -365,7 +351,7 @@ function CustomAgents() {
                         <div>
                           <h4 className="text-lg font-semibold text-purple-300 mb-4 flex items-center">
                             <TrendingUp className="h-5 w-5 mr-2" />
-                            Ideal para
+                            {t('common.idealFor')}
                           </h4>
                           <ul className="space-y-3">
                             {industries[activeIndustry].examples.map((example, i) => (
@@ -386,7 +372,7 @@ function CustomAgents() {
                         <div>
                           <h4 className="text-lg font-semibold text-purple-300 mb-4 flex items-center">
                             <Zap className="h-5 w-5 mr-2" />
-                            Beneficios clave
+                            {t('common.keyBenefits')}
                           </h4>
                           <ul className="space-y-3">
                             {industries[activeIndustry].benefits.map((benefit, i) => (
@@ -414,17 +400,16 @@ function CustomAgents() {
                       >
                         <div className="flex items-center mb-2">
                           <Sparkles className="h-4 w-4 text-purple-400 mr-2" />
-                          <span className="text-sm font-semibold text-purple-300">Caso de éxito</span>
+                          <span className="text-sm font-semibold text-purple-300">{t('common.successCase')}</span>
                         </div>
                         <p className="text-gray-300 text-sm italic">
-                          "{industries[activeIndustry].caseStudy}"
+                          {industries[activeIndustry].caseStudy}
                         </p>
                       </motion.div>
                       
                       <div className="mt-auto pt-4">
                         <Button.Action to="/contact">
-                          <span>Solicitar solución para mi negocio</span>
-                          <ArrowRight className="h-5 w-5 ml-2" />
+                          <span>{t('cta.buttons.primary')}</span>
                         </Button.Action>
                       </div>
                     </div>

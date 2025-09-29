@@ -94,12 +94,11 @@ function Values() {
       icon: TrendingUp,
       color: "from-green-500 via-emerald-500 to-teal-600",
       examples: [
-        "ROI promedio del 250% para clientes",
         "Métricas claras de rendimiento",
         "Reportes detallados de impacto",
         "Optimización basada en datos reales"
       ],
-      stats: { metric: "250%", label: "ROI promedio" }
+      stats: { metric: "", label: " " }
     },
     {
       title: "Transparencia Total",
@@ -392,57 +391,7 @@ function Values() {
 
 
 
-        {/* CTA Section */}
-        <motion.div 
-          className="mt-20 text-center"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-          viewport={{ once: true }}
-        >
-          <div className="bg-gradient-to-r from-purple-900/30 to-blue-900/30 backdrop-blur-xl rounded-2xl p-8 border border-purple-500/30 max-w-3xl mx-auto">
-            <h3 className="text-2xl font-bold text-white mb-4">
-              ¿Compartes nuestros valores?
-            </h3>
-            <p className="text-gray-300 mb-6">
-              Si buscas un partner tecnológico que comparta tu visión de excelencia 
-              y resultados, estamos listos para trabajar juntos.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.a
-                href="/contact"
-                className="inline-flex items-center justify-center bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold py-4 px-8 rounded-xl hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Heart className="h-5 w-5 mr-2" />
-                <span>Trabajemos juntos</span>
-                <motion.div
-                  className="ml-2"
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ 
-                    duration: 1.5,
-                    repeat: Infinity,
-                    repeatType: "loop",
-                    ease: "easeInOut"
-                  }}
-                >
-                  <ArrowRight className="h-5 w-5" />
-                </motion.div>
-              </motion.a>
-              
-              <motion.a
-                href="/services"
-                className="inline-flex items-center justify-center border-2 border-purple-500/40 bg-purple-900/20 text-purple-300 font-bold py-4 px-8 rounded-xl hover:bg-purple-900/40 hover:border-purple-500/60 transition-all duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Ver nuestro trabajo
-              </motion.a>
-            </div>
-          </div>
-        </motion.div>
+        
       </div>
     </section>
   );

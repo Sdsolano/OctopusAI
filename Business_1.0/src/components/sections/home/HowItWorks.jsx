@@ -1,57 +1,52 @@
 // components/sections/home/HowItWorks.jsx - Modernizado para sintonía
-import React from 'react';
 import { motion } from 'framer-motion';
 import { MessageCircle, Headphones, Settings, Share2, TrendingUp, CheckCircle2, Sparkles, Zap } from 'lucide-react';
+import { useTranslation } from '../../../hooks/useTranslation';
 
 function HowItWorks({ showTitle = true }) {
+  const { t } = useTranslation();
+  
   const steps = [
     {
-      title: "Cuéntanos qué necesitas",
-      description: "Nos contactas contándonos sobre tu negocio, los servicios que ofreces y cómo quieres atender a tus clientes.",
+      title: t('process.steps.0.title'),
+      description: t('process.steps.0.description'),
       icon: MessageCircle,
       color: "from-blue-500 to-indigo-600",
-      details: ["Análisis de necesidades", "Definición de objetivos", "Mapeo de procesos actuales"]
+      details: t('process.steps.0.details')
     },
     {
-      title: "Diseñamos tu asistente personalizado",
-      description: "Creamos un asistente exclusivo que refleja el tono, valores y objetivos específicos de tu empresa.",
+      title: t('process.steps.1.title'),
+      description: t('process.steps.1.description'),
       icon: Settings,
       color: "from-purple-500 to-violet-600",
-      details: ["Personalización de IA", "Configuración de respuestas", "Entrenamiento específico"]
+      details: t('process.steps.1.details')
     },
     {
-      title: "Configuramos el flujo ideal",
-      description: "Desarrollamos la inteligencia artificial para responder consultas, agendar citas y dar soporte en cualquier idioma.",
+      title: t('process.steps.2.title'),
+      description: t('process.steps.2.description'),
       icon: Headphones,
       color: "from-green-500 to-emerald-600",
-      details: ["Flujos de conversación", "Integración multiidioma", "Testing y optimización"]
+      details: t('process.steps.2.details')
     },
     {
-      title: "Integración con tus canales",
-      description: "Conectamos tu asistente a WhatsApp, Telegram, Gmail y otros canales que necesites para una experiencia omnicanal.",
+      title: t('process.steps.3.title'),
+      description: t('process.steps.3.description'),
       icon: Share2,
       color: "from-indigo-500 to-purple-600",
-      details: ["Conexión de APIs", "Sincronización de datos", "Configuración de canales"]
+      details: t('process.steps.3.details')
     },
     {
-      title: "Lanzamiento y optimización continua",
-      description: "Ponemos el asistente en marcha y realizamos mejoras constantes basadas en datos reales de interacción.",
+      title: t('process.steps.4.title'),
+      description: t('process.steps.4.description'),
       icon: TrendingUp,
       color: "from-rose-500 to-pink-600",
-      details: ["Monitoreo en tiempo real", "Análisis de métricas", "Mejoras continuas"]
+      details: t('process.steps.4.details')
     }
   ];
 
   return (
     <div className="relative">
-      {showTitle && (
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-purple-400 mb-6">¿Cómo funciona Octopus AI?</h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Un proceso simple para transformar la comunicación de tu negocio con asistentes hechos a medida
-          </p>
-        </div>
-      )}
+      
       
       {/* Línea conectora mejorada */}
       <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-1 hidden md:block">
@@ -263,27 +258,23 @@ function HowItWorks({ showTitle = true }) {
           transition={{ type: "spring", stiffness: 300 }}
         >
           <Zap className="h-4 w-4 mr-2" />
-          <span className="font-semibold">Implementación rápida</span>
+          <span className="font-semibold">{t('implementation.title')}</span>
         </motion.div>
         
         <h3 className="text-2xl font-bold text-white mb-4">
-          De idea a producción en{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400">
-            1-2 semanas
-          </span>
+          {t('implementation.subtitle')}
         </h3>
         
         <p className="text-gray-300 max-w-2xl mx-auto">
-          Nuestro proceso optimizado te permite tener tu asistente IA funcionando en tiempo récord, 
-          sin comprometer la calidad ni la personalización.
+          {t('implementation.description')}
         </p>
         
         {/* Indicadores de tiempo */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
           {[
-            { phase: "Configuración inicial", time: "1-3 días", icon: Settings },
-            { phase: "Desarrollo y pruebas", time: "5-7 días", icon: Headphones },
-            { phase: "Lanzamiento", time: "1-2 días", icon: TrendingUp }
+            { phase: t('implementation.timeline.setup.title'), time: t('implementation.timeline.setup.time'), icon: Settings },
+            { phase: t('implementation.timeline.development.title'), time: t('implementation.timeline.development.time'), icon: Headphones },
+            { phase: t('implementation.timeline.launch.title'), time: t('implementation.timeline.launch.time'), icon: TrendingUp }
           ].map((item, index) => {
             const Icon = item.icon;
             return (

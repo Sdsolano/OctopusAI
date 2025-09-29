@@ -5,8 +5,10 @@ import { ArrowRight, Star, Play, MessageSquare, Send } from 'lucide-react';
 import whatsappVideo from '/src/images/whatsapp.mp4';
 import telegramVideo from '/src/images/telegram.mp4';
 import { Link } from 'react-router-dom';
+import { useTranslation } from '../../../hooks/useTranslation';
 
 function Hero() {
+  const { t } = useTranslation();
   const particlesRef = useRef(null);
   const [activeTab, setActiveTab] = useState(0);
   const videoRef = useRef(null);
@@ -15,16 +17,16 @@ function Hero() {
     {
       id: 'whatsapp',
       src: whatsappVideo,
-      title: 'WhatsApp AI',
-      subtitle: 'Asistente 24/7',
-      description: 'Automatiza respuestas, agenda citas y gestiona consultas directamente en WhatsApp',
+      title: t('services.whatsapp.title'),
+      subtitle: t('services.whatsapp.subtitle'),
+      description: t('services.whatsapp.automate'),
       icon: MessageSquare,
       color: 'from-green-500 to-emerald-700'
     },
     {
       id: 'telegram',
       src: telegramVideo, 
-      title: 'Telegram Bot',
+      title: t('services.telegram.title'),
       subtitle: 'Inteligencia avanzada',
       description: 'Bot personalizado que aprende de tu negocio y responde como un experto',
       icon: Send,
@@ -167,7 +169,7 @@ function Hero() {
           >
             <span className="flex items-center">
               <Star className="h-3 w-3 mr-1 text-purple-400" fill="currentColor" /> 
-              La revolución de la IA empresarial
+              {t('hero.title')}
             </span>
           </motion.div>
           
@@ -177,11 +179,11 @@ function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <span className="inline lg:block">Transforma tu</span>{" "}
+            <span className="inline lg:block">{t('hero.titlePart1')}</span>{" "}
             <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400 pb-2">
-              comunicación empresarial
+              {t('hero.titleHighlight')}
             </span>{" "}
-            <span className="inline lg:block">con IA</span>
+            <span className="inline lg:block">{t('hero.titlePart2')}</span>
           </motion.h1>
           
           <motion.p 
@@ -190,7 +192,7 @@ function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Asistentes inteligentes personalizados para WhatsApp, Telegram y Gmail que atienden a tus clientes 24/7.
+            {t('hero.description')}
           </motion.p>
           
 
@@ -208,7 +210,7 @@ function Hero() {
       to="/contact"
       className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold py-4 px-8 rounded-xl hover:shadow-lg hover:shadow-purple-600/20 transition duration-300 relative overflow-hidden group flex items-center justify-center"
     >
-      <span className="relative z-10">Comenzar ahora</span>
+      <span className="relative z-10">{t('hero.startButton')}</span>
       <span 
         className="absolute right-4 opacity-0 group-hover:opacity-100 group-hover:right-6 transition-all duration-300"
       >
@@ -228,7 +230,7 @@ function Hero() {
       to="/services"
       className="border-2 border-purple-500/40 bg-purple-900/10 backdrop-blur-sm text-purple-300 font-bold py-4 px-8 rounded-xl hover:bg-purple-900/30 hover:border-purple-500/60 transition duration-300 flex items-center justify-center"
     >
-      Ver soluciones
+      {t('hero.viewSolutions')}
     </Link>
   </motion.div>
 </motion.div>
@@ -241,8 +243,8 @@ function Hero() {
             transition={{ duration: 1, delay: 0.8 }}
           >
             {[
-              { value: '99%', label: 'Satisfacción' },
-              { value: '24/7', label: 'Disponibilidad' }
+              { value: '98%', label: t('stats.satisfaction') },
+              { value: '24/7', label: t('stats.availability') }
             ].map((stat, index) => (
               <div key={index} className="flex flex-col">
                 <span className="text-2xl font-bold text-purple-400">{stat.value}</span>
@@ -307,7 +309,7 @@ function Hero() {
                       autoPlay
                     >
                       <source src={videos[activeTab].src} type="video/mp4" />
-                      Tu navegador no soporta videos HTML5.
+                      {t('common.error') || 'Tu navegador no soporta videos HTML5.'}
                     </video>
                   </motion.div>
                 </AnimatePresence>
@@ -370,7 +372,7 @@ function Hero() {
                 </div>
                 <div>
                   <p className="text-xs text-gray-300">
-                    Automatiza tu atención al cliente y aumenta tus ventas con AI
+                    {t('services.whatsapp.tagline')}
                   </p>
                 </div>
               </div>

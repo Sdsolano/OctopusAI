@@ -26,10 +26,15 @@ import PricingCards from '../components/sections/pricing/PricingCards';
 import FAQ from '../components/sections/pricing/FAQ';
 import Button from '../components/ui/Button';
 
+// Import translations
+import { useTranslation } from '../hooks/useTranslation';
+
 // Import animations
 import { pageVariants } from '../utils/animations';
 
 function Pricing() {
+  const { t } = useTranslation();
+
   // Badge component para secciones
   const SectionBadge = ({ children, icon: Icon }) => (
     <motion.div 
@@ -123,7 +128,7 @@ function Pricing() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <SectionBadge icon={Crown}>Inversión inteligente</SectionBadge>
+              <SectionBadge icon={Crown}>{t('pricingPage.hero.badge')}</SectionBadge>
             </motion.div>
             
             <motion.h1 
@@ -132,10 +137,10 @@ function Pricing() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <span className="text-white">Precios que</span>
+              <span className="text-white">{t('pricingPage.hero.title.part1')}</span>
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-emerald-400 to-purple-400">
-                Multiplican tus ganancias
+                {t('pricingPage.hero.title.part2')}
               </span>
             </motion.h1>
             
@@ -145,10 +150,22 @@ function Pricing() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              No es un gasto, es la <span className="text-green-400 font-semibold">mejor inversión</span> que 
-              harás para tu negocio. 
-              <span className="text-green-400 font-semibold"> Sin permanencia</span>, 
-              solo resultados garantizados.
+              {t('pricingPage.hero.subtitle')}
+              {t('pricingPage.hero.highlight') && (
+                <>
+                  {' '}
+                  <span className="text-green-400 font-semibold">{t('pricingPage.hero.highlight')}</span>
+                  {' '}
+                  {t('pricingPage.hero.subtitle2')}
+                </>
+              )}
+              {t('pricingPage.hero.highlight2') && (
+                <>
+                  <br />
+                  <span className="text-green-400 font-semibold">{t('pricingPage.hero.highlight2')}</span>
+                  {t('pricingPage.hero.subtitle3')}
+                </>
+              )}
             </motion.p>
 
             {/* Value proposition stats */}
@@ -158,31 +175,14 @@ function Pricing() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              {[
-                
-                { 
-                  icon: Clock, 
-                  value: "72h", 
-                  label: "Setup completo", 
-                  color: "from-blue-500 to-indigo-600",
-                  description: "Listo para usar"
-                },
-                { 
-                  icon: Shield, 
-                  value: "30 días", 
-                  label: "Garantía total", 
-                  color: "from-purple-500 to-violet-600",
-                  description: "Sin riesgos"
-                },
-                { 
-                  icon: Gift, 
-                  value: "Gratis", 
-                  label: "Setup y training", 
-                  color: "from-pink-500 to-rose-600",
-                  description: "Valor $500"
-                }
-              ].map((stat, index) => {
-                const Icon = stat.icon;
+              {t('pricingPage.hero.stats').map((stat, index) => {
+                const icons = [Clock, Shield, Gift]; // Mantenemos iconos fijos para consistencia visual
+                const colors = [
+                  "from-blue-500 to-indigo-600",
+                  "from-purple-500 to-violet-600", 
+                  "from-pink-500 to-rose-600"
+                ];
+                const Icon = icons[index];
                 return (
                   <motion.div 
                     key={index}
@@ -194,23 +194,22 @@ function Pricing() {
                   >
                     {/* Glow effect en hover */}
                     <motion.div 
-                      className={`absolute -inset-1 bg-gradient-to-r ${stat.color} rounded-2xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-500`}
+                      className={`absolute -inset-1 bg-gradient-to-r ${colors[index]} rounded-2xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-500`}
                     />
                     
                     <div className="relative bg-gray-800/50 backdrop-blur-xl rounded-xl p-6 border border-gray-700/50 group-hover:border-green-500/50 transition-all duration-300">
                       <motion.div 
-                        className={`bg-gradient-to-r ${stat.color} p-3 rounded-lg mb-3 mx-auto w-fit`}
+                        className={`bg-gradient-to-r ${colors[index]} p-3 rounded-lg mb-3 mx-auto w-fit`}
                         whileHover={{ rotate: 5, scale: 1.1 }}
                         transition={{ type: "spring", stiffness: 300 }}
                       >
                         <Icon className="h-6 w-6 text-white" />
                       </motion.div>
                       
-                      <div className={`text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r ${stat.color} mb-1`}>
+                      <div className={`text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r ${colors[index]} mb-1`}>
                         {stat.value}
                       </div>
                       <div className="text-white font-semibold mb-1">{stat.label}</div>
-                      <div className="text-xs text-gray-400">{stat.description}</div>
                     </div>
                   </motion.div>
                 );
@@ -227,13 +226,11 @@ function Pricing() {
               <Button.Action 
                 onClick={() => document.getElementById('pricing-cards')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                <Crown className="h-5 w-5 mr-2" />
-                Ver planes y precios
+                {t('pricingPage.hero.buttons.primary')}
               </Button.Action>
               
               <Button.Secondary to="/services">
-                Probar demos gratis
-                <ArrowRight className="h-4 w-4 ml-2" />
+                {t('pricingPage.hero.buttons.secondary')}
               </Button.Secondary>
             </motion.div>
 
@@ -244,11 +241,7 @@ function Pricing() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 1.2 }}
             >
-              {[
-                "✓ 99% de satisfacción del cliente",
-                "✓ Soporte 24/7",
-                "✓ Sin contratos de permanencia"
-              ].map((item, index) => (
+              {t('pricingPage.hero.socialProof').map((item, index) => (
                 <motion.div
                   key={index}
                   className="flex items-center bg-gray-800/30 backdrop-blur-sm rounded-full px-4 py-2"
@@ -306,18 +299,23 @@ function Pricing() {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <SectionBadge icon={Target}>Planes flexibles</SectionBadge>
+              <SectionBadge icon={Target}>{t('pricingPage.plans.badge')}</SectionBadge>
               
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-purple-400">
-                  Elige tu plan perfecto
+                  {t('pricingPage.plans.title')}
                 </span>
               </h2>
               
               <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-                Cada plan incluye configuración gratuita, soporte premium y garantía de satisfacción. 
-                <span className="text-green-400 font-semibold"> Cancela cuando quieras</span>, 
-                sin penalizaciones.
+                {t('pricingPage.plans.subtitle')}
+                {t('pricingPage.plans.highlight') && (
+                  <>
+                    {' '}
+                    <span className="text-green-400 font-semibold">{t('pricingPage.plans.highlight')}</span>
+                    {t('pricingPage.plans.subtitle2')}
+                  </>
+                )}
               </p>
             </motion.div>
           </div>
@@ -338,13 +336,21 @@ function Pricing() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <SectionBadge icon={DollarSign}>Comparación de valor</SectionBadge>
+            <SectionBadge icon={DollarSign}>{t('pricingPage.comparison.badge')}</SectionBadge>
             
             <h2 className="text-4xl font-bold text-white mb-6">
-              ¿Cuánto te cuesta <span className="text-red-400">NO</span> tener Octopus AI?
+              {t('pricingPage.comparison.title')}
+              {t('pricingPage.comparison.highlight') && (
+                <>
+                  {' '}
+                  <span className="text-red-400">{t('pricingPage.comparison.highlight')}</span>
+                  {' '}
+                </>
+              )}
+              {t('pricingPage.comparison.title2')}
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Calculamos el costo real de seguir atendiendo manualmente vs automatizar con nosotros
+              {t('pricingPage.comparison.subtitle')}
             </p>
           </motion.div>
 
@@ -362,18 +368,12 @@ function Pricing() {
                   <div className="bg-red-500 p-4 rounded-xl w-fit mx-auto mb-4">
                     <ThumbsUp className="h-8 w-8 text-white transform rotate-180" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Sin Automatización</h3>
-                  <div className="text-red-400 text-sm">Atención manual tradicional</div>
+                  <h3 className="text-2xl font-bold text-white mb-2">{t('pricingPage.comparison.manual.title')}</h3>
+                  <div className="text-red-400 text-sm">{t('pricingPage.comparison.manual.subtitle')}</div>
                 </div>
                 
                 <div className="space-y-4 mb-8">
-                  {[
-                    { item: "Personal adicional (2 personas)", cost: "$2,400/mes" },
-                    { item: "Horas extra y fines de semana", cost: "$800/mes" },
-                    { item: "Clientes perdidos por demora", cost: "$1,500/mes" },
-                    { item: "Errores humanos y retrabajos", cost: "$600/mes" },
-                    { item: "Estrés y burnout del equipo", cost: "Invaluable" }
-                  ].map((item, index) => (
+                  {t('pricingPage.comparison.manual.items').map((item, index) => (
                     <motion.div
                       key={index}
                       className="flex items-center justify-between p-3 bg-red-900/30 rounded-lg"
@@ -389,8 +389,8 @@ function Pricing() {
                 </div>
                 
                 <div className="text-center border-t border-red-500/30 pt-6">
-                  <div className="text-3xl font-bold text-red-400 mb-2">$5,300+/mes</div>
-                  <div className="text-red-300">Costo total mensual</div>
+                  <div className="text-3xl font-bold text-red-400 mb-2">{t('pricingPage.comparison.manual.total')}</div>
+                  <div className="text-red-300">{t('pricingPage.comparison.manual.totalLabel')}</div>
                 </div>
               </div>
             </motion.div>
@@ -415,20 +415,14 @@ function Pricing() {
                   <div className="bg-gradient-to-r from-green-600 to-emerald-600 p-4 rounded-xl w-fit mx-auto mb-4">
                     <Rocket className="h-8 w-8 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Con Octopus AI</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">{t('pricingPage.comparison.octopus.title')}</h3>
                   <div className="bg-gradient-to-r from-green-600 to-purple-600 text-white text-sm font-bold px-3 py-1 rounded-full">
-                    MEJOR INVERSIÓN
+                    {t('pricingPage.comparison.octopus.badge')}
                   </div>
                 </div>
                 
                 <div className="space-y-4 mb-8">
-                  {[
-                    { item: "Octopus AI WhatsApp", cost: "$45/mes" },
-                    { item: "Setup y training incluido", cost: "Gratis" },
-                    { item: "Soporte 24/7 en español", cost: "Incluido" },
-                    { item: "Atención 24/7 automatizada", cost: "Incluido" },
-                    { item: "ROI promedio +250%", cost: "+$3,000/mes" }
-                  ].map((item, index) => (
+                  {t('pricingPage.comparison.octopus.items').map((item, index) => (
                     <motion.div
                       key={index}
                       className="flex items-center justify-between p-3 bg-green-900/30 rounded-lg"
@@ -444,10 +438,10 @@ function Pricing() {
                 </div>
                 
                 <div className="text-center border-t border-green-500/30 pt-6">
-                  <div className="text-3xl font-bold text-green-400 mb-2">$45/mes</div>
-                  <div className="text-green-300">Inversión total</div>
+                  <div className="text-3xl font-bold text-green-400 mb-2">{t('pricingPage.comparison.octopus.total')}</div>
+                  <div className="text-green-300">{t('pricingPage.comparison.octopus.totalLabel')}</div>
                   <div className="text-lg text-purple-400 font-semibold mt-2">
-                    ¡Ahorras $5,255/mes!
+                    {t('pricingPage.comparison.octopus.savings')}
                   </div>
                 </div>
               </div>
@@ -464,14 +458,13 @@ function Pricing() {
           >
             <div className="bg-gradient-to-r from-green-900/30 to-purple-900/30 backdrop-blur-xl rounded-2xl p-8 border border-green-500/30 max-w-2xl mx-auto">
               <h3 className="text-2xl font-bold text-white mb-4">
-                ¿Seguirás gastando $5,300/mes en atención manual?
+                {t('pricingPage.comparison.cta.title')}
               </h3>
               <p className="text-gray-300 mb-6">
-                Con Octopus AI recuperas tu inversión en la primera semana y empiezas a ahorrar desde el día 1.
+                {t('pricingPage.comparison.cta.subtitle')}
               </p>
               <Button.Action to="/contact">
-                <Gift className="h-5 w-5 mr-2" />
-                Comienza a ahorrar hoy
+                {t('pricingPage.comparison.cta.button')}
               </Button.Action>
             </div>
           </motion.div>
@@ -508,28 +501,30 @@ function Pricing() {
           >
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-purple-400">
-                Tu competencia ya automatizó
+                {t('pricingPage.finalCta.title.part1')}
               </span>
               <br />
-              <span>¿Cuándo lo harás tú?</span>
+              <span>{t('pricingPage.finalCta.title.part2')}</span>
             </h2>
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Cada día que esperas, es dinero que dejas en la mesa. 
-              <span className="text-green-400 font-semibold"> Empieza hoy</span> y 
-              ve los resultados desde la primera semana.
+              {t('pricingPage.finalCta.subtitle')}
+              {t('pricingPage.finalCta.highlight') && (
+                <>
+                  {' '}
+                  <span className="text-green-400 font-semibold">{t('pricingPage.finalCta.highlight')}</span>
+                  {' '}
+                  {t('pricingPage.finalCta.subtitle2')}
+                </>
+              )}
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-8">
               <Button.Action to="/contact">
-                <Award className="h-5 w-5 mr-2" />
-                Solicitar demo personalizada
+                {t('pricingPage.finalCta.buttons.primary')}
               </Button.Action>
-              <Button.Secondary to="/services">
-                Ver testimonios de clientes
-              </Button.Secondary>
             </div>
-            
-            {/* Garantía final */}
+
+            {/* Garantías finales */}
             <motion.div 
               className="mt-12 flex flex-wrap justify-center gap-8 text-sm text-gray-400"
               initial={{ opacity: 0 }}
@@ -537,18 +532,14 @@ function Pricing() {
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              {[
-                "🛡️ Garantía 30 días o devolvemos tu dinero",
-                "🎯 ROI garantizado",
-                "💬 Soporte 24/7"
-              ].map((item, index) => (
+              {t('pricingPage.finalCta.guarantees').map((guarantee, index) => (
                 <motion.div
                   key={index}
                   className="flex items-center bg-gray-800/30 backdrop-blur-sm rounded-full px-4 py-2"
                   whileHover={{ scale: 1.05, backgroundColor: "rgba(34, 197, 94, 0.1)" }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  {item}
+                  {guarantee}
                 </motion.div>
               ))}
             </motion.div>

@@ -21,11 +21,13 @@ import {
 import FeatureCards from '../components/sections/features/FeatureCards';
 import TechFeatures from '../components/sections/features/TechFeatures';
 import Button from '../components/ui/Button';
+import { useTranslation } from '../hooks/useTranslation.js';
 
 // Import animations
 import { pageVariants } from '../utils/animations';
 
 function Features() {
+  const { t } = useTranslation();
   // Badge component para secciones
   const SectionBadge = ({ children, icon: Icon }) => (
     <motion.div 
@@ -120,7 +122,7 @@ function Features() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <SectionBadge icon={Cpu}>Tecnología de vanguardia</SectionBadge>
+              <SectionBadge icon={Cpu}>{t('featuresPage.hero.badge')}</SectionBadge>
             </motion.div>
             
             <motion.h1 
@@ -129,10 +131,10 @@ function Features() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <span className="text-white">Características</span>
+              <span className="text-white">{t('featuresPage.hero.title')}</span>
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400">
-                Revolucionarias
+                {t('featuresPage.hero.titleHighlight')}
               </span>
             </motion.h1>
             
@@ -142,9 +144,8 @@ function Features() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Descubre las capacidades avanzadas que hacen de Octopus AI la 
-              <span className="text-purple-400 font-semibold"> solución más completa</span> para 
-              automatización empresarial. Cada característica está diseñada para maximizar tu ROI.
+              {t('featuresPage.hero.subtitle')}
+              <span className="text-purple-400 font-semibold"> {t('featuresPage.hero.subtitleHighlight')}</span> {t('featuresPage.hero.subtitleEnd')}
             </motion.p>
 
             {/* Stats dinámicos */}
@@ -154,37 +155,16 @@ function Features() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              {[
-                { 
-                  icon: Brain, 
-                  value: "99.8%", 
-                  label: "Precisión IA", 
-                  color: "from-purple-500 to-violet-600",
-                  description: "Comprensión de intenciones"
-                },
-                { 
-                  icon: Zap, 
-                  value: "<200ms", 
-                  label: "Respuesta", 
-                  color: "from-blue-500 to-indigo-600",
-                  description: "Tiempo promedio"
-                },
-                { 
-                  icon: Shield, 
-                  value: "256-bit", 
-                  label: "Encriptación", 
-                  color: "from-green-500 to-emerald-600",
-                  description: "Seguridad militar"
-                },
-                { 
-                  icon: Rocket, 
-                  value: "30+", 
-                  label: "Idiomas", 
-                  color: "from-pink-500 to-rose-600",
-                  description: "Soporte nativo"
-                }
-              ].map((stat, index) => {
-                const Icon = stat.icon;
+              {t('featuresPage.hero.stats').map((stat, index) => {
+                const iconMap = { 0: Brain, 1: Zap, 2: Shield, 3: Rocket };
+                const colorMap = [
+                  "from-purple-500 to-violet-600",
+                  "from-blue-500 to-indigo-600", 
+                  "from-green-500 to-emerald-600",
+                  "from-pink-500 to-rose-600"
+                ];
+                const Icon = iconMap[index] || Brain;
+                const color = colorMap[index] || "from-gray-500 to-gray-600";
                 return (
                   <motion.div 
                     key={index}
@@ -196,19 +176,19 @@ function Features() {
                   >
                     {/* Glow effect en hover */}
                     <motion.div 
-                      className={`absolute -inset-1 bg-gradient-to-r ${stat.color} rounded-2xl blur opacity-0 group-hover:opacity-20 transition-opacity duration-500`}
+                      className={`absolute -inset-1 bg-gradient-to-r ${color} rounded-2xl blur opacity-0 group-hover:opacity-20 transition-opacity duration-500`}
                     />
                     
                     <div className="relative bg-gray-800/50 backdrop-blur-xl rounded-xl p-6 border border-gray-700/50 group-hover:border-purple-500/50 transition-all duration-300">
                       <motion.div 
-                        className={`bg-gradient-to-r ${stat.color} p-3 rounded-lg mb-3 mx-auto w-fit`}
+                        className={`bg-gradient-to-r ${color} p-3 rounded-lg mb-3 mx-auto w-fit`}
                         whileHover={{ rotate: 5, scale: 1.1 }}
                         transition={{ type: "spring", stiffness: 300 }}
                       >
                         <Icon className="h-6 w-6 text-white" />
                       </motion.div>
                       
-                      <div className={`text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r ${stat.color} mb-1`}>
+                      <div className={`text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r ${color} mb-1`}>
                         {stat.value}
                       </div>
                       <div className="text-white font-semibold mb-1">{stat.label}</div>
@@ -229,29 +209,12 @@ function Features() {
               <Button.Action 
                 onClick={() => document.getElementById('feature-cards')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                <Sparkles className="h-5 w-5 mr-2" />
-                Explorar características
+                {t('featuresPage.hero.buttons.primary')}
               </Button.Action>
               
               <Button.Secondary to="/services">
-                Ver demos en vivo
-                <ArrowRight className="h-4 w-4 ml-2" />
+                {t('featuresPage.hero.buttons.secondary')}
               </Button.Secondary>
-            </motion.div>
-
-            {/* Indicador de scroll elegante */}
-            <motion.div 
-              className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              <div className="w-6 h-10 border-2 border-purple-400/30 rounded-full flex justify-center">
-                <motion.div 
-                  className="w-1 h-3 bg-purple-400 rounded-full mt-2"
-                  animate={{ y: [0, 12, 0] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-              </div>
             </motion.div>
           </div>
         </div>
@@ -300,17 +263,16 @@ function Features() {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <SectionBadge icon={Bot}>IA de siguiente generación</SectionBadge>
+              <SectionBadge icon={Bot}>{t('featuresPage.featureCards.badge')}</SectionBadge>
               
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">
-                  Capacidades Avanzadas
+                  {t('featuresPage.featureCards.title')}
                 </span>
               </h2>
               
               <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-                Cada característica está respaldada por años de investigación en IA y 
-                optimizada para casos de uso empresariales reales.
+                {t('featuresPage.featureCards.subtitle')}
               </p>
             </motion.div>
           </div>
@@ -334,13 +296,13 @@ function Features() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <SectionBadge icon={TrendingUp}>Líder del mercado</SectionBadge>
+            <SectionBadge icon={TrendingUp}>{t('featuresPage.comparison.badge')}</SectionBadge>
             
             <h2 className="text-4xl font-bold text-white mb-6">
-              ¿Por qué elegir Octopus AI?
+              {t('featuresPage.comparison.title')}
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Comparamos con las mejores soluciones del mercado
+              {t('featuresPage.comparison.subtitle')}
             </p>
           </motion.div>
 
@@ -365,21 +327,14 @@ function Features() {
                   <div className="bg-gradient-to-r from-purple-600 to-indigo-600 p-4 rounded-xl w-fit mx-auto mb-4">
                     <Bot className="h-8 w-8 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Octopus AI</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">{t('featuresPage.comparison.octopus.title')}</h3>
                   <div className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-sm font-bold px-3 py-1 rounded-full">
-                    RECOMENDADO
+                    {t('featuresPage.comparison.octopus.badge')}
                   </div>
                 </div>
                 
                 <div className="space-y-4">
-                  {[
-                    "Personalización 100% adaptada",
-                    "Demos reales interactivos", 
-                    "Integración sin fricciones",
-                    "Soporte 24/7 en español",
-                    "Sin contratos de permanencia",
-                    "ROI comprobado +250%"
-                  ].map((feature, index) => (
+                  {t('featuresPage.comparison.octopus.features').map((feature, index) => (
                     <motion.div
                       key={index}
                       className="flex items-center"
@@ -409,19 +364,12 @@ function Features() {
                   <div className="bg-gray-700 p-4 rounded-xl w-fit mx-auto mb-4">
                     <MessageSquare className="h-8 w-8 text-gray-400" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-300 mb-2">Chatbots Genéricos</h3>
-                  <div className="text-gray-500 text-sm">Soluciones estándar</div>
+                  <h3 className="text-xl font-bold text-gray-300 mb-2">{t('featuresPage.comparison.generic.title')}</h3>
+                  <div className="text-gray-500 text-sm">{t('featuresPage.comparison.generic.subtitle')}</div>
                 </div>
                 
                 <div className="space-y-3">
-                  {[
-                    { text: "Plantillas limitadas", available: false },
-                    { text: "Personalización básica", available: true },
-                    { text: "Soporte limitado", available: true },
-                    { text: "Integraciones complejas", available: false },
-                    { text: "Contratos largos", available: false },
-                    { text: "ROI incierto", available: false }
-                  ].map((feature, index) => (
+                  {t('featuresPage.comparison.generic.features').map((feature, index) => (
                     <div key={index} className="flex items-center">
                       {feature.available ? (
                         <CheckCircle2 className="h-4 w-4 text-yellow-500 mr-3 flex-shrink-0" />
@@ -450,19 +398,12 @@ function Features() {
                   <div className="bg-gray-700 p-4 rounded-xl w-fit mx-auto mb-4">
                     <Cpu className="h-8 w-8 text-gray-400" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-300 mb-2">Desarrollo Interno</h3>
-                  <div className="text-gray-500 text-sm">Equipos propios</div>
+                  <h3 className="text-xl font-bold text-gray-300 mb-2">{t('featuresPage.comparison.internal.title')}</h3>
+                  <div className="text-gray-500 text-sm">{t('featuresPage.comparison.internal.subtitle')}</div>
                 </div>
                 
                 <div className="space-y-3">
-                  {[
-                    { text: "Control total", available: true },
-                    { text: "Costos muy altos", available: false },
-                    { text: "Tiempo 6+ meses", available: false },
-                    { text: "Requiere especialistas", available: false },
-                    { text: "Mantenimiento complejo", available: false },
-                    { text: "Riesgo de fracaso alto", available: false }
-                  ].map((feature, index) => (
+                  {t('featuresPage.comparison.internal.features').map((feature, index) => (
                     <div key={index} className="flex items-center">
                       {feature.available ? (
                         <CheckCircle2 className="h-4 w-4 text-yellow-500 mr-3 flex-shrink-0" />
@@ -508,23 +449,21 @@ function Features() {
           >
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">
-                Experimenta el futuro
+                {t('featuresPage.finalCta.title')}
               </span>
               <br />
-              <span>de la automatización</span>
+              <span>{t('featuresPage.finalCta.titleHighlight')}</span>
             </h2>
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Únete a las empresas que ya están transformando su comunicación 
-              con la IA más avanzada del mercado.
+              {t('featuresPage.finalCta.subtitle')}
             </p>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Button.Action to="/services">
-                <Rocket className="h-5 w-5 mr-2" />
-                Probar demos interactivos
+                {t('featuresPage.finalCta.buttons.primary')}
               </Button.Action>
               <Button.Secondary to="/contact">
-                Agendar consultoría gratuita
+                {t('featuresPage.finalCta.buttons.secondary')}
               </Button.Secondary>
             </div>
             
@@ -536,12 +475,7 @@ function Features() {
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              {[
-                "✓ Demo gratuita en 24h",
-                "✓ Sin compromisos",
-                "✓ ROI garantizado",
-                "✓ Soporte premium"
-              ].map((item, index) => (
+              {t('featuresPage.finalCta.trustIndicators').map((item, index) => (
                 <motion.div
                   key={index}
                   className="flex items-center bg-gray-800/30 backdrop-blur-sm rounded-full px-4 py-2"

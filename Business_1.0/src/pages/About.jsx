@@ -29,7 +29,12 @@ import Button from '../components/ui/Button';
 // Import animations
 import { pageVariants } from '../utils/animations';
 
+// Import translations
+import { useTranslation } from '../hooks/useTranslation.js';
+
 function About() {
+  const { t } = useTranslation();
+  
   // Badge component para secciones
   const SectionBadge = ({ children, icon: Icon }) => (
     <motion.div 
@@ -124,7 +129,7 @@ function About() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <SectionBadge icon={Heart}>Conoce nuestro propósito</SectionBadge>
+              <SectionBadge icon={Heart}>{t('aboutPage.hero.badge')}</SectionBadge>
             </motion.div>
             
             <motion.h1 
@@ -133,10 +138,10 @@ function About() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <span className="text-white">Transformamos empresas</span>
+              <span className="text-white">{t('aboutPage.hero.title')}</span>
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400">
-                con inteligencia artificial
+                {t('aboutPage.hero.titleHighlight')}
               </span>
             </motion.h1>
             
@@ -146,10 +151,10 @@ function About() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Somos un grupo de ingenieros apasionados por la automatización que decidieron 
-              <span className="text-purple-400 font-semibold"> revolucionar la comunicación empresarial</span>. 
-              Nuestro objetivo es simple: hacer que tu negocio sea 
-              <span className="text-purple-400 font-semibold"> más eficiente y próspero</span>.
+              {t('aboutPage.hero.subtitle')}
+              <span className="text-purple-400 font-semibold"> {t('aboutPage.hero.subtitleHighlight')}</span>
+              {t('aboutPage.hero.subtitleEnd')} 
+              <span className="text-purple-400 font-semibold"> {t('aboutPage.hero.subtitleHighlight2')}</span>.
             </motion.p>
 
             {/* Company stats */}
@@ -162,15 +167,10 @@ function About() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1 }}
             >
-              <Button.Action 
-                onClick={() => document.getElementById('team')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                <Users className="h-5 w-5 mr-2" />
-                Conoce a los fundadores
-              </Button.Action>
+
               
               <Button.Secondary to="/contact">
-                Agenda una reunión
+                {t('aboutPage.hero.buttons.secondary')}
               </Button.Secondary>
             </motion.div>
 
@@ -183,13 +183,11 @@ function About() {
             >
               <div className="flex items-center justify-center mb-4">
                 <Coffee className="h-6 w-6 text-purple-400 mr-3" />
-                <span className="text-purple-300 font-semibold">Nuestra historia</span>
+                <span className="text-purple-300 font-semibold">{t('aboutPage.hero.story.title')}</span>
               </div>
               <p className="text-gray-300 leading-relaxed">
-                "Todo comenzó cuando nos dimos cuenta de que las empresas perdían clientes 
-                simplemente por no responder a tiempo. Como ingenieros, sabíamos que la IA 
-                podía resolver este problema de manera elegante. Así nació Octopus AI: 
-                <span className="text-purple-400 font-semibold"> la solución que queríamos ver en el mundo</span>."
+                {t('aboutPage.hero.story.text')} 
+                <span className="text-purple-400 font-semibold"> {t('aboutPage.hero.story.highlight')}</span>.
               </p>
             </motion.div>
           </div>
@@ -200,8 +198,8 @@ function About() {
       <Mission />
       
       {/* Team Section */}
-      <Team />
-      
+      {/* <Team /> */}
+
       {/* Values Section */}
       <Values />
 
@@ -234,23 +232,22 @@ function About() {
           >
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">
-                ¿Listo para ser parte
+                {t('aboutPage.finalCta.title')}
               </span>
               <br />
-              <span>de esta revolución?</span>
+              <span>{t('aboutPage.finalCta.titleHighlight')}</span>
             </h2>
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Únete a las empresas que ya transformaron su comunicación con nosotros. 
-              Tu éxito es nuestro éxito.
+              {t('aboutPage.finalCta.subtitle')}
             </p>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Button.Action to="/contact">
                 <Sparkles className="h-5 w-5 mr-2" />
-                Hablar con nosotros
+                {t('aboutPage.finalCta.buttons.primary')}
               </Button.Action>
               <Button.Secondary to="/services">
-                Ver nuestras soluciones
+                {t('aboutPage.finalCta.buttons.secondary')}
               </Button.Secondary>
             </div>
             
@@ -262,11 +259,7 @@ function About() {
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              {[
-                "💬 Respuesta en 2 horas",
-                "🎯 Consulta gratuita",
-                "✅ Sin compromisos",
-              ].map((item, index) => (
+              {t('aboutPage.finalCta.trustIndicators').map((item, index) => (
                 <motion.div
                   key={index}
                   className="flex items-center bg-gray-800/30 backdrop-blur-sm rounded-full px-4 py-2"

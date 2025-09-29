@@ -1,11 +1,13 @@
 // components/sections/home/CallToAction.jsx - Modernizado con fondo especial
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Cpu, MessageCircle, Bot, Star, Zap, Sparkles, TrendingUp, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Cpu, MessageCircle, Bot, Star, Sparkles, TrendingUp, CheckCircle2 } from 'lucide-react';
 import Button from '../../ui/Button';
+import { useTranslation } from '../../../hooks/useTranslation';
 
 function CallToAction() {
+  const { t } = useTranslation();
+  
   return (
     <section className="relative py-24 overflow-hidden">
       {/* Fondo con gradiente sutil */}
@@ -93,22 +95,20 @@ function CallToAction() {
                 >
                   <Star className="w-4 h-4 text-purple-400 mr-2" fill="currentColor" />
                 </motion.div>
-                <span className="text-purple-300 text-sm font-medium">Soluciones a medida</span>
+                <span className="text-purple-300 text-sm font-medium">{t('cta.badge')}</span>
               </motion.div>
               
               <h2 className="text-4xl md:text-6xl font-bold mb-8 leading-tight">
-                <span className="text-white">Asistentes IA </span>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">
-                  personalizados
+                  {t('cta.titlePart1')}
+                </span>{' '}
+                <span className="text-white">
+                  {t('cta.titlePart2')}
                 </span>
-                <br />
-                <span className="text-white">para tu empresa</span>
               </h2>
               
               <p className="text-xl md:text-2xl text-gray-300 mb-10 max-w-2xl leading-relaxed">
-                Diseñamos cada asistente específicamente para tu negocio, integrando tu 
-                <span className="text-purple-400 font-medium"> identidad de marca</span>, 
-                conocimiento de productos y flujos de atención únicos.
+                {t('cta.subtitle')}
               </p>
               
               {/* Características destacadas */}
@@ -119,27 +119,14 @@ function CallToAction() {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 viewport={{ once: true }}
               >
-                {[
-                  { 
-                    icon: Bot, 
-                    title: "Personalización total", 
-                    desc: "Adaptado a la identidad y valores de tu marca",
-                    color: "from-purple-500 to-purple-600"
-                  },
-                  { 
-                    icon: MessageCircle, 
-                    title: "Conversaciones naturales", 
-                    desc: "Comunicación fluida y humana con tus clientes",
-                    color: "from-indigo-500 to-indigo-600"
-                  },
-                  { 
-                    icon: Cpu, 
-                    title: "Aprendizaje continuo", 
-                    desc: "Mejora constantemente basado en interacciones reales",
-                    color: "from-violet-500 to-violet-600"
-                  }
-                ].map((feature, index) => {
-                  const Icon = feature.icon;
+                {t('cta.mainFeatures').map((feature, index) => {
+                  const iconMap = [Bot, MessageCircle, Cpu];
+                  const colorMap = [
+                    "from-purple-500 to-purple-600",
+                    "from-indigo-500 to-indigo-600", 
+                    "from-violet-500 to-violet-600"
+                  ];
+                  const Icon = iconMap[index];
                   return (
                     <motion.div 
                       key={index} 
@@ -151,7 +138,7 @@ function CallToAction() {
                       whileHover={{ x: 10 }}
                     >
                       <motion.div 
-                        className={`bg-gradient-to-r ${feature.color} rounded-xl p-3 mr-4 shadow-lg`}
+                        className={`bg-gradient-to-r ${colorMap[index]} rounded-xl p-3 mr-4 shadow-lg`}
                         whileHover={{ scale: 1.1, rotate: 5 }}
                         transition={{ type: "spring", stiffness: 300 }}
                       >
@@ -162,7 +149,7 @@ function CallToAction() {
                           {feature.title}
                         </h3>
                         <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">
-                          {feature.desc}
+                          {feature.description}
                         </p>
                       </div>
                     </motion.div>
@@ -183,8 +170,7 @@ function CallToAction() {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Button.Action to="/contact">
-                    <Sparkles className="h-5 w-5 mr-2" />
-                    <span>Solicita tu demo gratuita</span>
+                    <span>{t('cta.buttons.primary')}</span>
                   </Button.Action>
                 </motion.div>
                 
@@ -196,7 +182,7 @@ function CallToAction() {
                     to="/services" 
                     className="inline-flex items-center justify-center border-2 border-white/40 bg-white/10 backdrop-blur-sm text-white font-bold py-4 px-8 rounded-xl hover:bg-white/20 hover:border-white/60 transition-all duration-300 shadow-lg"
                   >
-                    <span>Ver todas las soluciones</span>
+                    <span>{t('cta.buttons.secondary')}</span>
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </motion.div>
@@ -210,11 +196,7 @@ function CallToAction() {
                 transition={{ duration: 0.8, delay: 0.8 }}
                 viewport={{ once: true }}
               >
-                {[
-                  "✓ Demo gratuita personalizada",
-                  "✓ Configuración en 1-2 semanas", 
-                  "✓ Sin contratos de permanencia"
-                ].map((benefit, index) => (
+                {t('cta.features').map((benefit, index) => (
                   <motion.div
                     key={index}
                     className="flex items-center text-gray-300 bg-gray-800/50 backdrop-blur-sm rounded-full px-3 py-1 border border-gray-700/50"
@@ -266,24 +248,18 @@ function CallToAction() {
                     <Bot className="h-8 w-8 text-white" />
                   </motion.div>
                   <div>
-                    <h3 className="text-2xl font-bold text-white">Asistente Premium</h3>
-                    <p className="text-purple-300 text-sm">Personalizado para ti</p>
+                    <h3 className="text-2xl font-bold text-white">{t('cta.cardTitle')}</h3>
+                    <p className="text-purple-300 text-sm">{t('cta.cardSubtitle')}</p>
                   </div>
                 </div>
                 
                 <p className="text-gray-300 mb-8 leading-relaxed">
-                  "Cada asistente Octopus es único como tu empresa. No usamos plantillas genéricas, 
-                  sino que construimos una solución adaptada a tus necesidades específicas."
+                  &quot;{t('cta.description')}&quot;
                 </p>
                 
                 {/* Lista de beneficios premium */}
                 <div className="space-y-4 mb-8">
-                  {[
-                    "Conocimiento específico de tu industria",
-                    "Integración con tus sistemas actuales", 
-                    "Voz y tono alineados con tu marca",
-                    "Soporte prioritario 24/7"
-                  ].map((benefit, index) => (
+                  {t('cta.benefits').map((benefit, index) => (
                     <motion.div 
                       key={index}
                       className="flex items-center"
@@ -301,12 +277,12 @@ function CallToAction() {
                 {/* Métricas de impacto */}
                 <div className="grid grid-cols-2 gap-4 p-4 bg-gradient-to-r from-purple-900/30 to-indigo-900/30 rounded-xl border border-purple-500/20">
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-purple-400">+250%</div>
-                    <div className="text-xs text-gray-400">ROI promedio</div>
+                    <div className="text-2xl font-bold text-purple-400">{t('cta.metrics.roi')}</div>
+                    <div className="text-xs text-gray-400">{t('cta.metrics.roiLabel')}</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-indigo-400">98%</div>
-                    <div className="text-xs text-gray-400">Satisfacción</div>
+                    <div className="text-2xl font-bold text-indigo-400">{t('cta.metrics.satisfaction')}</div>
+                    <div className="text-xs text-gray-400">{t('cta.metrics.satisfactionLabel')}</div>
                   </div>
                 </div>
               </div>
@@ -318,19 +294,22 @@ function CallToAction() {
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ duration: 0.6, delay: 1 }}
                 viewport={{ once: true }}
-                animate={{ 
-                  y: [0, -3, 0],
-                }}
-                transition={{ 
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
               >
-                <div className="flex items-center text-sm">
-                  <TrendingUp className="h-4 w-4 mr-2" />
-                  <span className="font-medium">+500 empresas confían en nosotros</span>
-                </div>
+                <motion.div
+                  animate={{ 
+                    y: [0, -3, 0],
+                  }}
+                  transition={{ 
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <div className="flex items-center text-sm">
+                    <TrendingUp className="h-4 w-4 mr-2" />
+                    <span className="font-medium">{t('cta.floatingMessage')}</span>
+                  </div>
+                </motion.div>
                 {/* Flecha del speech bubble */}
                 <div className="absolute top-full left-4 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-purple-600"></div>
               </motion.div>

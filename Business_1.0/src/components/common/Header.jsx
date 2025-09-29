@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import octopusLogo from "../../assets/octopus-logo.svg";
 import { useLanguage } from '../../contexts/LanguageContext';
+import { useTranslation } from '../../hooks/useTranslation';
 
 function Header({ isScrolled }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,6 +31,9 @@ function Header({ isScrolled }) {
   
   // Language context
   const { language, changeLanguage, isTranslating, browserLanguage } = useLanguage();
+  
+  // Translation hook
+  const { t } = useTranslation();
   
   // Close menu when route changes
   useEffect(() => {
@@ -108,11 +112,11 @@ function Header({ isScrolled }) {
 
   // Navigation items
   const navItems = [
-    { name: 'Inicio', path: '/' },
-    { name: 'Servicios', path: '/services' },
-    { name: 'Características', path: '/features' },
-    { name: 'Precios', path: '/pricing' },
-    { name: 'Nosotros', path: '/about' }
+    { name: t('nav.home'), path: '/' },
+    { name: t('nav.services'), path: '/services' },
+    { name: t('nav.features'), path: '/features' },
+    { name: t('nav.pricing'), path: '/pricing' },
+    { name: t('nav.about'), path: '/about' }
   ];
 
   // Language configuration
@@ -291,9 +295,9 @@ function Header({ isScrolled }) {
                   
                   <span className="hidden sm:inline">{currentLanguage?.flag}</span>
                   
-                  <span className="hidden md:inline flex items-center space-x-1">
+                  <span className="hidden md:flex items-center space-x-1">
                     <span>
-                      {isTranslating ? 'Translating...' : currentLanguage?.name}
+                      {isTranslating ? t('common.loading') : currentLanguage?.name}
                     </span>
                     {isBrowserDetected && !isTranslating && (
                       <motion.div
@@ -375,7 +379,7 @@ function Header({ isScrolled }) {
                   >
                     <span className="relative z-10 flex items-center">
                       <Rocket className="h-4 w-4 mr-2" />
-                      Comenzar
+                      {t('hero.startButton')}
                     </span>
                     
                     {/* Animated background */}
@@ -407,7 +411,7 @@ function Header({ isScrolled }) {
               whileTap={{ scale: 0.9 }}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="relative p-3 text-gray-300 hover:text-purple-400 focus:outline-none group"
-              aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
+              aria-label={isMenuOpen ? t('common.closeMenu') : t('common.openMenu')}
             >
               {/* Button background */}
               <motion.div 
@@ -546,7 +550,7 @@ function Header({ isScrolled }) {
                     className="flex items-center justify-center bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 group"
                   >
                     <Sparkles className="h-5 w-5 mr-2" />
-                    <span>¡Comienza ahora!</span>
+                    <span>{t('hero.startButton')}</span>
                     <motion.div
                       className="ml-2"
                       animate={{ x: [0, 3, 0] }}
@@ -577,7 +581,7 @@ function Header({ isScrolled }) {
                       className="flex items-center justify-center bg-blue-600/20 border border-blue-500/30 text-blue-400 font-medium py-3 px-4 rounded-lg hover:bg-blue-600/30 transition-all duration-300"
                     >
                       <Phone className="h-4 w-4 mr-2" />
-                      Llamar
+                      {t('nav.contact')}
                     </a>
                   </div>
                 </motion.li>

@@ -233,12 +233,10 @@ function Contact() {
               <Button.Action 
                 onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                <Crown className="h-5 w-5 mr-2" />
                 Solicitar propuesta gratuita
               </Button.Action>
               
               <Button.Secondary href="https://wa.me/573243750360">
-                <MessageSquare className="h-4 w-4 mr-2" />
                 WhatsApp directo
               </Button.Secondary>
             </motion.div>
@@ -362,7 +360,6 @@ function Contact() {
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center mb-8">
               <Button.Action href="https://wa.me/573243750360">
-                <MessageSquare className="h-5 w-5 mr-2" />
                 WhatsApp ahora mismo
               </Button.Action>
               <Button.Secondary 

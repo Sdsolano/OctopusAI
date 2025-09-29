@@ -19,101 +19,24 @@ import {
   Users,
   Rocket
 } from 'lucide-react';
-
+import { useTranslation } from '../../../hooks/useTranslation.js';
 function PricingCards() {
+  const { t } = useTranslation();
   const [hoveredCard, setHoveredCard] = useState(null);
   const [billingPeriod, setBillingPeriod] = useState('monthly'); // monthly or yearly
 
-  const plans = [
-    {
-      id: 'whatsapp',
-      title: "WhatsApp AI Pro",
-      subtitle: "Para empresas en crecimiento",
-      price: 45,
-      originalPrice: 89, // precio "antes"
-      yearlyPrice: 432, // precio con descuento anual
-      savings: "Ahorra $528/año",
-      icon: MessageSquare,
-      iconColor: "from-green-500 to-emerald-700",
-      popular: false,
-      features: [
-        "Asistente IA 24/7 en WhatsApp",
-        "Respuestas automáticas inteligentes",
-        "Gestión completa de citas",
-        "Integración con Google Calendar",
-        "Analytics básicos y reportes",
-        "Soporte técnico prioritario",
-        "Setup gratuito (valor $200)",
-        "Training del equipo incluido"
-      ],
-      highlights: [
-        "Configuración rápida",
-        "ROI promedio 180%",
-        "Soporte"
-      ],
-      cta: "Comenzar con WhatsApp",
-      guarantee: "30 días de garantía"
-    },
-    {
-      id: 'telegram',
-      title: "Telegram AI Plus",
-      subtitle: "Ideal para startups",
-      price: 35,
-      originalPrice: 69,
-      yearlyPrice: 335,
-      savings: "Ahorra $396/año",
-      icon: Send,
-      iconColor: "from-blue-500 to-indigo-700",
-      popular: true,
-      badge: "MÁS POPULAR",
-      features: [
-        "Asistente IA 24/7 en Telegram",
-        "Respuestas automáticas avanzadas",
-        "Gestión de citas automatizada",
-        "Integración con calendarios",
-        "Analytics detallados",
-        "Soporte técnico incluido",
-        "Setup gratuito (valor $150)",
-        "Plantillas personalizadas"
-      ],
-      highlights: [
-        "ROI promedio 160%",
-        "Más económico"
-      ],
-      cta: "Comenzar con Telegram",
-      guarantee: "30 días de garantía"
-    },
-    {
-      id: 'custom',
-      title: "Enterprise AI",
-      subtitle: "Solución completa a medida",
-      price: "Personalizado",
-      priceFromText: "Desde $199",
-      icon: Crown,
-      iconColor: "from-purple-500 to-violet-700",
-      premium: true,
-      badge: "PREMIUM",
-      features: [
-        "Desarrollo 100% personalizado",
-        "Integraciones multi-canal",
-        "WhatsApp + Telegram + Gmail",
-        "Analytics avanzados con BI",
-        "Soporte dedicado 24/7",
-        "Manager de cuenta asignado",
-        "Setup y training premium",
-        "Funcionalidades específicas",
-        "SLA garantizado 99.9%",
-        "Escalabilidad ilimitada"
-      ],
-      highlights: [
-        "Solución única",
-        "ROI promedio +300%",
-        "Soporte VIP"
-      ],
-      cta: "Solicitar cotización",
-      guarantee: "Grantía de satisfacción",
-    }
-  ];
+  const plans = t('pricingCards.plans').map(plan => ({
+    ...plan,
+    price: plan.id === 'whatsapp' ? 55 : plan.id === 'telegram' ? 45 : plan.priceFromText || "Personalizado",
+    originalPrice: plan.id === 'whatsapp' ? 89 : plan.id === 'telegram' ? 69 : null,
+    yearlyPrice: plan.id === 'whatsapp' ? 432 : plan.id === 'telegram' ? 335 : null,
+    icon: plan.id === 'whatsapp' ? MessageSquare : plan.id === 'telegram' ? Send : Crown,
+    iconColor: plan.id === 'whatsapp' ? "from-green-500 to-emerald-700" : 
+               plan.id === 'telegram' ? "from-blue-500 to-indigo-700" : 
+               "from-purple-500 to-violet-700",
+    popular: plan.id === 'telegram',
+    premium: plan.id === 'custom'
+  }));
 
   const getCardPrice = (plan) => {
     if (plan.price === "Personalizado") return plan.price;
@@ -151,7 +74,7 @@ function PricingCards() {
                 billingPeriod === 'monthly' ? 'text-white' : 'text-gray-400 hover:text-white'
               }`}
             >
-              Mensual
+              {t('pricingCards.billing.monthly')}
             </button>
             <button
               onClick={() => setBillingPeriod('yearly')}
@@ -159,9 +82,9 @@ function PricingCards() {
                 billingPeriod === 'yearly' ? 'text-white' : 'text-gray-400 hover:text-white'
               }`}
             >
-              Anual
+              {t('pricingCards.billing.yearly')}
               <span className="ml-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full">
-                -20%
+                {t('pricingCards.billing.yearlyDiscount')}
               </span>
             </button>
           </div>
@@ -289,7 +212,7 @@ function PricingCards() {
                           </span>
                           {typeof currentPrice === 'number' && (
                             <span className="text-gray-400 ml-2">
-                              USD/{billingPeriod === 'yearly' ? 'año' : 'mes'}
+                              {t('pricingCards.common.usd')}/{billingPeriod === 'yearly' ? t('pricingCards.common.perYear') : t('pricingCards.common.perMonth')}
                             </span>
                           )}
                         </div>
@@ -297,7 +220,7 @@ function PricingCards() {
                     </div>
                     {billingPeriod === 'yearly' && typeof currentPrice === 'number' && (
                       <p className="text-sm text-green-400 mt-1">
-                        Equivale a ${(currentPrice/12).toFixed(0)}/mes
+                        {t('pricingCards.common.yearlyEquivalent')} ${(currentPrice/12).toFixed(0)}/{t('pricingCards.common.perMonth')}
                       </p>
                     )}
                   </div>
@@ -327,7 +250,7 @@ function PricingCards() {
                 <div className="px-8 pb-8">
                   <h4 className="text-lg font-semibold text-purple-300 mb-4 flex items-center">
                     <Gift className="h-5 w-5 mr-2" />
-                    Todo incluido
+                    {t('pricingCards.common.allIncluded')}
                   </h4>
                   
                   <div className="space-y-3 mb-8">
@@ -426,17 +349,19 @@ function PricingCards() {
         <div className="bg-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 max-w-4xl mx-auto">
           <h3 className="text-2xl font-bold text-white mb-6 flex items-center justify-center">
             <Award className="h-6 w-6 mr-3 text-yellow-400" />
-            Incluido en todos los planes
+            {t('pricingCards.common.includedInAllPlans')}
           </h3>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              { icon: Clock, text: "Setup en 24-48h", color: "text-blue-400" },
-              { icon: Users, text: "Soporte 24/7", color: "text-green-400" },
-              { icon: Shield, text: "Garantía 30 días", color: "text-purple-400" },
-              { icon: TrendingUp, text: "ROI garantizado", color: "text-yellow-400" }
-            ].map((item, index) => {
-              const Icon = item.icon;
+            {t('pricingCards.common.globalFeatures').map((feature, index) => {
+              const iconMap = { clock: Clock, users: Users, shield: Shield, trending: TrendingUp };
+              const Icon = iconMap[feature.icon];
+              const colorMap = { 
+                clock: "text-blue-400", 
+                users: "text-green-400", 
+                shield: "text-purple-400", 
+                trending: "text-yellow-400" 
+              };
               return (
                 <motion.div
                   key={index}
@@ -447,8 +372,8 @@ function PricingCards() {
                   viewport={{ once: true }}
                   whileHover={{ y: -5 }}
                 >
-                  <Icon className={`h-8 w-8 ${item.color} mx-auto mb-2`} />
-                  <div className="text-gray-300 text-sm font-medium">{item.text}</div>
+                  <Icon className={`h-8 w-8 ${colorMap[feature.icon]} mx-auto mb-2`} />
+                  <div className="text-gray-300 text-sm font-medium">{feature.text}</div>
                 </motion.div>
               );
             })}

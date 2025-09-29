@@ -1,9 +1,12 @@
 // components/sections/services/ServiceCard.jsx - Modernizado
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle, MessageSquare, Calendar, Mail, Database, Send, Sparkles, Zap, Bot, User } from 'lucide-react';
+import { useTranslation } from '../../../hooks/useTranslation';
 
 function ServiceCard({ id, title, description, features, icon, reversed, webhookUrl }) {
+  const { t } = useTranslation();
+  
   const renderIcon = (iconName) => {
     switch (iconName) {
       case 'MessageSquare': return <MessageSquare className="h-8 w-8 text-white" />;
@@ -26,7 +29,6 @@ function ServiceCard({ id, title, description, features, icon, reversed, webhook
   };
 
   const [inputText, setInputText] = useState('');
-  const [response, setResponse] = useState('');
   const [loading, setLoading] = useState(false);
   const [messageHistory, setMessageHistory] = useState([]);
 
@@ -101,7 +103,7 @@ function ServiceCard({ id, title, description, features, icon, reversed, webhook
           transition={{ duration: 0.6, repeat: Infinity, delay: 0.4 }}
         />
       </div>
-      <span className="text-gray-400 text-sm">Octopus AI está escribiendo...</span>
+      <span className="text-gray-400 text-sm">{t('serviceCard.demo.writing')}</span>
     </motion.div>
   );
 
@@ -181,7 +183,7 @@ function ServiceCard({ id, title, description, features, icon, reversed, webhook
         >
           <h4 className="text-lg font-semibold text-purple-300 mb-4 flex items-center">
             <Sparkles className="h-5 w-5 mr-2 text-purple-400" />
-            Características principales
+            {t('serviceCard.featuresTitle')}
           </h4>
           
           <div className="grid grid-cols-1 gap-3">
@@ -239,7 +241,7 @@ function ServiceCard({ id, title, description, features, icon, reversed, webhook
                   </div>
                   <div className="flex items-center space-x-2">
                     <Bot className="h-4 w-4 text-purple-400" />
-                    <span className="text-sm font-medium text-gray-300">Demo en vivo</span>
+                    <span className="text-sm font-medium text-gray-300">{t('serviceCard.demo.liveDemo')}</span>
                   </div>
                 </div>
                 
@@ -251,12 +253,12 @@ function ServiceCard({ id, title, description, features, icon, reversed, webhook
                         animate={{ scale: [1, 1.2, 1] }}
                         transition={{ duration: 1.5, repeat: Infinity }}
                       />
-                      <span className="text-xs text-green-400 font-medium">Conectado</span>
+                      <span className="text-xs text-green-400 font-medium">{t('serviceCard.demo.connected')}</span>
                     </>
                   ) : (
                     <>
                       <div className="w-2 h-2 bg-gray-400 rounded-full" />
-                      <span className="text-xs text-gray-400">Demo estático</span>
+                      <span className="text-xs text-gray-400">{t('serviceCard.demo.staticDemo')}</span>
                     </>
                   )}
                 </div>
@@ -279,19 +281,16 @@ function ServiceCard({ id, title, description, features, icon, reversed, webhook
                   >
                     <Bot className="h-8 w-8 text-white" />
                   </motion.div>
-                  <h4 className="text-lg font-semibold text-white mb-2">¡Prueba el asistente!</h4>
+                  <h4 className="text-lg font-semibold text-white mb-2">{t('serviceCard.demo.title')}</h4>
                   <p className="text-gray-400 text-sm mb-4">
-                    Este demo se conecta con nuestro sistema real. 
-                    <br />Escribe cualquier consulta y experimenta la IA.
+                    {t('serviceCard.demo.subtitle')}
+                    <br />
+                    {t('serviceCard.demo.description')}
                   </p>
                   
                   {/* Sugerencias de ejemplo */}
                   <div className="flex flex-wrap gap-2 justify-center">
-                    {[
-                      "Hola, ¿qué servicios ofrecen?",
-                      "¿A que hora cierran?",
-                      "¿Cuáles son sus precios?"
-                    ].map((suggestion, i) => (
+                    {t('serviceCard.demo.suggestions').map((suggestion, i) => (
                       <motion.button
                         key={i}
                         className="text-xs bg-purple-900/30 hover:bg-purple-900/50 text-purple-300 px-3 py-1 rounded-full border border-purple-500/30 hover:border-purple-500/50 transition-all duration-300"
@@ -371,7 +370,7 @@ function ServiceCard({ id, title, description, features, icon, reversed, webhook
                     value={inputText}
                     onChange={(e) => setInputText(e.target.value)}
                     onKeyDown={handleKeyDown}
-                    placeholder={webhookUrl ? "Escribe tu consulta aquí..." : "Demo no disponible"}
+                    placeholder={webhookUrl ? t('serviceCard.demo.placeholder') : t('serviceCard.demo.unavailable')}
                     disabled={loading || !webhookUrl}
                     rows={1}
                     style={{ minHeight: '48px', maxHeight: '120px' }}
@@ -405,11 +404,11 @@ function ServiceCard({ id, title, description, features, icon, reversed, webhook
               
               {/* Info footer */}
               <div className="mt-2 flex items-center justify-between text-xs text-gray-500">
-                <span>Presiona Enter para enviar</span>
+                <span>{t('serviceCard.demo.sendHint')}</span>
                 {webhookUrl && (
                   <span className="flex items-center">
                     <div className="w-1 h-1 bg-green-400 rounded-full mr-1" />
-                    Sistema real conectado
+                    {t('serviceCard.demo.systemConnected')}
                   </span>
                 )}
               </div>

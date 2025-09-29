@@ -1,5 +1,5 @@
+// src/contexts/LanguageContext.jsx - Versión simplificada
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { translatePageToEnglish, restoreOriginalSpanish } from '../utils/pageTranslation';
 
 const LanguageContext = createContext();
 
@@ -28,56 +28,22 @@ export const LanguageProvider = ({ children }) => {
     return browserLang;
   });
 
-  const [isTranslating, setIsTranslating] = useState(false);
-  const [hasAutoTranslated, setHasAutoTranslated] = useState(false);
-
   useEffect(() => {
     localStorage.setItem('octopus-language', language);
+    console.log(`💾 Idioma guardado: ${language}`);
   }, [language]);
 
-  // Auto-traducir cuando carga la página si el navegador está en inglés
-  useEffect(() => {
-    const autoTranslate = async () => {
-      if (language === 'en' && !hasAutoTranslated) {
-        console.log('🔄 Auto-traduciendo página a inglés...');
-        setIsTranslating(true);
-        await translatePageToEnglish();
-        setIsTranslating(false);
-        setHasAutoTranslated(true);
-      }
-    };
-
-    const timer = setTimeout(autoTranslate, 1000);
-    return () => clearTimeout(timer);
-  }, [language, hasAutoTranslated]);
-
-  const changeLanguage = async (newLanguage) => {
+  const changeLanguage = (newLanguage) => {
     if (newLanguage === language) return;
     
-    setIsTranslating(true);
+    console.log(`🔄 Cambiando idioma de ${language} a ${newLanguage}`);
     setLanguage(newLanguage);
-    
-    try {
-      if (newLanguage === 'en') {
-        console.log('🔄 Traduciendo a inglés...');
-        await translatePageToEnglish();
-      } else {
-        console.log('🔄 Restaurando español...');
-        await restoreOriginalSpanish();
-      }
-      setHasAutoTranslated(true);
-    } catch (error) {
-      console.error('Error durante traducción:', error);
-    } finally {
-      setIsTranslating(false);
-    }
   };
 
   return (
     <LanguageContext.Provider value={{ 
       language, 
-      changeLanguage, 
-      isTranslating,
+      changeLanguage,
       browserLanguage: detectBrowserLanguage()
     }}>
       {children}

@@ -1,7 +1,8 @@
 // components/common/Footer.jsx - Completamente modernizado para impresionar
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { useTranslation } from '../../hooks/useTranslation';
 import { 
   Mail, 
   Phone, 
@@ -9,39 +10,25 @@ import {
   ExternalLink, 
   ChevronRight, 
   ArrowUp,
-  MapPin,
   Clock,
-  Star,
   Zap,
-  Shield,
   Award,
-  TrendingUp,
-  Users,
-  Sparkles,
   Heart,
   Rocket,
-  Globe,
   Send,
-  Calendar,
   CheckCircle2,
   Crown,
   Coffee,
   Code2,
   Brain,
   Target,
-  Gift,
   Lightbulb,
   Copy,
-  Twitter,
-  Linkedin,
-  Instagram,
-  Youtube,
-  WholeWord,
   Earth
 } from 'lucide-react';
-import octopusLogo from "../../assets/octopus-logo.svg";
 
 function Footer() {
+  const { t } = useTranslation();
   const [emailCopied, setEmailCopied] = useState(false);
   const [phoneCopied, setPhoneCopied] = useState(false);
   const [hoveredSection, setHoveredSection] = useState(null);
@@ -183,15 +170,15 @@ function Footer() {
                     className="h-6 w-1 bg-gradient-to-b from-purple-500 to-indigo-500 rounded-full mr-3"
                     whileHover={{ scaleY: 1.2 }}
                   />
-                  Servicios
+                  {t('footer.sections.services.title')}
                 </h4>
                 <ul className="space-y-4">
                   {[
-                    { name: "WhatsApp AI", path: "/services#whatsapp", icon: MessageSquare },
-                    { name: "Telegram Bot", path: "/services#telegram", icon: Send },
-                    { name: "Automatización Gmail", path: "/services#gmail", icon: Mail },
-                    { name: "Integración Excel", path: "/services#excel", icon: Award },
-                    { name: "Desarrollo Personalizado", path: "/services#custom", icon: Crown }
+                    { name: t('footer.sections.services.whatsapp'), path: "/services#whatsapp", icon: MessageSquare },
+                    { name: t('footer.sections.services.telegram'), path: "/services#telegram", icon: Send },
+                    { name: t('footer.sections.services.gmail'), path: "/services#gmail", icon: Mail },
+                    { name: t('footer.sections.services.excel'), path: "/services#excel", icon: Award },
+                    { name: t('footer.sections.services.custom'), path: "/services#custom", icon: Crown }
                   ].map((item, index) => {
                     const Icon = item.icon;
                     return (
@@ -227,15 +214,15 @@ function Footer() {
                     className="h-6 w-1 bg-gradient-to-b from-green-500 to-emerald-500 rounded-full mr-3"
                     whileHover={{ scaleY: 1.2 }}
                   />
-                  Empresa
+                  {t('footer.sections.company.title')}
                 </h4>
                 <ul className="space-y-4">
                   {[
-                    { name: "Inicio", path: "/", icon: Rocket },
-                    { name: "Características", path: "/features", icon: Zap },
-                    { name: "Precios", path: "/pricing", icon: Target },
-                    { name: "Sobre Nosotros", path: "/about", icon: Heart },
-                    { name: "Contacto", path: "/contact", icon: MessageSquare }
+                    { name: t('footer.sections.company.home'), path: "/", icon: Rocket },
+                    { name: t('footer.sections.company.features'), path: "/features", icon: Zap },
+                    { name: t('footer.sections.company.pricing'), path: "/pricing", icon: Target },
+                    { name: t('footer.sections.company.about'), path: "/about", icon: Heart },
+                    { name: t('footer.sections.company.contact'), path: "/contact", icon: MessageSquare }
                   ].map((item, index) => {
                     const Icon = item.icon;
                     return (
@@ -271,15 +258,15 @@ function Footer() {
                     className="h-6 w-1 bg-gradient-to-b from-blue-500 to-indigo-500 rounded-full mr-3"
                     whileHover={{ scaleY: 1.2 }}
                   />
-                  Soporte
+                  {t('footer.sections.support.title')}
                 </h4>
                 <ul className="space-y-4">
                   {[
-                    { name: "Centro de Ayuda", path: "/help", icon: Lightbulb },
-                    { name: "Documentación", path: "/docs", icon: Code2 },
-                    { name: "Preguntas Frecuentes", path: "/pricing#faq", icon: Target },
-                    { name: "Casos de Éxito", path: "/cases", icon: Award },
-                    { name: "Blog", path: "/blog", icon: Coffee }
+                    { name: t('footer.sections.support.help'), path: "/help", icon: Lightbulb },
+                    { name: t('footer.sections.support.docs'), path: "/docs", icon: Code2 },
+                    { name: t('footer.sections.support.faq'), path: "/pricing#faq", icon: Target },
+                    { name: t('footer.sections.support.cases'), path: "/cases", icon: Award },
+                    { name: t('footer.sections.support.blog'), path: "/blog", icon: Coffee }
                   ].map((item, index) => {
                     const Icon = item.icon;
                     return (
@@ -315,7 +302,7 @@ function Footer() {
                     className="h-6 w-1 bg-gradient-to-b from-yellow-500 to-orange-500 rounded-full mr-3"
                     whileHover={{ scaleY: 1.2 }}
                   />
-                  Contacto
+                  {t('footer.sections.contact.title')}
                 </h4>
                 <ul className="space-y-4">
                   <li>
@@ -338,7 +325,7 @@ function Footer() {
                             {emailCopied ? <CheckCircle2 className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                           </motion.button>
                         </div>
-                        <span className="text-xs text-gray-500">Email corporativo</span>
+                        <span className="text-xs text-gray-500">{t('footer.sections.contact.email')}</span>
                       </div>
                     </div>
                   </li>
@@ -363,7 +350,7 @@ function Footer() {
                             {phoneCopied ? <CheckCircle2 className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                           </motion.button>
                         </div>
-                        <span className="text-xs text-gray-500">WhatsApp directo</span>
+                        <span className="text-xs text-gray-500">{t('footer.sections.contact.phone')}</span>
                       </div>
                     </div>
                   </li>
@@ -373,7 +360,7 @@ function Footer() {
                       <Earth className="h-5 w-5 mr-3 mt-0.5 text-blue-500 group-hover:scale-110 transition-transform duration-300" />
                       <div>
                         <span className="hover:text-blue-400 transition-colors duration-300">
-                          Atención global
+                          {t('footer.sections.contact.global')}
                         </span>
                       </div>
                     </div>
@@ -384,9 +371,9 @@ function Footer() {
                       <Clock className="h-5 w-5 mr-3 mt-0.5 text-purple-500 group-hover:scale-110 transition-transform duration-300" />
                       <div>
                         <span className="hover:text-purple-400 transition-colors duration-300">
-                          Lun - Vie: 8:00 AM - 6:00 PM
+                          {t('footer.sections.contact.hours')}
                         </span>
-                        <div className="text-xs text-gray-500">GMT-5 (Colombia)</div>
+                        <div className="text-xs text-gray-500">{t('footer.sections.contact.timezone')}</div>
                       </div>
                     </div>
                   </li>
@@ -399,7 +386,7 @@ function Footer() {
                       whileTap={{ scale: 0.98 }}
                     >
                       <MessageSquare className="h-4 w-4 mr-2" />
-                      <span>Solicitar demo</span>
+                      <span>{t('footer.sections.contact.demo')}</span>
                       <motion.div
                         className="ml-2"
                         animate={{ x: [0, 3, 0] }}
@@ -439,18 +426,18 @@ function Footer() {
               viewport={{ once: true }}
             >
               <p className="text-gray-500 text-sm">
-                &copy; {currentYear} Octopus AI. Todos los derechos reservados.
+                &copy; {currentYear} Octopus AI. {t('footer.copyright')}
               </p>
               
               <div className="flex space-x-4 text-sm">
                 <Link to="/privacy" className="text-gray-500 hover:text-purple-400 transition-colors duration-300">
-                  Privacidad
+                  {t('footer.links.privacy')}
                 </Link>
                 <Link to="/terms" className="text-gray-500 hover:text-purple-400 transition-colors duration-300">
-                  Términos
+                  {t('footer.links.terms')}
                 </Link>
                 <Link to="/cookies" className="text-gray-500 hover:text-purple-400 transition-colors duration-300">
-                  Cookies
+                  {t('footer.links.cookies')}
                 </Link>
               </div>
             </motion.div>
@@ -465,9 +452,9 @@ function Footer() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              aria-label="Volver arriba"
+              aria-label={t('footer.backToTop')}
             >
-              <span className="mr-2">Volver arriba</span>
+              <span className="mr-2">{t('footer.backToTop')}</span>
               <motion.div
                 animate={{ y: [0, -3, 0] }}
                 transition={{ 

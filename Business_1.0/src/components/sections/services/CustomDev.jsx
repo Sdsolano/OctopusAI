@@ -1,8 +1,7 @@
 // components/sections/services/CustomDev.jsx - Modernizado
-import React from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from '../../../hooks/useTranslation';
 import { 
-  ChevronRight, 
   Code2, 
   Cog, 
   Rocket, 
@@ -16,37 +15,17 @@ import {
 } from 'lucide-react';
 
 function CustomDev() {
-  // Servicios personalizados
-  const customServices = [
-    {
-      icon: Code2,
-      title: "Desarrollo personalizado",
-      description: "Soluciones 100% adaptadas a tu flujo de trabajo específico",
-      color: "from-blue-500 to-indigo-600"
-    },
-    {
-      icon: Puzzle,
-      title: "Integraciones complejas",
-      description: "Conectamos con cualquier API o sistema que ya uses",
-      color: "from-purple-500 to-violet-600"
-    },
-    {
-      icon: Target,
-      title: "Objetivos específicos",
-      description: "Diseñamos la IA para lograr exactamente lo que necesitas",
-      color: "from-green-500 to-emerald-600"
-    }
-  ];
+  const { t } = useTranslation();
+  
+  // Servicios personalizados (ahora usando traducciones)
+  const customServices = t('customDev.services.items').map((service, index) => ({
+    ...service,
+    icon: [Code2, Puzzle, Target][index],
+    color: ["from-blue-500 to-indigo-600", "from-purple-500 to-violet-600", "from-green-500 to-emerald-600"][index]
+  }));
 
-  // Ejemplos de casos especiales
-  const customExamples = [
-    "Integración con ERP empresarial",
-    "Bot multiidioma para soporte global",
-    "Automatización de procesos internos",
-    "IA para análisis de documentos",
-    "Sistemas de notificaciones avanzadas",
-    "Dashboards personalizados en tiempo real"
-  ];
+  // Ejemplos de casos especiales (ahora usando traducciones)
+  const customExamples = t('customDev.examples.items');
 
   return (
     <section className="relative py-20 bg-gradient-to-b from-gray-900 via-purple-900/10 to-gray-900 overflow-hidden">
@@ -99,21 +78,20 @@ function CustomDev() {
               transition={{ type: "spring", stiffness: 300 }}
             >
               <Lightbulb className="h-4 w-4 mr-2 text-purple-400" />
-              Desarrollo personalizado
+              {t('customDev.badge')}
             </motion.div>
 
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              <span className="text-white">¿Necesitas algo</span>{" "}
+              <span className="text-white">{t('customDev.title.part1')}</span>{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400">
-                más específico?
+                {t('customDev.title.part2')}
               </span>
             </h2>
             
             <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              También desarrollamos software especializado y soluciones únicas. 
-              Si el requerimiento es similar a nuestras soluciones estándar, 
-              <span className="text-purple-400 font-semibold"> lo haremos sin costo adicional</span>. 
-              ¡Nos adaptamos completamente a ti!
+              {t('customDev.subtitle')}{' '}
+              <span className="text-purple-400 font-semibold">{t('customDev.highlight')}</span>
+              {t('customDev.subtitle2')}
             </p>
           </motion.div>
 
@@ -127,7 +105,7 @@ function CustomDev() {
             >
               <h3 className="text-2xl font-bold text-white mb-8 flex items-center">
                 <Sparkles className="h-6 w-6 mr-3 text-purple-400" />
-                Servicios personalizados
+                {t('customDev.services.title')}
               </h3>
               
               <div className="space-y-6">
@@ -191,7 +169,7 @@ function CustomDev() {
                       <Rocket className="h-6 w-6 text-white" />
                     </motion.div>
                     <h3 className="text-xl font-bold text-white">
-                      Casos especiales que hemos resuelto
+                      {t('customDev.examples.title')}
                     </h3>
                   </div>
                   
@@ -229,7 +207,7 @@ function CustomDev() {
                       
                       <span className="relative z-10 flex items-center">
                         <Cog className="h-5 w-5 mr-2" />
-                        Hablemos de tu proyecto
+                        {t('customDev.cta.button')}
                         
                         <motion.div
                           className="ml-2"
@@ -247,7 +225,7 @@ function CustomDev() {
                     </motion.a>
                     
                     <p className="text-sm text-gray-400 mt-4">
-                      Consulta gratuita • Sin compromiso • Respuesta en 24h
+                      {t('customDev.cta.subtitle')}
                     </p>
                   </div>
                 </div>
@@ -264,28 +242,12 @@ function CustomDev() {
             viewport={{ once: true }}
           >
             <h3 className="text-2xl font-bold text-white mb-6">
-              ¿Por qué elegir desarrollo personalizado con Octopus AI?
+              {t('customDev.benefits.title')}
             </h3>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                {
-                  icon: Zap,
-                  title: "Implementación rápida",
-                  description: "De idea a producción en tiempo récord"
-                },
-                {
-                  icon: Target,
-                  title: "100% adaptado",
-                  description: "Diseñado específicamente para tu negocio"
-                },
-                {
-                  icon: CheckCircle2,
-                  title: "Sin costos ocultos",
-                  description: "Precio fijo acordado desde el inicio"
-                }
-              ].map((benefit, index) => {
-                const Icon = benefit.icon;
+              {t('customDev.benefits.items').map((benefit, index) => {
+                const Icon = [Zap, Target, CheckCircle2][index];
                 return (
                   <motion.div
                     key={index}
