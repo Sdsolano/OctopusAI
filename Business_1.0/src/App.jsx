@@ -18,8 +18,6 @@ import Contact from './pages/Contact';
 // Import the octopus logo
 import octopusLogo from './assets/octopus-logo.svg';
 import { LanguageProvider } from './contexts/LanguageContext';
-import { TranslationStats } from './components/common/TranslationStats';
-import TestTranslation from './components/TestTranslation';
 
 // ScrollToTop component para manejar el scroll en cambios de página
 function ScrollToTop() {

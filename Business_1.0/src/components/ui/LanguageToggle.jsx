@@ -1,10 +1,10 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Globe, ChevronDown, Loader2, Zap } from 'lucide-react';
+import { Globe, ChevronDown, Zap } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 
 const LanguageToggle = () => {
-  const { language, changeLanguage, isTranslating, browserLanguage } = useLanguage();
+  const { language, changeLanguage, browserLanguage } = useLanguage();
   const [isOpen, setIsOpen] = React.useState(false);
 
   const languages = [
@@ -23,27 +23,20 @@ const LanguageToggle = () => {
   return (
     <div className="relative">
       <motion.button
-        onClick={() => !isTranslating && setIsOpen(!isOpen)}
-        disabled={isTranslating}
-        className={`flex items-center space-x-2 bg-purple-900/30 hover:bg-purple-900/50 border border-purple-500/40 hover:border-purple-500/60 rounded-lg px-3 py-2 text-sm font-medium text-purple-300 transition-all duration-300 ${
-          isTranslating ? 'opacity-60 cursor-not-allowed' : ''
-        }`}
-        whileHover={!isTranslating ? { scale: 1.05 } : {}}
-        whileTap={!isTranslating ? { scale: 0.95 } : {}}
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex items-center space-x-2 bg-purple-900/30 hover:bg-purple-900/50 border border-purple-500/40 hover:border-purple-500/60 rounded-lg px-3 py-2 text-sm font-medium text-purple-300 transition-all duration-300"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
       >
-        {isTranslating ? (
-          <Loader2 className="h-4 w-4 animate-spin" />
-        ) : (
-          <Globe className="h-4 w-4" />
-        )}
+        <Globe className="h-4 w-4" />
         
         <span className="hidden sm:inline">{currentLanguage?.flag}</span>
         
         <span className="hidden md:inline flex items-center space-x-1">
           <span>
-            {isTranslating ? 'Translating...' : currentLanguage?.name}
+            {currentLanguage?.name}
           </span>
-          {isBrowserDetected && !isTranslating && (
+          {isBrowserDetected && (
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
@@ -61,7 +54,7 @@ const LanguageToggle = () => {
       </motion.button>
 
       <AnimatePresence>
-        {isOpen && !isTranslating && (
+        {isOpen && (
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: -10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}

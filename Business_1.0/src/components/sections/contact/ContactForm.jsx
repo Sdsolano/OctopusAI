@@ -2,6 +2,7 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import emailjs from '@emailjs/browser';
+import { useTranslation } from '../../../hooks/useTranslation';
 import { 
   User, 
   Mail, 
@@ -29,6 +30,7 @@ import {
 } from 'lucide-react';
 
 function ContactForm() {
+  const { t } = useTranslation();
   const form = useRef();
   const [formData, setFormData] = useState({
     name: '',
@@ -51,38 +53,36 @@ function ContactForm() {
 
   const totalSteps = 3;
 
-  // Opciones para los selects
+  // Opciones para los selects - usando traducciones
   const industryOptions = [
-    { value: 'healthcare', label: '🏥 Salud y Bienestar' },
-    { value: 'retail', label: '🛍️ Retail y E-commerce' },
-    { value: 'realestate', label: '🏠 Bienes Raíces' },
-    { value: 'services', label: '💼 Servicios Profesionales' },
-    { value: 'restaurant', label: '🍕 Restaurantes' },
-    { value: 'education', label: '📚 Educación' },
-    { value: 'automotive', label: '🚗 Automotriz' },
-    { value: 'other', label: '🌟 Otro' }
+    { value: 'healthcare', label: t('contactPage.form.industries.healthcare') },
+    { value: 'retail', label: t('contactPage.form.industries.retail') },
+    { value: 'realestate', label: t('contactPage.form.industries.realestate') },
+    { value: 'services', label: t('contactPage.form.industries.services') },
+    { value: 'restaurant', label: t('contactPage.form.industries.restaurant') },
+    { value: 'education', label: t('contactPage.form.industries.education') },
+    { value: 'automotive', label: t('contactPage.form.industries.automotive') },
+    { value: 'other', label: t('contactPage.form.industries.other') }
   ];
 
   const projectTypes = [
-    { value: 'whatsapp', label: '💬 WhatsApp AI', desc: 'Asistente para WhatsApp' },
-    { value: 'telegram', label: '📱 Telegram Bot', desc: 'Bot inteligente para Telegram' },
-    { value: 'email', label: '📧 Automatización Gmail', desc: 'Gestión automática de emails' },
-    { value: 'multichannel', label: '🌐 Solución Multicanal', desc: 'WhatsApp + Telegram + Email' },
-    { value: 'custom', label: '⚡ Desarrollo Personalizado', desc: 'Algo específico para mi negocio' }
+    { value: 'ai', label: t('contactPage.form.projectTypes.ai.label'), desc: t('contactPage.form.projectTypes.ai.desc') },
+    { value: 'dataML', label: t('contactPage.form.projectTypes.dataML.label'), desc: t('contactPage.form.projectTypes.dataML.desc') },
+    { value: 'development', label: t('contactPage.form.projectTypes.development.label'), desc: t('contactPage.form.projectTypes.development.desc') }
   ];
 
   const customerVolumes = [
-    { value: 'small', label: '1-50 clientes/mes', bonus: '💰 Plan Starter' },
-    { value: 'medium', label: '51-200 clientes/mes', bonus: '🚀 Plan Growth' },
-    { value: 'large', label: '201-500 clientes/mes', bonus: '👑 Plan Professional' },
-    { value: 'enterprise', label: '500+ clientes/mes', bonus: '💎 Plan Enterprise' }
+    { value: 'small', label: t('contactPage.form.customers.small.label'), bonus: t('contactPage.form.customers.small.bonus') },
+    { value: 'medium', label: t('contactPage.form.customers.medium.label'), bonus: t('contactPage.form.customers.medium.bonus') },
+    { value: 'large', label: t('contactPage.form.customers.large.label'), bonus: t('contactPage.form.customers.large.bonus') },
+    { value: 'enterprise', label: t('contactPage.form.customers.enterprise.label'), bonus: t('contactPage.form.customers.enterprise.bonus') }
   ];
 
   const urgencyLevels = [
-    { value: 'asap', label: '🔥 ¡Urgente! (Esta semana)', color: 'from-red-500 to-orange-600' },
-    { value: 'soon', label: '⚡ Pronto (Este mes)', color: 'from-orange-500 to-yellow-600' },
-    { value: 'planning', label: '📅 Planeando (1-3 meses)', color: 'from-blue-500 to-indigo-600' },
-    { value: 'exploring', label: '🔍 Solo explorando', color: 'from-purple-500 to-violet-600' }
+    { value: 'asap', label: t('contactPage.form.urgency.asap'), color: 'from-red-500 to-orange-600' },
+    { value: 'soon', label: t('contactPage.form.urgency.soon'), color: 'from-orange-500 to-yellow-600' },
+    { value: 'planning', label: t('contactPage.form.urgency.planning'), color: 'from-blue-500 to-indigo-600' },
+    { value: 'exploring', label: t('contactPage.form.urgency.exploring'), color: 'from-purple-500 to-violet-600' }
   ];
 
   const handleInputChange = (e) => {
@@ -99,19 +99,19 @@ function ContactForm() {
     const newErrors = {};
     
     if (step === 1) {
-      if (!formData.name.trim()) newErrors.name = 'El nombre es requerido';
-      if (!formData.email.trim()) newErrors.email = 'El email es requerido';
+      if (!formData.name.trim()) newErrors.name = t('contactPage.form.errors.nameRequired');
+      if (!formData.email.trim()) newErrors.email = t('contactPage.form.errors.emailRequired');
       if (formData.email && !/\S+@\S+\.\S+/.test(formData.email)) {
-        newErrors.email = 'Email inválido';
+        newErrors.email = t('contactPage.form.errors.emailInvalid');
       }
-      if (!formData.phone.trim()) newErrors.phone = 'El teléfono es requerido';
-      if (!formData.company.trim()) newErrors.company = 'El nombre de la empresa es requerido';
+      if (!formData.phone.trim()) newErrors.phone = t('contactPage.form.errors.phoneRequired');
+      if (!formData.company.trim()) newErrors.company = t('contactPage.form.errors.companyRequired');
     }
     
     if (step === 2) {
-      if (!formData.industryType) newErrors.industryType = 'Selecciona tu industria';
-      if (!formData.projectType) newErrors.projectType = 'Selecciona el tipo de proyecto';
-      if (!formData.monthlyCustomers) newErrors.monthlyCustomers = 'Selecciona el volumen de clientes';
+      if (!formData.industryType) newErrors.industryType = t('contactPage.form.errors.industryRequired');
+      if (!formData.projectType) newErrors.projectType = t('contactPage.form.errors.projectTypeRequired');
+      if (!formData.monthlyCustomers) newErrors.monthlyCustomers = t('contactPage.form.errors.customersRequired');
     }
     
     // El paso 3 no tiene validaciones obligatorias para navegar, solo para enviar
@@ -186,7 +186,7 @@ ${formData.message || 'Ninguno'}
       
     } catch (error) {
       console.error('Error sending email:', error);
-      alert('Hubo un problema al enviar el mensaje. Por favor intenta nuevamente o contáctanos por WhatsApp.');
+      alert(t('contactPage.form.success.error'));
     } finally {
       setIsSubmitting(false);
     }
@@ -221,28 +221,28 @@ ${formData.message || 'Ninguno'}
           </motion.div>
           
           <h3 className="text-3xl font-bold text-white mb-4">
-            ¡Mensaje enviado con éxito!
+            {t('contactPage.form.success.title')}
           </h3>
           
           <p className="text-gray-300 mb-6 text-lg">
-            Gracias <span className="text-green-400 font-semibold">{formData.name}</span>. 
-            Tu solicitud ha sido recibida y nuestro equipo la está revisando.
+            {t('contactPage.form.success.message')} <span className="text-green-400 font-semibold">{formData.name}</span>. 
+            {t('contactPage.form.success.message2')}
           </p>
           
           <div className="bg-gray-800/50 rounded-xl p-6 mb-6">
-            <h4 className="text-lg font-semibold text-green-400 mb-4">¿Qué sigue ahora?</h4>
+            <h4 className="text-lg font-semibold text-green-400 mb-4">{t('contactPage.form.success.nextSteps')}</h4>
             <div className="space-y-3 text-left">
               <div className="flex items-center">
                 <div className="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3">1</div>
-                <span className="text-gray-300">En las próximas <strong>2 horas</strong> recibirás nuestra respuesta</span>
+                <span className="text-gray-300">{t('contactPage.form.success.step1')} <strong>{t('contactPage.form.success.step1Time')}</strong> {t('contactPage.form.success.step1Text')}</span>
               </div>
               <div className="flex items-center">
                 <div className="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3">2</div>
-                <span className="text-gray-300">En <strong>24 horas</strong> tendrás una propuesta personalizada</span>
+                <span className="text-gray-300">{t('contactPage.form.success.step2')} <strong>{t('contactPage.form.success.step2Time')}</strong> {t('contactPage.form.success.step2Text')}</span>
               </div>
               <div className="flex items-center">
                 <div className="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3">3</div>
-                <span className="text-gray-300">En <strong>48 horas</strong> tu asistente IA estará funcionando</span>
+                <span className="text-gray-300">{t('contactPage.form.success.step3')} <strong>{t('contactPage.form.success.step3Time')}</strong> {t('contactPage.form.success.step3Text')}</span>
               </div>
             </div>
           </div>
@@ -255,7 +255,7 @@ ${formData.message || 'Ninguno'}
               whileTap={{ scale: 0.95 }}
             >
               <MessageSquare className="h-5 w-5 mr-2" />
-              Hablar por WhatsApp
+              {t('contactPage.form.success.whatsapp')}
             </motion.a>
             <motion.button
               onClick={() => {
@@ -277,7 +277,7 @@ ${formData.message || 'Ninguno'}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Enviar otro mensaje
+              {t('contactPage.form.success.sendAnother')}
             </motion.button>
           </div>
         </div>
@@ -312,19 +312,19 @@ ${formData.message || 'Ninguno'}
               >
                 <Rocket className="h-6 w-6 text-white" />
               </motion.div>
-              Solicitar Propuesta Gratuita
+              {t('contactPage.form.title')}
             </h2>
             
             <div className="flex items-center space-x-2">
               <Clock className="h-4 w-4 text-green-400" />
-              <span className="text-green-400 font-semibold text-sm">Respuesta en 2h</span>
+              <span className="text-green-400 font-semibold text-sm">{t('contactPage.form.responseTime')}</span>
             </div>
           </div>
           
           {/* Progress bar */}
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm text-gray-300">Paso {currentStep} de {totalSteps}</span>
-            <span className="text-sm text-gray-300">{Math.round((currentStep / totalSteps) * 100)}% completado</span>
+            <span className="text-sm text-gray-300">{t('contactPage.form.step')} {currentStep} {t('contactPage.form.of')} {totalSteps}</span>
+            <span className="text-sm text-gray-300">{Math.round((currentStep / totalSteps) * 100)}% {t('contactPage.form.completed')}</span>
           </div>
           <div className="w-full bg-gray-700 rounded-full h-2">
             <motion.div
@@ -350,14 +350,14 @@ ${formData.message || 'Ninguno'}
                 className="space-y-6"
               >
                 <div className="text-center mb-8">
-                  <h3 className="text-xl font-bold text-purple-400 mb-2">Información básica</h3>
-                  <p className="text-gray-400">Cuéntanos sobre ti y tu empresa</p>
+                  <h3 className="text-xl font-bold text-purple-400 mb-2">{t('contactPage.form.step1.title')}</h3>
+                  <p className="text-gray-400">{t('contactPage.form.step1.subtitle')}</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Name */}
                   <div>
-                    <label className="block text-gray-300 mb-2 font-medium">Full name *</label>
+                    <label className="block text-gray-300 mb-2 font-medium">{t('contactPage.form.step1.name')}</label>
                     <div className="relative">
                       <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                       <input
@@ -366,7 +366,7 @@ ${formData.message || 'Ninguno'}
                         value={formData.name}
                         onChange={handleInputChange}
                         className={`w-full bg-gray-700/50 border ${errors.name ? 'border-red-500' : 'border-gray-600'} rounded-lg py-3 pl-12 pr-4 text-white focus:outline-none focus:border-purple-500 transition duration-300 placeholder-gray-400`}
-                        placeholder="Your name"
+                        placeholder={t('contactPage.form.step1.namePlaceholder')}
                       />
                       {errors.name && (
                         <motion.p
@@ -383,7 +383,7 @@ ${formData.message || 'Ninguno'}
 
                   {/* Email */}
                   <div>
-                    <label className="block text-gray-300 mb-2 font-medium">Email *</label>
+                    <label className="block text-gray-300 mb-2 font-medium">{t('contactPage.form.step1.email')}</label>
                     <div className="relative">
                       <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                       <input
@@ -392,7 +392,7 @@ ${formData.message || 'Ninguno'}
                         value={formData.email}
                         onChange={handleInputChange}
                         className={`w-full bg-gray-700/50 border ${errors.email ? 'border-red-500' : 'border-gray-600'} rounded-lg py-3 pl-12 pr-4 text-white focus:outline-none focus:border-purple-500 transition duration-300 placeholder-gray-400`}
-                        placeholder="name@company.com"
+                        placeholder={t('contactPage.form.step1.emailPlaceholder')}
                       />
                       {errors.email && (
                         <motion.p
@@ -409,7 +409,7 @@ ${formData.message || 'Ninguno'}
 
                   {/* Phone */}
                   <div>
-                    <label className="block text-gray-300 mb-2 font-medium">Phone *</label>
+                    <label className="block text-gray-300 mb-2 font-medium">{t('contactPage.form.step1.phone')}</label>
                     <div className="relative">
                       <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                       <input
@@ -418,7 +418,7 @@ ${formData.message || 'Ninguno'}
                         value={formData.phone}
                         onChange={handleInputChange}
                         className={`w-full bg-gray-700/50 border ${errors.phone ? 'border-red-500' : 'border-gray-600'} rounded-lg py-3 pl-12 pr-4 text-white focus:outline-none focus:border-purple-500 transition duration-300 placeholder-gray-400`}
-                        placeholder="+1 609 123 4567"
+                        placeholder={t('contactPage.form.step1.phonePlaceholder')}
                       />
                       {errors.phone && (
                         <motion.p
@@ -435,7 +435,7 @@ ${formData.message || 'Ninguno'}
 
                   {/* Company */}
                   <div>
-                    <label className="block text-gray-300 mb-2 font-medium">Company *</label>
+                    <label className="block text-gray-300 mb-2 font-medium">{t('contactPage.form.step1.company')}</label>
                     <div className="relative">
                       <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                       <input
@@ -444,7 +444,7 @@ ${formData.message || 'Ninguno'}
                         value={formData.company}
                         onChange={handleInputChange}
                         className={`w-full bg-gray-700/50 border ${errors.company ? 'border-red-500' : 'border-gray-600'} rounded-lg py-3 pl-12 pr-4 text-white focus:outline-none focus:border-purple-500 transition duration-300 placeholder-gray-400`}
-                        placeholder="Your company LLC"
+                        placeholder={t('contactPage.form.step1.companyPlaceholder')}
                       />
                       {errors.company && (
                         <motion.p
@@ -464,7 +464,7 @@ ${formData.message || 'Ninguno'}
                 <div className="bg-green-900/20 border border-green-500/30 rounded-lg p-4">
                   <div className="flex items-center text-green-400 text-sm">
                     <Shield className="h-4 w-4 mr-2" />
-                    <span>Información 100% confidencial. No compartimos tus datos con terceros.</span>
+                    <span>{t('contactPage.form.step1.privacy')}</span>
                   </div>
                 </div>
               </motion.div>
@@ -481,13 +481,13 @@ ${formData.message || 'Ninguno'}
                 className="space-y-6"
               >
                 <div className="text-center mb-8">
-                  <h3 className="text-xl font-bold text-purple-400 mb-2">Detalles del proyecto</h3>
-                  <p className="text-gray-400">Ayúdanos a entender tus necesidades específicas</p>
+                  <h3 className="text-xl font-bold text-purple-400 mb-2">{t('contactPage.form.step2.title')}</h3>
+                  <p className="text-gray-400">{t('contactPage.form.step2.subtitle')}</p>
                 </div>
 
                 {/* Industry Type */}
                 <div>
-                  <label className="block text-gray-300 mb-3 font-medium">¿A qué industria perteneces? *</label>
+                  <label className="block text-gray-300 mb-3 font-medium">{t('contactPage.form.step2.industry')}</label>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                     {industryOptions.map((option) => (
                       <motion.button
@@ -520,7 +520,7 @@ ${formData.message || 'Ninguno'}
 
                 {/* Project Type */}
                 <div>
-                  <label className="block text-gray-300 mb-3 font-medium">¿Qué tipo de solución te interesa? *</label>
+                  <label className="block text-gray-300 mb-3 font-medium">{t('contactPage.form.step2.projectType')}</label>
                   <div className="space-y-3">
                     {projectTypes.map((option) => (
                       <motion.button
@@ -561,7 +561,7 @@ ${formData.message || 'Ninguno'}
 
                 {/* Customer Volume */}
                 <div>
-                  <label className="block text-gray-300 mb-3 font-medium">¿Cuántos clientes atiendes mensualmente? *</label>
+                  <label className="block text-gray-300 mb-3 font-medium">{t('contactPage.form.step2.customers')}</label>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {customerVolumes.map((option) => (
                       <motion.button
@@ -606,13 +606,13 @@ ${formData.message || 'Ninguno'}
                 className="space-y-6"
               >
                 <div className="text-center mb-8">
-                  <h3 className="text-xl font-bold text-purple-400 mb-2">Últimos detalles</h3>
-                  <p className="text-gray-400">Para crear la propuesta perfecta para ti</p>
+                  <h3 className="text-xl font-bold text-purple-400 mb-2">{t('contactPage.form.step3.title')}</h3>
+                  <p className="text-gray-400">{t('contactPage.form.step3.subtitle')}</p>
                 </div>
 
                 {/* Urgency */}
                 <div>
-                  <label className="block text-gray-300 mb-3 font-medium">¿Qué tan urgente es tu proyecto?</label>
+                  <label className="block text-gray-300 mb-3 font-medium">{t('contactPage.form.step3.urgency')}</label>
                   <div className="space-y-3">
                     {urgencyLevels.map((option) => (
                       <motion.button
@@ -635,27 +635,27 @@ ${formData.message || 'Ninguno'}
 
                 {/* Current Challenge */}
                 <div>
-                  <label className="block text-gray-300 mb-2 font-medium">¿Cuál es tu mayor desafío actual?</label>
+                  <label className="block text-gray-300 mb-2 font-medium">{t('contactPage.form.step3.challenge')}</label>
                   <textarea
                     name="currentChallenge"
                     value={formData.currentChallenge}
                     onChange={handleInputChange}
                     rows={4}
                     className="w-full bg-gray-700/50 border border-gray-600 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-purple-500 transition duration-300 placeholder-gray-400 resize-none"
-                    placeholder="Ej: Perdemos muchos clientes porque no respondemos a tiempo en WhatsApp, especialmente en horarios nocturnos y fines de semana..."
+                    placeholder={t('contactPage.form.step3.challengePlaceholder')}
                   />
                 </div>
 
                 {/* Additional Message */}
                 <div>
-                  <label className="block text-gray-300 mb-2 font-medium">¿Algo más que quieras agregar?</label>
+                  <label className="block text-gray-300 mb-2 font-medium">{t('contactPage.form.step3.message')}</label>
                   <textarea
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
                     rows={3}
                     className="w-full bg-gray-700/50 border border-gray-600 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-purple-500 transition duration-300 placeholder-gray-400 resize-none"
-                    placeholder="Requisitos específicos, integraciones necesarias, presupuesto estimado, etc."
+                    placeholder={t('contactPage.form.step3.messagePlaceholder')}
                   />
                 </div>
 
@@ -663,17 +663,10 @@ ${formData.message || 'Ninguno'}
                 <div className="bg-gradient-to-r from-green-900/20 to-purple-900/20 border border-green-500/30 rounded-lg p-6">
                   <h4 className="text-green-400 font-semibold mb-3 flex items-center">
                     <Gift className="h-5 w-5 mr-2" />
-                    Al enviar este formulario recibes:
+                    {t('contactPage.form.step3.benefitsTitle')}
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
-                    {[
-                      '✅ Respuesta en máximo 2 horas',
-                      '✅ Propuesta personalizada en 24h',
-                      '✅ Demo gratuita de tu solución',
-                      '✅ Análisis de ROI para tu negocio',
-                      '✅ Consultoría sin compromiso',
-                      '✅ Setup gratuito (valor $500 USD)'
-                    ].map((benefit, index) => (
+                    {t('contactPage.form.step3.benefits').map((benefit, index) => (
                       <motion.div
                         key={index}
                         className="text-gray-300"
@@ -701,7 +694,7 @@ ${formData.message || 'Ninguno'}
                 whileTap={{ scale: 0.95 }}
               >
                 <ArrowRight className="h-4 w-4 mr-2 rotate-180" />
-                Anterior
+                {t('contactPage.form.buttons.previous')}
               </motion.button>
             ) : (
               <div />
@@ -715,7 +708,7 @@ ${formData.message || 'Ninguno'}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Siguiente
+                {t('contactPage.form.buttons.next')}
                 <ArrowRight className="h-4 w-4 ml-2" />
               </motion.button>
             ) : (
@@ -729,12 +722,12 @@ ${formData.message || 'Ninguno'}
                 {isSubmitting ? (
                   <>
                     <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                    Enviando...
+                    {t('contactPage.form.buttons.sending')}
                   </>
                 ) : (
                   <>
                     <Send className="h-4 w-4 mr-2" />
-                    Enviar solicitud
+                    {t('contactPage.form.buttons.submit')}
                   </>
                 )}
               </motion.button>

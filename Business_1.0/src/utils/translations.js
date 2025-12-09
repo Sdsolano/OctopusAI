@@ -2074,6 +2074,148 @@ export const translations = {
         badge: 'Elige tu forma preferida',
         title: 'Múltiples formas de contactarnos',
         subtitle: 'Elige el método que prefieras. Te responderemos en menos de 2 horas.'
+      },
+      form: {
+        title: 'Solicitar Propuesta Gratuita',
+        responseTime: 'Respuesta en 2h',
+        step: 'Paso',
+        of: 'de',
+        completed: 'completado',
+        step1: {
+          title: 'Información básica',
+          subtitle: 'Cuéntanos sobre ti y tu empresa',
+          name: 'Nombre completo *',
+          namePlaceholder: 'Tu nombre',
+          email: 'Email *',
+          emailPlaceholder: 'name@company.com',
+          phone: 'Teléfono *',
+          phonePlaceholder: '+1 609 123 4567',
+          company: 'Empresa *',
+          companyPlaceholder: 'Tu empresa LLC',
+          privacy: 'Información 100% confidencial. No compartimos tus datos con terceros.'
+        },
+        step2: {
+          title: 'Detalles del proyecto',
+          subtitle: 'Ayúdanos a entender tus necesidades específicas',
+          industry: '¿A qué industria perteneces? *',
+          projectType: '¿Qué tipo de solución te interesa? *',
+          customers: '¿Cuántos clientes atiendes mensualmente? *'
+        },
+        step3: {
+          title: 'Últimos detalles',
+          subtitle: 'Para crear la propuesta perfecta para ti',
+          urgency: '¿Qué tan urgente es tu proyecto?',
+          challenge: '¿Cuál es tu mayor desafío actual?',
+          challengePlaceholder: 'Ej: Perdemos muchos clientes porque no respondemos a tiempo en WhatsApp, especialmente en horarios nocturnos y fines de semana...',
+          message: '¿Algo más que quieras agregar?',
+          messagePlaceholder: 'Requisitos específicos, integraciones necesarias, presupuesto estimado, etc.',
+          benefitsTitle: 'Al enviar este formulario recibes:',
+          benefits: [
+            '✅ Respuesta en máximo 2 horas',
+            '✅ Propuesta personalizada en 24h',
+            '✅ Análisis de ROI para tu negocio',
+            '✅ Consultoría sin compromiso'
+          ]
+        },
+        industries: {
+          healthcare: '🏥 Salud y Bienestar',
+          retail: '🛍️ Retail y E-commerce',
+          realestate: '🏠 Bienes Raíces',
+          services: '💼 Servicios Profesionales',
+          restaurant: '🍕 Restaurantes',
+          education: '📚 Educación',
+          automotive: '🚗 Automotriz',
+          other: '🌟 Otro'
+        },
+        projectTypes: {
+          ai: { label: '🤖 Inteligencia Artificial', desc: 'Agentes conversacionales, automatización con IA y soluciones inteligentes' },
+          dataML: { label: '📊 Data & Machine Learning', desc: 'Análisis predictivo, Business Intelligence y automatización de procesos' },
+          development: { label: '💻 Desarrollo de Software', desc: 'Aplicaciones web, móviles y sistemas personalizados' }
+        },
+        customers: {
+          small: { label: '1-50 clientes/mes', bonus: '💰 Plan Starter' },
+          medium: { label: '51-200 clientes/mes', bonus: '🚀 Plan Growth' },
+          large: { label: '201-500 clientes/mes', bonus: '👑 Plan Professional' },
+          enterprise: { label: '500+ clientes/mes', bonus: '💎 Plan Enterprise' }
+        },
+        urgency: {
+          asap: '🔥 ¡Urgente! (Esta semana)',
+          soon: '⚡ Pronto (Este mes)',
+          planning: '📅 Planeando (1-3 meses)',
+          exploring: '🔍 Solo explorando'
+        },
+        errors: {
+          nameRequired: 'El nombre es requerido',
+          emailRequired: 'El email es requerido',
+          emailInvalid: 'Email inválido',
+          phoneRequired: 'El teléfono es requerido',
+          companyRequired: 'El nombre de la empresa es requerido',
+          industryRequired: 'Selecciona tu industria',
+          projectTypeRequired: 'Selecciona el tipo de proyecto',
+          customersRequired: 'Selecciona el volumen de clientes'
+        },
+        buttons: {
+          previous: 'Anterior',
+          next: 'Siguiente',
+          sending: 'Enviando...',
+          submit: 'Enviar solicitud'
+        },
+        success: {
+          title: '¡Mensaje enviado con éxito!',
+          message: 'Gracias',
+          message2: '. Tu solicitud ha sido recibida y nuestro equipo la está revisando.',
+          nextSteps: '¿Qué sigue ahora?',
+          step1: 'En las próximas',
+          step1Time: '2 horas',
+          step1Text: 'recibirás nuestra respuesta',
+          step2: 'En',
+          step2Time: '24 horas',
+          step2Text: 'tendrás una propuesta personalizada',
+          step3: 'En',
+          step3Time: '48 horas',
+          step3Text: 'tu asistente IA estará funcionando',
+          whatsapp: 'Hablar por WhatsApp',
+          sendAnother: 'Enviar otro mensaje',
+          error: 'Hubo un problema al enviar el mensaje. Por favor intenta nuevamente o contáctanos por WhatsApp.'
+        }
+      },
+      contactInfo: {
+        whatsapp: {
+          title: 'WhatsApp Directo',
+          subtitle: 'Más rápido y personal',
+          description: 'Respuesta inmediata en horario laboral',
+          badge: '🔥 Más popular',
+          advantages: ['Respuesta en minutos', 'Envío de archivos', 'Llamadas directas'],
+          button: 'Abrir WhatsApp'
+        },
+        email: {
+          title: 'Email Corporativo',
+          subtitle: 'Para consultas detalladas',
+          description: 'Ideal para enviar documentos',
+          badge: '📧 Profesional',
+          advantages: ['Documentos adjuntos', 'Historial completo', 'Propuestas detalladas'],
+          button: 'Enviar email'
+        },
+        businessHours: {
+          title: 'Horario de atención',
+          value: 'Lun - Vie: 8:00 AM - 6:00 PM',
+          subtitle: 'Hora de Colombia (GMT-5)',
+          available: '🟢 Disponible ahora',
+          unavailable: '🔴 Fuera de horario'
+        },
+        languages: {
+          title: 'Idiomas',
+          value: 'Español, English',
+          subtitle: 'Soporte multiidioma',
+          status: '🗣️ Atención nativa'
+        },
+        advantages: 'Ventajas:',
+        stats: {
+          companies: 'Empresas confían en nosotros',
+          responseTime: 'Tiempo promedio de respuesta',
+          satisfaction: 'Satisfacción del cliente',
+          roi: 'ROI promedio'
+        }
       }
     },
 
@@ -4269,6 +4411,148 @@ export const translations = {
         badge: 'Choose your preferred way',
         title: 'Multiple ways to contact us',
         subtitle: 'Choose the method you prefer. We will respond in less than 2 hours.'
+      },
+      form: {
+        title: 'Request Free Proposal',
+        responseTime: 'Response in 2h',
+        step: 'Step',
+        of: 'of',
+        completed: 'completed',
+        step1: {
+          title: 'Basic Information',
+          subtitle: 'Tell us about yourself and your company',
+          name: 'Full name *',
+          namePlaceholder: 'Your name',
+          email: 'Email *',
+          emailPlaceholder: 'name@company.com',
+          phone: 'Phone *',
+          phonePlaceholder: '+1 609 123 4567',
+          company: 'Company *',
+          companyPlaceholder: 'Your company LLC',
+          privacy: '100% confidential information. We do not share your data with third parties.'
+        },
+        step2: {
+          title: 'Project Details',
+          subtitle: 'Help us understand your specific needs',
+          industry: 'What industry do you belong to? *',
+          projectType: 'What type of solution are you interested in? *',
+          customers: 'How many customers do you serve monthly? *'
+        },
+        step3: {
+          title: 'Final Details',
+          subtitle: 'To create the perfect proposal for you',
+          urgency: 'How urgent is your project?',
+          challenge: 'What is your biggest current challenge?',
+          challengePlaceholder: 'E.g: We lose many customers because we don\'t respond on time on WhatsApp, especially during night hours and weekends...',
+          message: 'Anything else you want to add?',
+          messagePlaceholder: 'Specific requirements, necessary integrations, estimated budget, etc.',
+          benefitsTitle: 'By submitting this form you receive:',
+          benefits: [
+            '✅ Response within 2 hours maximum',
+            '✅ Personalized proposal in 24h',
+            '✅ ROI analysis for your business',
+            '✅ Consultation without commitment'
+          ]
+        },
+        industries: {
+          healthcare: '🏥 Health and Wellness',
+          retail: '🛍️ Retail and E-commerce',
+          realestate: '🏠 Real Estate',
+          services: '💼 Professional Services',
+          restaurant: '🍕 Restaurants',
+          education: '📚 Education',
+          automotive: '🚗 Automotive',
+          other: '🌟 Other'
+        },
+        projectTypes: {
+          ai: { label: '🤖 Artificial Intelligence', desc: 'Conversational agents, AI automation and intelligent solutions' },
+          dataML: { label: '📊 Data & Machine Learning', desc: 'Predictive analytics, Business Intelligence and process automation' },
+          development: { label: '💻 Software Development', desc: 'Web applications, mobile apps and custom systems' }
+        },
+        customers: {
+          small: { label: '1-50 customers/month', bonus: '💰 Starter Plan' },
+          medium: { label: '51-200 customers/month', bonus: '🚀 Growth Plan' },
+          large: { label: '201-500 customers/month', bonus: '👑 Professional Plan' },
+          enterprise: { label: '500+ customers/month', bonus: '💎 Enterprise Plan' }
+        },
+        urgency: {
+          asap: '🔥 Urgent! (This week)',
+          soon: '⚡ Soon (This month)',
+          planning: '📅 Planning (1-3 months)',
+          exploring: '🔍 Just exploring'
+        },
+        errors: {
+          nameRequired: 'Name is required',
+          emailRequired: 'Email is required',
+          emailInvalid: 'Invalid email',
+          phoneRequired: 'Phone is required',
+          companyRequired: 'Company name is required',
+          industryRequired: 'Select your industry',
+          projectTypeRequired: 'Select the project type',
+          customersRequired: 'Select customer volume'
+        },
+        buttons: {
+          previous: 'Previous',
+          next: 'Next',
+          sending: 'Sending...',
+          submit: 'Send request'
+        },
+        success: {
+          title: 'Message sent successfully!',
+          message: 'Thank you',
+          message2: '. Your request has been received and our team is reviewing it.',
+          nextSteps: 'What\'s next?',
+          step1: 'Within the next',
+          step1Time: '2 hours',
+          step1Text: 'you will receive our response',
+          step2: 'In',
+          step2Time: '24 hours',
+          step2Text: 'you will have a personalized proposal',
+          step3: 'In',
+          step3Time: '48 hours',
+          step3Text: 'your AI assistant will be running',
+          whatsapp: 'Talk on WhatsApp',
+          sendAnother: 'Send another message',
+          error: 'There was a problem sending the message. Please try again or contact us via WhatsApp.'
+        }
+      },
+      contactInfo: {
+        whatsapp: {
+          title: 'Direct WhatsApp',
+          subtitle: 'Faster and more personal',
+          description: 'Immediate response during business hours',
+          badge: '🔥 Most popular',
+          advantages: ['Response in minutes', 'File sharing', 'Direct calls'],
+          button: 'Open WhatsApp'
+        },
+        email: {
+          title: 'Corporate Email',
+          subtitle: 'For detailed inquiries',
+          description: 'Ideal for sending documents',
+          badge: '📧 Professional',
+          advantages: ['Attached documents', 'Complete history', 'Detailed proposals'],
+          button: 'Send email'
+        },
+        businessHours: {
+          title: 'Business hours',
+          value: 'Mon - Fri: 8:00 AM - 6:00 PM',
+          subtitle: 'Colombia time (GMT-5)',
+          available: '🟢 Available now',
+          unavailable: '🔴 Outside hours'
+        },
+        languages: {
+          title: 'Languages',
+          value: 'Spanish, English',
+          subtitle: 'Multi-language support',
+          status: '🗣️ Native support'
+        },
+        advantages: 'Advantages:',
+        stats: {
+          companies: 'Companies trust us',
+          responseTime: 'Average response time',
+          satisfaction: 'Customer satisfaction',
+          roi: 'Average ROI'
+        }
       }
     },
 

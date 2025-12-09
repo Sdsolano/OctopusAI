@@ -1,6 +1,7 @@
 // components/sections/contact/ContactInfo.jsx - Completamente modernizado
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from '../../../hooks/useTranslation';
 import { 
   MessageSquare, 
   Phone, 
@@ -27,6 +28,7 @@ import {
 } from 'lucide-react';
 
 function ContactInfo() {
+  const { t } = useTranslation();
   const [currentTime, setCurrentTime] = useState(new Date());
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
@@ -64,54 +66,45 @@ function ContactInfo() {
   const contactMethods = [
     {
       icon: MessageSquare,
-      title: "WhatsApp Directo",
-      subtitle: "Más rápido y personal",
+      title: t('contactPage.contactInfo.whatsapp.title'),
+      subtitle: t('contactPage.contactInfo.whatsapp.subtitle'),
       value: "+57 324 375 0360",
       link: "https://wa.me/573243750360",
       color: "from-green-500 to-emerald-600",
-      description: "Respuesta inmediata en horario laboral",
-      badge: "🔥 Más popular",
-      advantages: ["Respuesta en minutos", "Envío de archivos", "Llamadas directas"]
+      description: t('contactPage.contactInfo.whatsapp.description'),
+      badge: t('contactPage.contactInfo.whatsapp.badge'),
+      advantages: t('contactPage.contactInfo.whatsapp.advantages'),
+      button: t('contactPage.contactInfo.whatsapp.button')
     },
     {
       icon: Mail,
-      title: "Email Corporativo", 
-      subtitle: "Para consultas detalladas",
+      title: t('contactPage.contactInfo.email.title'), 
+      subtitle: t('contactPage.contactInfo.email.subtitle'),
       value: "info.octopusai@gmail.com",
       link: "mailto:info.octopusai@gmail.com",
       color: "from-blue-500 to-indigo-600",
-      description: "Ideal para enviar documentos",
-      badge: "📧 Profesional",
-      advantages: ["Documentos adjuntos", "Historial completo", "Propuestas detalladas"]
-    },
-    {
-      icon: Calendar,
-      title: "Demo Personalizada",
-      subtitle: "Ve la IA en acción",
-      value: "Agenda 30 min",
-      link: "https://calendly.com/info-octopusai/30min",
-      color: "from-purple-500 to-violet-600", 
-      description: "Demostración en vivo",
-      badge: "🎯 Recomendado",
-      advantages: ["Demo en vivo", "Casos específicos", "Q&A personalizado"]
+      description: t('contactPage.contactInfo.email.description'),
+      badge: t('contactPage.contactInfo.email.badge'),
+      advantages: t('contactPage.contactInfo.email.advantages'),
+      button: t('contactPage.contactInfo.email.button')
     }
   ];
 
   const businessInfo = [
     {
       icon: Clock,
-      title: "Horario de atención",
-      value: "Lun - Vie: 8:00 AM - 6:00 PM",
-      subtitle: "Hora de Colombia (GMT-5)",
-      status: isBusinessHours() ? "🟢 Disponible ahora" : "🔴 Fuera de horario"
+      title: t('contactPage.contactInfo.businessHours.title'),
+      value: t('contactPage.contactInfo.businessHours.value'),
+      subtitle: t('contactPage.contactInfo.businessHours.subtitle'),
+      status: isBusinessHours() ? t('contactPage.contactInfo.businessHours.available') : t('contactPage.contactInfo.businessHours.unavailable')
     },
     
     {
       icon: Globe,
-      title: "Idiomas",
-      value: "Español, English",
-      subtitle: "Soporte multiidioma",
-      status: "🗣️ Atención nativa"
+      title: t('contactPage.contactInfo.languages.title'),
+      value: t('contactPage.contactInfo.languages.value'),
+      subtitle: t('contactPage.contactInfo.languages.subtitle'),
+      status: t('contactPage.contactInfo.languages.status')
     }
   ];
 
@@ -119,25 +112,25 @@ function ContactInfo() {
     {
       icon: Users,
       value: "+500",
-      label: "Empresas confían en nosotros",
+      label: t('contactPage.contactInfo.stats.companies'),
       color: "from-blue-500 to-indigo-600"
     },
     {
       icon: Clock,
       value: "< 2h",
-      label: "Tiempo promedio de respuesta",
+      label: t('contactPage.contactInfo.stats.responseTime'),
       color: "from-green-500 to-emerald-600"
     },
     {
       icon: TrendingUp,
       value: "98%",
-      label: "Satisfacción del cliente",
+      label: t('contactPage.contactInfo.stats.satisfaction'),
       color: "from-purple-500 to-violet-600"
     },
     {
       icon: Award,
       value: "250%",
-      label: "ROI promedio",
+      label: t('contactPage.contactInfo.stats.roi'),
       color: "from-yellow-500 to-orange-600"
     }
   ];
@@ -200,14 +193,14 @@ function ContactInfo() {
                   </div>
                   
                   {/* Copy button for email/phone */}
-                  {(method.title.includes('WhatsApp') || method.title.includes('Email')) && (
+                  {(method.icon === Mail || method.icon === MessageSquare) && (
                     <motion.button
-                      onClick={() => copyToClipboard(method.value, method.title.includes('Email') ? 'email' : 'phone')}
+                      onClick={() => copyToClipboard(method.value, method.icon === Mail ? 'email' : 'phone')}
                       className="text-gray-400 hover:text-purple-400 transition-colors duration-300"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                     >
-                      {(method.title.includes('Email') && copiedEmail) || (method.title.includes('WhatsApp') && copiedPhone) ? (
+                      {(method.icon === Mail && copiedEmail) || (method.icon === MessageSquare && copiedPhone) ? (
                         <CheckCircle2 className="h-5 w-5 text-green-400" />
                       ) : (
                         <Copy className="h-5 w-5" />
@@ -226,7 +219,7 @@ function ContactInfo() {
                 
                 {/* Advantages */}
                 <div className="mb-6">
-                  <h4 className="text-sm font-semibold text-purple-300 mb-2">Ventajas:</h4>
+                  <h4 className="text-sm font-semibold text-purple-300 mb-2">{t('contactPage.contactInfo.advantages')}</h4>
                   <div className="space-y-1">
                     {method.advantages.map((advantage, i) => (
                       <div key={i} className="flex items-center text-sm text-gray-300">
@@ -246,7 +239,7 @@ function ContactInfo() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <span className="mr-2">{method.title.includes('Demo') ? 'Agendar demo' : method.title.includes('WhatsApp') ? 'Abrir WhatsApp' : 'Enviar email'}</span>
+                  <span className="mr-2">{method.button}</span>
                   <motion.div
                     animate={{ x: [0, 3, 0] }}
                     transition={{ 

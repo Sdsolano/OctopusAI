@@ -16,7 +16,6 @@ import {
   Crown,
   Globe,
   ExternalLink,
-  Loader2
 } from 'lucide-react';
 import octopusLogo from "../../assets/octopus-logo.svg";
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -30,7 +29,7 @@ function Header({ isScrolled }) {
   const location = useLocation();
   
   // Language context
-  const { language, changeLanguage, isTranslating, browserLanguage } = useLanguage();
+  const { language, changeLanguage, browserLanguage } = useLanguage();
   
   // Translation hook
   const { t } = useTranslation();
@@ -278,27 +277,20 @@ function Header({ isScrolled }) {
                 className="relative"
               >
                 <motion.button
-                  onClick={() => !isTranslating && setIsLanguageOpen(!isLanguageOpen)}
-                  disabled={isTranslating}
-                  className={`flex items-center space-x-2 bg-purple-900/30 hover:bg-purple-900/50 border border-purple-500/40 hover:border-purple-500/60 rounded-xl px-3 py-3 text-sm font-medium text-purple-300 transition-all duration-300 ml-2 ${
-                    isTranslating ? 'opacity-60 cursor-not-allowed' : ''
-                  }`}
-                  whileHover={!isTranslating ? { scale: 1.05 } : {}}
-                  whileTap={!isTranslating ? { scale: 0.95 } : {}}
+                  onClick={() => setIsLanguageOpen(!isLanguageOpen)}
+                  className="flex items-center space-x-2 bg-purple-900/30 hover:bg-purple-900/50 border border-purple-500/40 hover:border-purple-500/60 rounded-xl px-3 py-3 text-sm font-medium text-purple-300 transition-all duration-300 ml-2"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  {isTranslating ? (
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                  ) : (
-                    <Globe className="h-4 w-4" />
-                  )}
+                  <Globe className="h-4 w-4" />
                   
                   <span className="hidden sm:inline">{currentLanguage?.flag}</span>
                   
                   <span className="hidden md:flex items-center space-x-1">
                     <span>
-                      {isTranslating ? t('common.loading') : currentLanguage?.name}
+                      {currentLanguage?.name}
                     </span>
-                    {isBrowserDetected && !isTranslating && (
+                    {isBrowserDetected && (
                       <motion.div
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
@@ -317,7 +309,7 @@ function Header({ isScrolled }) {
 
                 {/* Language Dropdown */}
                 <AnimatePresence>
-                  {isLanguageOpen && !isTranslating && (
+                  {isLanguageOpen && (
                     <motion.div
                       initial={{ opacity: 0, scale: 0.95, y: -10 }}
                       animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -511,9 +503,6 @@ function Header({ isScrolled }) {
                       <span className="text-sm text-gray-400">
                         {browserLanguage === 'en' ? 'Language / Idioma' : 'Idioma / Language'}
                       </span>
-                      {isTranslating && (
-                        <Loader2 className="h-4 w-4 animate-spin text-purple-400" />
-                      )}
                     </div>
                     
                     <div className="grid grid-cols-2 gap-3">
@@ -521,14 +510,13 @@ function Header({ isScrolled }) {
                         <motion.button
                           key={lang.code}
                           onClick={() => handleLanguageChange(lang.code)}
-                          disabled={isTranslating}
                           className={`flex items-center space-x-2 px-4 py-3 rounded-lg font-medium transition-all duration-300 ${
                             language === lang.code
                               ? 'bg-purple-600/50 text-white border border-purple-500/60'
                               : 'bg-gray-800/50 text-gray-300 hover:bg-purple-900/30 border border-gray-600/50'
-                          } ${isTranslating ? 'opacity-50 cursor-not-allowed' : ''}`}
-                          whileHover={!isTranslating ? { scale: 1.02 } : {}}
-                          whileTap={!isTranslating ? { scale: 0.98 } : {}}
+                          }`}
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
                         >
                           <span className="text-lg">{lang.flag}</span>
                           <span className="text-sm">{lang.name}</span>
