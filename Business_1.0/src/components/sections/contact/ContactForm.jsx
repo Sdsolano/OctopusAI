@@ -357,7 +357,7 @@ ${formData.message || 'Ninguno'}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Name */}
                   <div>
-                    <label className="block text-gray-300 mb-2 font-medium">Nombre completo *</label>
+                    <label className="block text-gray-300 mb-2 font-medium">Full name *</label>
                     <div className="relative">
                       <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                       <input
@@ -366,7 +366,7 @@ ${formData.message || 'Ninguno'}
                         value={formData.name}
                         onChange={handleInputChange}
                         className={`w-full bg-gray-700/50 border ${errors.name ? 'border-red-500' : 'border-gray-600'} rounded-lg py-3 pl-12 pr-4 text-white focus:outline-none focus:border-purple-500 transition duration-300 placeholder-gray-400`}
-                        placeholder="Tu nombre"
+                        placeholder="Your name"
                       />
                       {errors.name && (
                         <motion.p
@@ -383,7 +383,7 @@ ${formData.message || 'Ninguno'}
 
                   {/* Email */}
                   <div>
-                    <label className="block text-gray-300 mb-2 font-medium">Email corporativo *</label>
+                    <label className="block text-gray-300 mb-2 font-medium">Email *</label>
                     <div className="relative">
                       <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                       <input
@@ -392,7 +392,7 @@ ${formData.message || 'Ninguno'}
                         value={formData.email}
                         onChange={handleInputChange}
                         className={`w-full bg-gray-700/50 border ${errors.email ? 'border-red-500' : 'border-gray-600'} rounded-lg py-3 pl-12 pr-4 text-white focus:outline-none focus:border-purple-500 transition duration-300 placeholder-gray-400`}
-                        placeholder="tu@empresa.com"
+                        placeholder="name@company.com"
                       />
                       {errors.email && (
                         <motion.p
@@ -409,7 +409,7 @@ ${formData.message || 'Ninguno'}
 
                   {/* Phone */}
                   <div>
-                    <label className="block text-gray-300 mb-2 font-medium">WhatsApp/Teléfono *</label>
+                    <label className="block text-gray-300 mb-2 font-medium">Phone *</label>
                     <div className="relative">
                       <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                       <input
@@ -418,7 +418,7 @@ ${formData.message || 'Ninguno'}
                         value={formData.phone}
                         onChange={handleInputChange}
                         className={`w-full bg-gray-700/50 border ${errors.phone ? 'border-red-500' : 'border-gray-600'} rounded-lg py-3 pl-12 pr-4 text-white focus:outline-none focus:border-purple-500 transition duration-300 placeholder-gray-400`}
-                        placeholder="+57 300 123 4567"
+                        placeholder="+1 609 123 4567"
                       />
                       {errors.phone && (
                         <motion.p
@@ -435,7 +435,7 @@ ${formData.message || 'Ninguno'}
 
                   {/* Company */}
                   <div>
-                    <label className="block text-gray-300 mb-2 font-medium">Nombre de la empresa *</label>
+                    <label className="block text-gray-300 mb-2 font-medium">Company *</label>
                     <div className="relative">
                       <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                       <input
@@ -444,7 +444,7 @@ ${formData.message || 'Ninguno'}
                         value={formData.company}
                         onChange={handleInputChange}
                         className={`w-full bg-gray-700/50 border ${errors.company ? 'border-red-500' : 'border-gray-600'} rounded-lg py-3 pl-12 pr-4 text-white focus:outline-none focus:border-purple-500 transition duration-300 placeholder-gray-400`}
-                        placeholder="Mi Empresa S.A.S"
+                        placeholder="Your company LLC"
                       />
                       {errors.company && (
                         <motion.p

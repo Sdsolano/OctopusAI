@@ -32,8 +32,11 @@ import Button from '../components/ui/Button';
 
 // Import animations
 import { pageVariants } from '../utils/animations';
+import { useTranslation } from '../hooks/useTranslation';
 
 function Contact() {
+  const { t } = useTranslation();
+
   // Badge component para secciones
   const SectionBadge = ({ children, icon: Icon }) => (
     <motion.div 
@@ -130,32 +133,29 @@ function Contact() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <SectionBadge icon={Rocket}>¡Tu éxito empieza aquí!</SectionBadge>
+              <SectionBadge icon={Rocket}>{t('contactPage.hero.badge')}</SectionBadge>
             </motion.div>
-            
-            <motion.h1 
+
+            <motion.h1
               className="text-5xl md:text-7xl font-bold mb-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <span className="text-white">Hablemos y</span>
+              <span className="text-white">{t('contactPage.hero.title.part1')}</span>
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-purple-400 to-blue-400">
-                transformemos tu negocio
+                {t('contactPage.hero.title.highlight')}
               </span>
             </motion.h1>
-            
-            <motion.p 
+
+            <motion.p
               className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-12 leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Solo necesitas <span className="text-green-400 font-semibold">10 minutos</span> para 
-              contarnos tu proyecto. En <span className="text-green-400 font-semibold">24 horas</span> tendrás 
-              una propuesta personalizada y en <span className="text-green-400 font-semibold">48 horas</span> tu 
-              asistente IA estará funcionando .
+              {t('contactPage.hero.subtitle')}
             </motion.p>
 
             {/* Trust indicators principales */}
@@ -165,29 +165,20 @@ function Contact() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              {[
-                { 
-                  icon: Clock, 
-                  value: "< 2h", 
-                  label: "Tiempo de respuesta", 
-                  color: "from-green-500 to-emerald-600",
-                  description: "Te respondemos rápido"
-                },
-                { 
-                  icon: Gift, 
-                  value: "Gratis", 
-                  label: "Demo personalizada", 
-                  color: "from-purple-500 to-violet-600",
-                  description: "Sin compromisos"
-                },
-                { 
-                  icon: Shield, 
-                  value: "30 días", 
-                  label: "Garantía total", 
-                  color: "from-blue-500 to-indigo-600",
-                  description: "Sin riesgos"
-                }
-              ].map((stat, index) => {
+              {t('contactPage.hero.trustIndicators').map((indicator, index) => {
+                const icons = [Clock, Gift, Shield];
+                const colors = [
+                  "from-green-500 to-emerald-600",
+                  "from-purple-500 to-violet-600",
+                  "from-blue-500 to-indigo-600"
+                ];
+                const stat = {
+                  icon: icons[index],
+                  value: indicator.value,
+                  label: indicator.label,
+                  color: colors[index],
+                  description: indicator.description
+                };
                 const Icon = stat.icon;
                 return (
                   <motion.div 
@@ -223,23 +214,7 @@ function Contact() {
               })}
             </motion.div>
 
-            {/* CTAs principales */}
-            <motion.div
-              className="flex flex-col sm:flex-row gap-6 justify-center mb-12"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1 }}
-            >
-              <Button.Action 
-                onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                Solicitar propuesta gratuita
-              </Button.Action>
-              
-              <Button.Secondary href="https://wa.me/573243750360">
-                WhatsApp directo
-              </Button.Secondary>
-            </motion.div>
+
 
            
           </div>
@@ -289,17 +264,16 @@ function Contact() {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <SectionBadge icon={Target}>Elige tu forma preferida</SectionBadge>
-              
+              <SectionBadge icon={Target}>{t('contactPage.mainSection.badge')}</SectionBadge>
+
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-purple-400">
-                  Múltiples formas de contactarnos
+                  {t('contactPage.mainSection.title')}
                 </span>
               </h2>
-              
+
               <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-                Usa el método que más te guste. Todos llegan al mismo lugar: 
-                <span className="text-green-400 font-semibold"> una propuesta personalizada en 7 horas</span>.
+                {t('contactPage.mainSection.subtitle')}
               </p>
             </motion.div>
           </div>
@@ -321,80 +295,6 @@ function Contact() {
 
      
 
-      {/* Urgency/FOMO Section */}
-      <section className="py-20 bg-gradient-to-r from-green-900/20 via-gray-900 to-purple-900/20 relative overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <motion.div 
-            className="absolute top-0 right-0 w-96 h-96 bg-green-600/10 rounded-full filter blur-3xl"
-            animate={{ 
-              scale: [1, 1.2, 1],
-              opacity: [0.1, 0.2, 0.1]
-            }}
-            transition={{ 
-              duration: 6, 
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-          />
-        </div>
-        
-        <div className="container mx-auto px-6 relative z-10">
-          <motion.div
-            className="text-center"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-purple-400">
-                Cada día que esperas
-              </span>
-              <br />
-              <span>es dinero que pierdes</span>
-            </h2>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Mientras lo piensas, tu competencia ya está automatizando y capturando a 
-              <span className="text-red-400 font-semibold"> los clientes que tú podrías tener</span>.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-8">
-              <Button.Action href="https://wa.me/573243750360">
-                WhatsApp ahora mismo
-              </Button.Action>
-              <Button.Secondary 
-                onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                Completar formulario
-              </Button.Secondary>
-            </div>
-            
-            {/* Final trust indicators */}
-            <motion.div 
-              className="flex flex-wrap justify-center gap-8 text-sm text-gray-400"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: true }}
-            >
-              {[
-                "🎯 Propuesta sin compromiso",
-                "💰 Sin costos ocultos",
-                "🔒 100% confidencial"
-              ].map((item, index) => (
-                <motion.div
-                  key={index}
-                  className="flex items-center bg-gray-800/30 backdrop-blur-sm rounded-full px-4 py-2"
-                  whileHover={{ scale: 1.05, backgroundColor: "rgba(34, 197, 94, 0.1)" }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  {item}
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
     </motion.main>
   );
 }

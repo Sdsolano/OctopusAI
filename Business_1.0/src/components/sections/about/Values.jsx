@@ -1,6 +1,7 @@
 // components/sections/about/Values.jsx - Completamente modernizado
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from '../../../hooks/useTranslation';
 import { 
   Lightbulb, 
   Award, 
@@ -25,6 +26,7 @@ import {
 } from 'lucide-react';
 
 function Values() {
+  const { t } = useTranslation();
   const [hoveredValue, setHoveredValue] = useState(null);
   const [selectedValue, setSelectedValue] = useState(0);
 
@@ -40,97 +42,21 @@ function Values() {
     </motion.div>
   );
 
-  const values = [
-    {
-      title: "Innovación Constante",
-      subtitle: "Siempre un paso adelante",
-      description: "Buscamos constantemente nuevas formas de mejorar y expandir nuestras soluciones, manteniéndonos al día con las últimas tendencias en IA.",
-      detailedDescription: "No nos conformamos con el status quo. Cada día exploramos nuevas tecnologías, metodologías y enfoques para crear soluciones que marquen la diferencia. La innovación está en nuestro ADN.",
-      icon: Lightbulb,
-      color: "from-yellow-500 via-orange-500 to-red-600",
-      examples: [
-        "Investigación continua en nuevos modelos de IA",
-        "Implementación de tecnologías emergentes",
-        "Mejora constante de nuestros algoritmos",
-        "Anticipación a las necesidades del mercado"
-      ],
-      stats: { metric: "50+", label: "Nuevas features por año" }
-    },
-    {
-      title: "Excelencia sin Compromiso", 
-      subtitle: "Calidad en cada detalle",
-      description: "Nos comprometemos con la calidad superior en cada aspecto de nuestro trabajo, desde el código hasta la atención al cliente.",
-      detailedDescription: "La excelencia no es un acto, sino un hábito. Cada línea de código, cada interacción con clientes, cada decisión estratégica pasa por nuestro filtro de calidad sin excepciones.",
-      icon: Award,
-      color: "from-purple-500 via-violet-500 to-indigo-600",
-      examples: [
-        "Código revisado y probado exhaustivamente",
-        "Testing automatizado en todos los niveles",
-        "Documentación completa y actualizada",
-        "Soporte técnico de primer nivel"
-      ],
-      stats: { metric: "99.9%", label: "Uptime garantizado" }
-    },
-    {
-      title: "Simplicidad Elegante",
-      subtitle: "Lo complejo hecho simple",
-      description: "Creamos tecnología avanzada que es sorprendentemente fácil de usar, sin sacrificar funcionalidad ni potencia.",
-      detailedDescription: "Creemos que la verdadera genialidad está en hacer que lo complejo sea simple. Nuestras soluciones de IA más sofisticadas se sienten naturales e intuitivas para cualquier usuario.",
-      icon: Zap,
-      color: "from-blue-500 via-cyan-500 to-teal-600",
-      examples: [
-        "Interfaces intuitivas y user-friendly",
-        "Setup en menos de 48 horas",
-        "Configuración visual sin código",
-        "Documentación clara y concisa"
-      ],
-      stats: { metric: "< 5min", label: "Tiempo de aprendizaje" }
-    },
-    {
-      title: "Resultados Medibles",
-      subtitle: "Impacto real y tangible",
-      description: "Nos enfocamos en generar un impacto real y medible para nuestros clientes, no solo tecnología por tecnología.",
-      detailedDescription: "Cada solución que desarrollamos tiene un propósito claro: generar valor real y medible para nuestros clientes. Trabajamos orientados a KPIs y resultados concretos.",
-      icon: TrendingUp,
-      color: "from-green-500 via-emerald-500 to-teal-600",
-      examples: [
-        "Métricas claras de rendimiento",
-        "Reportes detallados de impacto",
-        "Optimización basada en datos reales"
-      ],
-      stats: { metric: "", label: " " }
-    },
-    {
-      title: "Transparencia Total",
-      subtitle: "Honestidad en cada interacción",
-      description: "Mantenemos comunicación abierta y honesta con nuestros clientes, sin promesas vacías ni términos confusos.",
-      detailedDescription: "La confianza se construye con transparencia. Compartimos abiertamente nuestros procesos, limitaciones y capacidades. No hay letra pequeña ni sorpresas.",
-      icon: Eye,
-      color: "from-indigo-500 via-purple-500 to-pink-600",
-      examples: [
-        "Comunicación clara sobre tiempos y costos",
-        "Sin contratos con letra pequeña",
-        "Reportes abiertos de rendimiento",
-        "Acceso completo a métricas y datos"
-      ],
-      stats: { metric: "100%", label: "Transparencia" }
-    },
-    {
-      title: "Pasión por el Cliente",
-      subtitle: "Tu éxito es nuestro éxito",
-      description: "Cada cliente es un partner en nuestra misión. Trabajamos incansablemente para asegurar su éxito y crecimiento.",
-      detailedDescription: "No somos solo un proveedor, somos aliados estratégicos. El éxito de nuestros clientes es la métrica más importante que seguimos. Cuando ellos crecen, nosotros crecemos.",
-      icon: Heart,
-      color: "from-pink-500 via-rose-500 to-red-600",
-      examples: [
-        "Soporte 24/7 en español",
-        "Onboarding personalizado",
-        "Seguimiento proactivo del éxito",
-        "Ajustes sin costo adicional"
-      ],
-      stats: { metric: "98%", label: "Satisfacción del cliente" }
-    }
+  const icons = [Lightbulb, Award, Zap, TrendingUp, Eye, Heart];
+  const colors = [
+    "from-yellow-500 via-orange-500 to-red-600",
+    "from-purple-500 via-violet-500 to-indigo-600",
+    "from-blue-500 via-cyan-500 to-teal-600",
+    "from-green-500 via-emerald-500 to-teal-600",
+    "from-indigo-500 via-purple-500 to-pink-600",
+    "from-pink-500 via-rose-500 to-red-600"
   ];
+
+  const values = t('values.items').map((item, index) => ({
+    ...item,
+    icon: icons[index],
+    color: colors[index]
+  }));
 
   return (
     <section className="relative py-24 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 overflow-hidden">
@@ -220,18 +146,18 @@ function Values() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <SectionBadge icon={Star}>Los pilares de nuestro éxito</SectionBadge>
-            
+            <SectionBadge icon={Star}>{t('values.badge')}</SectionBadge>
+
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-purple-400 to-blue-400">
-                Nuestros Valores
+                {t('values.title')}
               </span>
             </h2>
-            
+
             <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Estos valores no son solo palabras en la pared. Son los principios que 
-              <span className="text-purple-400 font-semibold"> guían cada decisión</span>, 
-              cada línea de código y cada interacción con nuestros clientes.
+              {t('values.subtitle.part1')}
+              <span className="text-purple-400 font-semibold"> {t('values.subtitle.highlight')}</span>
+              {t('values.subtitle.part2')}
             </p>
           </motion.div>
         </div>
@@ -329,7 +255,7 @@ function Values() {
                       
                       {/* Ejemplos */}
                       <div className="space-y-2">
-                        <h4 className="text-sm font-semibold text-purple-300 mb-3">En la práctica:</h4>
+                        <h4 className="text-sm font-semibold text-purple-300 mb-3">{t('values.practiceLabel')}</h4>
                         {value.examples.slice(0, 3).map((example, i) => (
                           <motion.div
                             key={i}

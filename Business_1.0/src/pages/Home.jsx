@@ -1,7 +1,7 @@
 // pages/Home.jsx - Modernizado para igualar el nivel de Services
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Star, Sparkles, TrendingUp, Zap, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Star, Sparkles, TrendingUp, Zap, CheckCircle2, ArrowRight, Bot, Database, Code2, Rocket } from 'lucide-react';
 import { useTranslation } from '../hooks/useTranslation';
 
 // Componentes UI
@@ -13,7 +13,6 @@ import Hero from '../components/sections/home/Hero';
 import Features from '../components/sections/home/Features';
 import HowItWorks from '../components/sections/home/HowItWorks';
 import CallToAction from '../components/sections/home/CallToAction';
-import CustomAgents from '../components/sections/home/CustomAgents';
 
 // Badge mejorado para que coincida con Services
 const SectionBadge = ({ children, icon: Icon }) => (
@@ -79,28 +78,28 @@ function Home() {
         </div>
 
         <div className="text-center mb-16 relative z-10">
-          <SectionBadge icon={Zap}>{t('highTechnology')}</SectionBadge>
-          
-          <motion.h2 
+          <SectionBadge icon={Rocket}>{t('homeFeatures.badge')}</SectionBadge>
+
+          <motion.h2
             className="text-4xl md:text-5xl font-bold mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400">
-              {t('services.title')}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-blue-400 to-green-400">
+              {t('homeFeatures.title')}
             </span>
           </motion.h2>
-          
-          <motion.p 
+
+          <motion.p
             className="text-xl text-gray-300 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            {t('services.subtitle')}
+            {t('homeFeatures.subtitle')} <span className="text-green-400 font-semibold">{t('homeFeatures.subtitleHighlight')}</span> {t('homeFeatures.subtitle2')}
           </motion.p>
         </div>
 
@@ -108,12 +107,7 @@ function Home() {
           <Features />
         </div>
       </Section>
-      
-      {/* Sección de agentes personalizados */}
-      <CustomAgents />
-      
-     
-      
+
       {/* Sección de Cómo Funciona - Mejorada */}
       <Section 
         id="como-funciona"

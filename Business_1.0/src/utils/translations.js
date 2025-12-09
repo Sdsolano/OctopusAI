@@ -243,6 +243,241 @@ export const translations = {
       }
     },
 
+    // ===== NUEVA PÁGINA DE SERVICIOS (3 VERTICALES) =====
+    servicesNew: {
+      hero: {
+        badge: 'Nuestros Servicios',
+        title: {
+          part1: 'Tecnología que',
+          highlight: 'impulsa tu crecimiento'
+        },
+        description: {
+          part1: 'Desde inteligencia artificial hasta desarrollo de software completo.',
+          highlight: 'Una solución integral',
+          part2: 'para todas tus necesidades tecnológicas.'
+        },
+        stats: {
+          verticals: 'Verticales de Servicio',
+          solutions: 'Soluciones Específicas',
+          custom: 'Personalizado'
+        },
+        cta: 'Explorar servicios'
+      },
+
+      verticals: {
+        badge: '3 Verticales Principales',
+        title: 'Elige tu camino',
+        subtitle: {
+          part1: 'Selecciona la vertical que necesitas o',
+          highlight: 'combina varias',
+          part2: 'para una solución integral.'
+        },
+        cta: 'Solicitar más información',
+
+        finalCta: {
+          title: '¿No estás seguro cuál elegir?',
+          description: {
+            part1: 'Muchos clientes combinan varias verticales. Agenda una consultoría gratuita y te ayudamos a diseñar',
+            highlight: 'la solución perfecta',
+            part2: 'para ti.'
+          },
+          primary: 'Agendar consultoría gratuita',
+          secondary: 'Ver precios'
+        },
+
+        ai: {
+          name: 'Soluciones de IA',
+          description: 'Inteligencia Artificial que transforma tu negocio',
+          services: {
+            conversational: {
+              name: 'Agentes Conversacionales',
+              description: 'Asistentes virtuales para WhatsApp, Telegram y otras plataformas que atienden 24/7.',
+              features: [
+                'Respuestas contextuales en tiempo real',
+                'Integración con WhatsApp Business API',
+                'Manejo de múltiples conversaciones simultáneas',
+                'Personalización completa del tono y personalidad'
+              ]
+            },
+            appointments: {
+              name: 'Automatización de Citas',
+              description: 'Sistema inteligente que agenda, confirma y reprograma citas automáticamente.',
+              features: [
+                'Sincronización con Google Calendar',
+                'Recordatorios automáticos personalizados',
+                'Gestión de cancelaciones y reagendamientos',
+                'Análisis de disponibilidad en tiempo real'
+              ]
+            },
+            dataCapture: {
+              name: 'Captura de Datos',
+              description: 'Recopila y organiza información de clientes de forma automática y estructurada.',
+              features: [
+                'Formularios conversacionales inteligentes',
+                'Validación automática de datos',
+                'Exportación a Excel/Google Sheets',
+                'Integración con CRM y bases de datos'
+              ]
+            },
+            custom: {
+              name: 'Agentes Personalizados',
+              description: 'Desarrollamos agentes de IA únicos para resolver desafíos específicos de tu negocio.',
+              features: [
+                'Análisis de requerimientos sin costo',
+                'Entrenamiento con datos de tu industria',
+                'Integración con tus sistemas existentes',
+                'Soporte y optimización continua'
+              ]
+            }
+          }
+        },
+
+        data: {
+          name: 'Data & Machine Learning',
+          description: 'Convierte datos en decisiones inteligentes',
+          services: {
+            analytics: {
+              name: 'Análisis Predictivo',
+              description: 'Modelos de ML que anticipan tendencias y comportamientos de tus clientes.',
+              features: [
+                'Predicción de demanda y ventas',
+                'Segmentación inteligente de clientes',
+                'Detección de patrones y anomalías',
+                'Dashboards interactivos en tiempo real'
+              ]
+            },
+            automation: {
+              name: 'Automatización de Procesos',
+              description: 'Optimiza operaciones con pipelines de datos inteligentes y automatizados.',
+              features: [
+                'ETL automatizado y escalable',
+                'Limpieza y transformación de datos',
+                'Orquestación de workflows complejos',
+                'Monitoreo y alertas en tiempo real'
+              ]
+            },
+            business: {
+              name: 'Business Intelligence',
+              description: 'Visualización y análisis de métricas clave para toma de decisiones estratégicas.',
+              features: [
+                'Dashboards personalizados interactivos',
+                'KPIs y métricas de negocio',
+                'Reportes automatizados programados',
+                'Análisis comparativo y tendencias'
+              ]
+            },
+            consulting: {
+              name: 'Consultoría de Datos',
+              description: 'Estrategia y arquitectura de datos diseñada para escalar con tu negocio.',
+              features: [
+                'Auditoría de infraestructura actual',
+                'Diseño de arquitectura de datos',
+                'Estrategia de migración a la nube',
+                'Capacitación de equipos internos'
+              ]
+            }
+          }
+        },
+
+        software: {
+          name: 'Desarrollo de Software',
+          description: 'Soluciones completas de software a medida',
+          services: {
+            web: {
+              name: 'Desarrollo Web',
+              description: 'Aplicaciones web modernas, rápidas y escalables con las últimas tecnologías.',
+              features: [
+                'React, Next.js, Node.js',
+                'Diseño responsive y UX optimizada',
+                'SEO y rendimiento optimizados',
+                'Arquitectura escalable y segura'
+              ]
+            },
+            mobile: {
+              name: 'Apps Móviles',
+              description: 'Aplicaciones nativas y multiplataforma para iOS y Android.',
+              features: [
+                'React Native y Flutter',
+                'Experiencia nativa optimizada',
+                'Sincronización offline',
+                'Notificaciones push integradas'
+              ]
+            },
+            apis: {
+              name: 'APIs y Microservicios',
+              description: 'Arquitecturas robustas y APIs RESTful para conectar tus sistemas.',
+              features: [
+                'Diseño RESTful y GraphQL',
+                'Documentación automática (Swagger)',
+                'Autenticación y seguridad (OAuth, JWT)',
+                'Escalabilidad horizontal'
+              ]
+            },
+            integrations: {
+              name: 'Integraciones',
+              description: 'Conectamos todos tus sistemas y herramientas existentes de forma fluida.',
+              features: [
+                'Integración con APIs de terceros',
+                'Webhooks y eventos en tiempo real',
+                'Sincronización bidireccional de datos',
+                'Middleware personalizado'
+              ]
+            }
+          }
+        }
+      },
+
+      demo: {
+        badge: 'Prueba en Vivo',
+        title: 'Interactúa con nuestros agentes',
+        subtitle: {
+          part1: 'Prueba directamente cómo funcionan nuestros agentes de IA.',
+          highlight: 'En tiempo real',
+          part2: ', sin compromisos.'
+        },
+
+        whatsapp: {
+          title: 'Asistente de WhatsApp',
+          description: 'Experimenta cómo nuestro agente de IA maneja consultas de clientes, agenda citas y responde preguntas frecuentes de forma natural.',
+          features: [
+            'Respuestas instantáneas 24/7',
+            'Comprensión de contexto',
+            'Integración con calendarios',
+            'Personalización completa'
+          ]
+        },
+
+        appointments: {
+          title: 'Gestión de Citas',
+          description: 'Ve cómo el agente programa citas, envía recordatorios automáticos y gestiona reagendamientos sin intervención humana.',
+          features: [
+            'Agenda automática',
+            'Recordatorios inteligentes',
+            'Gestión de cancelaciones',
+            'Sincronización con Google Calendar'
+          ]
+        },
+
+        excel: {
+          title: 'Captura de Datos',
+          description: 'Observa cómo el agente recopila información de clientes y la organiza automáticamente en hojas de cálculo estructuradas.',
+          features: [
+            'Captura automática de datos',
+            'Validación de información',
+            'Exportación a Excel/Google Sheets',
+            'Integración con CRM'
+          ]
+        },
+
+        cta: {
+          title: '¿Listo para implementar tu propio agente?',
+          description: 'Agenda una consultoría gratuita y diseñamos el agente perfecto para tu negocio en menos de 48 horas.',
+          primary: 'Agendar consultoría gratuita',
+          secondary: 'Ver precios'
+        }
+      }
+    },
+
     // ===== DESARROLLO PERSONALIZADO =====
     customDev: {
       badge: 'Desarrollo personalizado',
@@ -1488,6 +1723,476 @@ export const translations = {
           secondary: 'Ver nuestras soluciones'
         }
       }
+    },
+
+    // ===== NEW TRANSLATIONS FOR UPDATED COMPONENTS (3 VERTICALS) =====
+
+    // HOME: FEATURES (3 Verticales)
+    homeFeatures: {
+      badge: 'Nuestras Verticales Tecnológicas',
+      title: '3 Formas de Transformar tu Negocio',
+      subtitle: 'Desde inteligencia artificial hasta desarrollo de software completo. Elige una o',
+      subtitleHighlight: 'combínalas',
+      subtitle2: 'para una solución integral.',
+      verticals: {
+        ai: {
+          title: 'Inteligencia Artificial',
+          description: 'Automatiza tu atención al cliente y procesos repetitivos con agentes inteligentes que trabajan 24/7.',
+          highlights: [
+            'Agentes conversacionales',
+            'Llamadas con IA',
+            'Integración omnicanal',
+            'Respuestas en tiempo real'
+          ],
+          metrics: {
+            availability: '24/7',
+            response: '< 3 seg',
+            accuracy: '99%'
+          }
+        },
+        data: {
+          title: 'Data & Machine Learning',
+          description: 'Transforma tus datos en decisiones inteligentes con modelos predictivos y arquitectura en la nube.',
+          highlights: [
+            'Modelos predictivos',
+            'Consultoría de datos',
+            'AWS/Azure Cloud',
+            'Dashboards en tiempo real'
+          ],
+          metrics: {
+            accuracy: '95%+',
+            processing: 'Real-time',
+            insights: 'Accionables'
+          }
+        },
+        software: {
+          title: 'Desarrollo de Software',
+          description: 'Construimos aplicaciones web y móviles a medida que se adaptan perfectamente a tu negocio.',
+          highlights: [
+            'Apps web personalizadas',
+            'Apps móviles iOS/Android',
+            'Sistemas empresariales',
+            'Integraciones complejas'
+          ],
+          metrics: {
+            custom: '100%',
+            platforms: 'Multi',
+            scalable: 'Ilimitado'
+          }
+        }
+      },
+      includesLabel: 'Incluye',
+      cta: {
+        question: '¿No estás seguro cuál necesitas?',
+        highlight: 'Combina varias verticales',
+        subtitle: 'Muchos clientes usan IA + Software o Data + IA para soluciones completas',
+        button: 'Ver todas las soluciones'
+      }
+    },
+
+    // HOME: HERO (Updated)
+    homeHero: {
+      badge: 'Soluciones Tecnológicas Integrales',
+      title: {
+        part1: 'Transformamos tu negocio',
+        part2: 'con',
+        highlight: 'tecnología de vanguardia'
+      },
+      description: {
+        part1: 'Desde',
+        ai: 'Inteligencia Artificial',
+        part2: 'hasta',
+        data: 'Data & Machine Learning',
+        part3: 'y',
+        software: 'Desarrollo de Software',
+        part4: 'Soluciones completas que impulsan tu crecimiento.'
+      },
+      stats: {
+        verticals: 'Verticales Tech',
+        solutions: 'Soluciones',
+        support: 'Soporte'
+      },
+      videos: {
+        telegram: {
+          subtitle: 'Inteligencia avanzada',
+          description: 'Bot personalizado que aprende de tu negocio y responde como un experto'
+        }
+      }
+    },
+
+    // HOME: HOW IT WORKS (Universal Process)
+    howItWorks: {
+      steps: {
+        step1: {
+          title: 'Consultoría Inicial',
+          description: 'Analizamos tu negocio, identificamos oportunidades de mejora y definimos la solución tecnológica perfecta para ti.',
+          details: [
+            'Reunión sin compromiso de 30 minutos',
+            'Análisis de tus procesos actuales',
+            'Identificación de pain points',
+            'Propuesta personalizada'
+          ]
+        },
+        step2: {
+          title: 'Diseño de Solución',
+          description: 'Diseñamos la arquitectura, funcionalidades y flujos específicos que necesitas, ya sea IA, Data o Software.',
+          details: [
+            'Diseño técnico detallado',
+            'Mockups y prototipos',
+            'Definición de alcance',
+            'Timeline y milestones'
+          ]
+        },
+        step3: {
+          title: 'Desarrollo e Implementación',
+          description: 'Nuestro equipo construye tu solución con las mejores prácticas, manteniendo comunicación constante contigo.',
+          details: [
+            'Sprints de desarrollo ágil',
+            'Demos cada 2 semanas',
+            'Testing continuo',
+            'Ajustes en tiempo real'
+          ]
+        },
+        step4: {
+          title: 'Lanzamiento',
+          description: 'Ponemos tu solución en producción, capacitamos a tu equipo y aseguramos una transición perfecta.',
+          details: [
+            'Deploy en producción',
+            'Capacitación de tu equipo',
+            'Documentación completa',
+            'Go-live support'
+          ]
+        },
+        step5: {
+          title: 'Soporte y Optimización',
+          description: 'Monitoreamos el rendimiento, optimizamos continuamente y agregamos mejoras según tu evolución.',
+          details: [
+            'Monitoreo 24/7',
+            'Soporte técnico prioritario',
+            'Actualizaciones regulares',
+            'Mejoras continuas'
+          ]
+        }
+      },
+      stepLabel: 'Paso',
+      timeline: {
+        badge: 'Implementación Rápida',
+        title: 'De la idea a producción en tiempo récord',
+        description: 'Nuestro proceso ágil garantiza resultados rápidos sin sacrificar calidad. Empezamos a generar valor desde la primera semana.',
+        phases: {
+          consultation: {
+            label: 'Consultoría',
+            time: '1 día'
+          },
+          proposal: {
+            label: 'Propuesta',
+            time: '2-3 días'
+          },
+          results: {
+            label: 'Primeros resultados',
+            time: '1-2 semanas'
+          }
+        }
+      }
+    },
+
+    // PRICING (New Model)
+    pricingNew: {
+      hero: {
+        badge: 'Precios Transparentes',
+        title: {
+          part1: 'Inversión clara,',
+          highlight: 'resultados garantizados'
+        },
+        description: {
+          part1: 'Sin sorpresas. Sin costos ocultos. Solo tecnología que',
+          highlight: 'impulsa tu crecimiento',
+          part2: '.'
+        }
+      },
+      aiAgents: {
+        badge: 'Agentes de IA',
+        title: 'Suscripción Mensual',
+        subtitle: 'Pago recurrente + inversión inicial de implementación',
+        whatsapp: {
+          name: 'WhatsApp',
+          subtitle: 'Agente Inteligente',
+          monthlyPrice: '$55',
+          perMonth: '/mes',
+          setupLabel: 'Implementación inicial:',
+          setupPrice: 'Desde $600 USD',
+          setupNote: '(Según complejidad y requerimientos)',
+          features: [
+            'Asistente 24/7 en WhatsApp',
+            'Respuestas inteligentes automáticas',
+            'Integración con calendario',
+            'Captura de datos',
+            'Análisis y reportes',
+            'Soporte técnico incluido'
+          ],
+          button: 'Solicitar cotización'
+        },
+        telegram: {
+          name: 'Telegram',
+          subtitle: 'Agente Inteligente',
+          monthlyPrice: '$45',
+          perMonth: '/mes',
+          popularBadge: 'Más Popular',
+          setupLabel: 'Implementación inicial:',
+          setupPrice: 'Desde $600 USD',
+          setupNote: '(Según complejidad y requerimientos)',
+          features: [
+            'Bot inteligente en Telegram',
+            'Respuestas contextuales',
+            'Comandos personalizados',
+            'Integración con sistemas',
+            'Análisis de conversaciones',
+            'Soporte técnico incluido'
+          ],
+          button: 'Solicitar cotización'
+        },
+        customAi: {
+          name: 'IA Personalizada',
+          subtitle: 'Agente a Medida',
+          monthlyPrice: 'Desde $60',
+          perMonth: '/mes',
+          setupLabel: 'Implementación inicial:',
+          setupPrice: 'Desde $1,500 USD',
+          setupNote: '(Según funcionalidades y complejidad)',
+          features: [
+            'Diseño 100% personalizado',
+            'Entrenamiento con tus datos',
+            'Múltiples integraciones',
+            'Funcionalidades a medida',
+            'Escalabilidad garantizada',
+            'Soporte dedicado'
+          ],
+          button: 'Solicitar cotización'
+        },
+        voiceAgent: {
+          name: 'Agente de Voz',
+          subtitle: 'Llamadas con IA',
+          monthlyPrice: 'Desde $1,000',
+          perMonth: '/mes',
+          setupLabel: 'Implementación inicial:',
+          setupPrice: 'Desde $1,500 USD',
+          setupNote: '(Incluye integración telefónica)',
+          features: [
+            'Llamadas entrantes y salientes',
+            'Conversaciones naturales',
+            'Integración con CRM',
+            'Transcripciones automáticas',
+            'Análisis de sentimiento',
+            'Soporte técnico prioritario'
+          ],
+          button: 'Solicitar cotización'
+        }
+      },
+      customServices: {
+        badge: 'Proyectos Personalizados',
+        title: 'Data, ML & Desarrollo',
+        subtitle: 'Proyectos únicos con precio según alcance y complejidad',
+        dataMl: {
+          name: 'Data & Machine Learning',
+          subtitle: 'Proyectos a Medida',
+          priceFrom: 'Desde',
+          price: '1,500',
+          currency: 'USD',
+          note: 'Precio final según requerimientos específicos, alcance del proyecto y tecnologías utilizadas.',
+          features: [
+            'Modelos de ML personalizados',
+            'Consultoría de datos estratégica',
+            'Arquitectura en AWS/Azure',
+            'Pipelines de datos automatizados',
+            'Dashboards ejecutivos',
+            'Soporte post-implementación'
+          ],
+          button: 'Solicitar propuesta'
+        },
+        software: {
+          name: 'Desarrollo de Software',
+          subtitle: 'Proyectos a Medida',
+          priceFrom: 'Desde',
+          price: '1,500',
+          currency: 'USD',
+          note: 'Precio final según requerimientos específicos, alcance del proyecto y tecnologías utilizadas.',
+          features: [
+            'Aplicaciones web a medida',
+            'Apps móviles iOS/Android',
+            'Sistemas empresariales',
+            'Integraciones complejas',
+            'Arquitectura escalable',
+            'Mantenimiento incluido'
+          ],
+          button: 'Solicitar propuesta'
+        }
+      },
+      combinationNote: {
+        question: '¿Necesitas combinar servicios?',
+        answer: 'Ofrecemos descuentos especiales para clientes que integren múltiples soluciones.'
+      },
+      finalCta: {
+        title: '¿Listo para transformar tu negocio?',
+        description: 'Agenda una consultoría gratuita y recibe una propuesta personalizada en 24 horas.',
+        buttonPrimary: 'Agendar consultoría gratuita',
+        buttonSecondary: 'Ver todas las soluciones'
+      }
+    },
+
+    // ===== CONTACT PAGE =====
+    contactPage: {
+      hero: {
+        badge: '¡Tu éxito empieza aquí!',
+        title: {
+          part1: 'Hablemos y',
+          highlight: 'transformemos tu negocio'
+        },
+        subtitle: 'Cuéntanos tu proyecto y recibe una propuesta personalizada en menos de 24 horas.',
+        trustIndicators: [
+          {
+            value: '< 2h',
+            label: 'Tiempo de respuesta',
+            description: 'Te respondemos rápido'
+          },
+          {
+            value: 'Gratis',
+            label: 'Demo personalizada',
+            description: 'Sin compromisos'
+          },
+          {
+            value: '30 días',
+            label: 'Garantía total',
+            description: 'Sin riesgos'
+          }
+        ],
+        cta: {
+          primary: 'Solicitar propuesta gratuita',
+          secondary: 'WhatsApp directo'
+        }
+      },
+      mainSection: {
+        badge: 'Elige tu forma preferida',
+        title: 'Múltiples formas de contactarnos',
+        subtitle: 'Elige el método que prefieras. Te responderemos en menos de 2 horas.'
+      }
+    },
+
+    // ===== VALUES SECTION =====
+    values: {
+      badge: 'Los pilares de nuestro éxito',
+      title: 'Nuestros Valores',
+      subtitle: {
+        part1: 'Estos valores no son solo palabras en la pared. Son los principios que',
+        highlight: 'guían cada decisión',
+        part2: ', cada línea de código y cada interacción con nuestros clientes.'
+      },
+      practiceLabel: 'En la práctica:',
+      items: [
+        {
+          title: 'Innovación Constante',
+          subtitle: 'Siempre un paso adelante',
+          description: 'Buscamos constantemente nuevas formas de mejorar y expandir nuestras soluciones, manteniéndonos al día con las últimas tendencias en IA.',
+          detailedDescription: 'No nos conformamos con el status quo. Cada día exploramos nuevas tecnologías, metodologías y enfoques para crear soluciones que marquen la diferencia. La innovación está en nuestro ADN.',
+          examples: [
+            'Investigación continua en nuevos modelos de IA',
+            'Implementación de tecnologías emergentes',
+            'Mejora constante de nuestros algoritmos',
+            'Anticipación a las necesidades del mercado'
+          ],
+          stats: {
+            metric: '50+',
+            label: 'Nuevas features por año'
+          }
+        },
+        {
+          title: 'Excelencia sin Compromiso',
+          subtitle: 'Calidad en cada detalle',
+          description: 'Nos comprometemos con la calidad superior en cada aspecto de nuestro trabajo, desde el código hasta la atención al cliente.',
+          detailedDescription: 'La excelencia no es un acto, sino un hábito. Cada línea de código, cada interacción con clientes, cada decisión estratégica pasa por nuestro filtro de calidad sin excepciones.',
+          examples: [
+            'Código revisado y probado exhaustivamente',
+            'Testing automatizado en todos los niveles',
+            'Documentación completa y actualizada',
+            'Soporte técnico de primer nivel'
+          ],
+          stats: {
+            metric: '99.9%',
+            label: 'Uptime garantizado'
+          }
+        },
+        {
+          title: 'Simplicidad Elegante',
+          subtitle: 'Lo complejo hecho simple',
+          description: 'Creamos tecnología avanzada que es sorprendentemente fácil de usar, sin sacrificar funcionalidad ni potencia.',
+          detailedDescription: 'Creemos que la verdadera genialidad está en hacer que lo complejo sea simple. Nuestras soluciones de IA más sofisticadas se sienten naturales e intuitivas para cualquier usuario.',
+          examples: [
+            'Interfaces intuitivas y user-friendly',
+            'Setup en menos de 48 horas',
+            'Configuración visual sin código',
+            'Documentación clara y concisa'
+          ],
+          stats: {
+            metric: '< 5min',
+            label: 'Tiempo de aprendizaje'
+          }
+        },
+        {
+          title: 'Resultados Medibles',
+          subtitle: 'Impacto real y tangible',
+          description: 'Nos enfocamos en generar un impacto real y medible para nuestros clientes, no solo tecnología por tecnología.',
+          detailedDescription: 'Cada solución que desarrollamos tiene un propósito claro: generar valor real y medible para nuestros clientes. Trabajamos orientados a KPIs y resultados concretos.',
+          examples: [
+            'Métricas claras de rendimiento',
+            'Reportes detallados de impacto',
+            'Optimización basada en datos reales'
+          ],
+          stats: {
+            metric: '',
+            label: ' '
+          }
+        },
+        {
+          title: 'Transparencia Total',
+          subtitle: 'Honestidad en cada interacción',
+          description: 'Mantenemos comunicación abierta y honesta con nuestros clientes, sin promesas vacías ni términos confusos.',
+          detailedDescription: 'La confianza se construye con transparencia. Compartimos abiertamente nuestros procesos, limitaciones y capacidades. No hay letra pequeña ni sorpresas.',
+          examples: [
+            'Comunicación clara sobre tiempos y costos',
+            'Sin contratos con letra pequeña',
+            'Reportes abiertos de rendimiento',
+            'Acceso completo a métricas y datos'
+          ],
+          stats: {
+            metric: '100%',
+            label: 'Transparencia'
+          }
+        },
+        {
+          title: 'Pasión por el Cliente',
+          subtitle: 'Tu éxito es nuestro éxito',
+          description: 'Cada cliente es un partner en nuestra misión. Trabajamos incansablemente para asegurar su éxito y crecimiento.',
+          detailedDescription: 'No somos solo un proveedor, somos aliados estratégicos. El éxito de nuestros clientes es la métrica más importante que seguimos. Cuando ellos crecen, nosotros crecemos.',
+          examples: [
+            'Soporte 24/7 en español',
+            'Onboarding personalizado',
+            'Seguimiento proactivo del éxito',
+            'Ajustes sin costo adicional'
+          ],
+          stats: {
+            metric: '98%',
+            label: 'Satisfacción del cliente'
+          }
+        }
+      ]
+    },
+
+    // Footer update
+    footerNew: {
+      sections: {
+        company: {
+          services: 'Servicios'
+        }
+      }
     }
   },
 
@@ -1962,6 +2667,241 @@ export const translations = {
       }
     },
 
+    // ===== NEW SERVICES PAGE (3 VERTICALS) =====
+    servicesNew: {
+      hero: {
+        badge: 'Our Services',
+        title: {
+          part1: 'Technology that',
+          highlight: 'drives your growth'
+        },
+        description: {
+          part1: 'From artificial intelligence to complete software development.',
+          highlight: 'An integrated solution',
+          part2: 'for all your technological needs.'
+        },
+        stats: {
+          verticals: 'Service Verticals',
+          solutions: 'Specific Solutions',
+          custom: 'Customized'
+        },
+        cta: 'Explore services'
+      },
+
+      verticals: {
+        badge: '3 Main Verticals',
+        title: 'Choose your path',
+        subtitle: {
+          part1: 'Select the vertical you need or',
+          highlight: 'combine several',
+          part2: 'for an integrated solution.'
+        },
+        cta: 'Request more information',
+
+        finalCta: {
+          title: 'Not sure which to choose?',
+          description: {
+            part1: 'Many clients combine multiple verticals. Schedule a free consultation and we will help you design',
+            highlight: 'the perfect solution',
+            part2: 'for you.'
+          },
+          primary: 'Schedule free consultation',
+          secondary: 'View pricing'
+        },
+
+        ai: {
+          name: 'AI Solutions',
+          description: 'Artificial Intelligence that transforms your business',
+          services: {
+            conversational: {
+              name: 'Conversational Agents',
+              description: 'Virtual assistants for WhatsApp, Telegram, and other platforms that serve 24/7.',
+              features: [
+                'Contextual responses in real-time',
+                'WhatsApp Business API integration',
+                'Handling multiple simultaneous conversations',
+                'Complete tone and personality customization'
+              ]
+            },
+            appointments: {
+              name: 'Appointment Automation',
+              description: 'Intelligent system that schedules, confirms, and reschedules appointments automatically.',
+              features: [
+                'Google Calendar synchronization',
+                'Personalized automatic reminders',
+                'Cancellation and rescheduling management',
+                'Real-time availability analysis'
+              ]
+            },
+            dataCapture: {
+              name: 'Data Capture',
+              description: 'Collects and organizes customer information automatically and in a structured way.',
+              features: [
+                'Intelligent conversational forms',
+                'Automatic data validation',
+                'Excel/Google Sheets export',
+                'CRM and database integration'
+              ]
+            },
+            custom: {
+              name: 'Custom Agents',
+              description: 'We develop unique AI agents to solve specific challenges for your business.',
+              features: [
+                'Free requirements analysis',
+                'Training with your industry data',
+                'Integration with your existing systems',
+                'Continuous support and optimization'
+              ]
+            }
+          }
+        },
+
+        data: {
+          name: 'Data & Machine Learning',
+          description: 'Turn data into intelligent decisions',
+          services: {
+            analytics: {
+              name: 'Predictive Analytics',
+              description: 'ML models that anticipate trends and customer behaviors.',
+              features: [
+                'Demand and sales forecasting',
+                'Intelligent customer segmentation',
+                'Pattern and anomaly detection',
+                'Real-time interactive dashboards'
+              ]
+            },
+            automation: {
+              name: 'Process Automation',
+              description: 'Optimize operations with intelligent and automated data pipelines.',
+              features: [
+                'Automated and scalable ETL',
+                'Data cleaning and transformation',
+                'Complex workflow orchestration',
+                'Real-time monitoring and alerts'
+              ]
+            },
+            business: {
+              name: 'Business Intelligence',
+              description: 'Visualization and analysis of key metrics for strategic decision-making.',
+              features: [
+                'Interactive custom dashboards',
+                'Business KPIs and metrics',
+                'Scheduled automated reports',
+                'Comparative analysis and trends'
+              ]
+            },
+            consulting: {
+              name: 'Data Consulting',
+              description: 'Data strategy and architecture designed to scale with your business.',
+              features: [
+                'Current infrastructure audit',
+                'Data architecture design',
+                'Cloud migration strategy',
+                'Internal team training'
+              ]
+            }
+          }
+        },
+
+        software: {
+          name: 'Software Development',
+          description: 'Complete custom software solutions',
+          services: {
+            web: {
+              name: 'Web Development',
+              description: 'Modern, fast, and scalable web applications with the latest technologies.',
+              features: [
+                'React, Next.js, Node.js',
+                'Responsive design and optimized UX',
+                'Optimized SEO and performance',
+                'Scalable and secure architecture'
+              ]
+            },
+            mobile: {
+              name: 'Mobile Apps',
+              description: 'Native and cross-platform applications for iOS and Android.',
+              features: [
+                'React Native and Flutter',
+                'Optimized native experience',
+                'Offline synchronization',
+                'Integrated push notifications'
+              ]
+            },
+            apis: {
+              name: 'APIs & Microservices',
+              description: 'Robust architectures and RESTful APIs to connect your systems.',
+              features: [
+                'RESTful and GraphQL design',
+                'Automatic documentation (Swagger)',
+                'Authentication and security (OAuth, JWT)',
+                'Horizontal scalability'
+              ]
+            },
+            integrations: {
+              name: 'Integrations',
+              description: 'We connect all your existing systems and tools seamlessly.',
+              features: [
+                'Third-party API integration',
+                'Real-time webhooks and events',
+                'Bidirectional data synchronization',
+                'Custom middleware'
+              ]
+            }
+          }
+        }
+      },
+
+      demo: {
+        badge: 'Live Demo',
+        title: 'Interact with our agents',
+        subtitle: {
+          part1: 'Try directly how our AI agents work.',
+          highlight: 'In real-time',
+          part2: ', no commitments.'
+        },
+
+        whatsapp: {
+          title: 'WhatsApp Assistant',
+          description: 'Experience how our AI agent handles customer inquiries, schedules appointments, and answers frequently asked questions naturally.',
+          features: [
+            'Instant 24/7 responses',
+            'Context understanding',
+            'Calendar integration',
+            'Complete customization'
+          ]
+        },
+
+        appointments: {
+          title: 'Appointment Management',
+          description: 'See how the agent schedules appointments, sends automatic reminders, and manages rescheduling without human intervention.',
+          features: [
+            'Automatic scheduling',
+            'Intelligent reminders',
+            'Cancellation management',
+            'Google Calendar synchronization'
+          ]
+        },
+
+        excel: {
+          title: 'Data Capture',
+          description: 'Watch how the agent collects customer information and automatically organizes it in structured spreadsheets.',
+          features: [
+            'Automatic data capture',
+            'Information validation',
+            'Excel/Google Sheets export',
+            'CRM integration'
+          ]
+        },
+
+        cta: {
+          title: 'Ready to implement your own agent?',
+          description: 'Schedule a free consultation and we will design the perfect agent for your business in less than 48 hours.',
+          primary: 'Schedule free consultation',
+          secondary: 'View pricing'
+        }
+      }
+    },
+
     // ===== CUSTOM DEVELOPMENT =====
     customDev: {
       badge: 'Custom development',
@@ -2260,7 +3200,7 @@ export const translations = {
           'Automatic customer follow-up',
           '24/7 frequent questions response'
         ],
-        successCase: 'Premium Consulting increased lead conversion by 45% with automatic follow-up'
+        successCase: 'Premium consultation increased lead conversion by 45% with automatic follow-up'
       },
       
       realEstate: {
@@ -2976,6 +3916,476 @@ export const translations = {
         buttons: {
           primary: 'Be part of the change',
           secondary: 'See our solutions'
+        }
+      }
+    },
+
+    // ===== NEW TRANSLATIONS FOR UPDATED COMPONENTS (3 VERTICALS) =====
+
+    // HOME: FEATURES (3 Verticals)
+    homeFeatures: {
+      badge: 'Our Technology Verticals',
+      title: '3 Ways to Transform Your Business',
+      subtitle: 'From artificial intelligence to complete software development. Choose one or',
+      subtitleHighlight: 'combine them',
+      subtitle2: 'for a comprehensive solution.',
+      verticals: {
+        ai: {
+          title: 'Artificial Intelligence',
+          description: 'Automate your customer service and repetitive processes with intelligent agents that work 24/7.',
+          highlights: [
+            'Conversational agents',
+            'AI-powered calls',
+            'Omnichannel integration',
+            'Real-time responses'
+          ],
+          metrics: {
+            availability: '24/7',
+            response: '< 3 sec',
+            accuracy: '99%'
+          }
+        },
+        data: {
+          title: 'Data & Machine Learning',
+          description: 'Transform your data into intelligent decisions with predictive models and cloud architecture.',
+          highlights: [
+            'Predictive models',
+            'Data consulting',
+            'AWS/Azure Cloud',
+            'Real-time dashboards'
+          ],
+          metrics: {
+            accuracy: '95%+',
+            processing: 'Real-time',
+            insights: 'Actionable'
+          }
+        },
+        software: {
+          title: 'Software Development',
+          description: 'We build custom web and mobile applications that perfectly adapt to your business.',
+          highlights: [
+            'Custom web apps',
+            'iOS/Android mobile apps',
+            'Enterprise systems',
+            'Complex integrations'
+          ],
+          metrics: {
+            custom: '100%',
+            platforms: 'Multi',
+            scalable: 'Unlimited'
+          }
+        }
+      },
+      includesLabel: 'Includes',
+      cta: {
+        question: 'Not sure which one you need?',
+        highlight: 'Combine multiple verticals',
+        subtitle: 'Many clients use AI + Software or Data + AI for complete solutions',
+        button: 'View all solutions'
+      }
+    },
+
+    // HOME: HERO (Updated)
+    homeHero: {
+      badge: 'Comprehensive Technology Solutions',
+      title: {
+        part1: 'We transform your business',
+        part2: 'with',
+        highlight: 'cutting-edge technology'
+      },
+      description: {
+        part1: 'From',
+        ai: 'Artificial Intelligence',
+        part2: 'to',
+        data: 'Data & Machine Learning',
+        part3: 'and',
+        software: 'Software Development',
+        part4: 'Complete solutions that drive your growth.'
+      },
+      stats: {
+        verticals: 'Tech Verticals',
+        solutions: 'Solutions',
+        support: 'Support'
+      },
+      videos: {
+        telegram: {
+          subtitle: 'Advanced intelligence',
+          description: 'Custom bot that learns from your business and responds like an expert'
+        }
+      }
+    },
+
+    // HOME: HOW IT WORKS (Universal Process)
+    howItWorks: {
+      steps: {
+        step1: {
+          title: 'Initial Consultation',
+          description: 'We analyze your business, identify improvement opportunities and define the perfect technology solution for you.',
+          details: [
+            '30-minute no-obligation meeting',
+            'Analysis of your current processes',
+            'Pain point identification',
+            'Personalized proposal'
+          ]
+        },
+        step2: {
+          title: 'Solution Design',
+          description: 'We design the architecture, functionalities and specific flows you need, whether AI, Data or Software.',
+          details: [
+            'Detailed technical design',
+            'Mockups and prototypes',
+            'Scope definition',
+            'Timeline and milestones'
+          ]
+        },
+        step3: {
+          title: 'Development & Implementation',
+          description: 'Our team builds your solution with best practices, maintaining constant communication with you.',
+          details: [
+            'Agile development sprints',
+            'Demos every 2 weeks',
+            'Continuous testing',
+            'Real-time adjustments'
+          ]
+        },
+        step4: {
+          title: 'Launch',
+          description: 'We put your solution into production, train your team and ensure a perfect transition.',
+          details: [
+            'Production deployment',
+            'Team training',
+            'Complete documentation',
+            'Go-live support'
+          ]
+        },
+        step5: {
+          title: 'Support & Optimization',
+          description: 'We monitor performance, continuously optimize and add improvements according to your evolution.',
+          details: [
+            '24/7 monitoring',
+            'Priority technical support',
+            'Regular updates',
+            'Continuous improvements'
+          ]
+        }
+      },
+      stepLabel: 'Step',
+      timeline: {
+        badge: 'Fast Implementation',
+        title: 'From idea to production in record time',
+        description: 'Our agile process guarantees fast results without sacrificing quality. We start generating value from the first week.',
+        phases: {
+          consultation: {
+            label: 'Consultation',
+            time: '1 day'
+          },
+          proposal: {
+            label: 'Proposal',
+            time: '2-3 days'
+          },
+          results: {
+            label: 'First results',
+            time: '1-2 weeks'
+          }
+        }
+      }
+    },
+
+    // PRICING (New Model)
+    pricingNew: {
+      hero: {
+        badge: 'Transparent Pricing',
+        title: {
+          part1: 'Clear investment,',
+          highlight: 'guaranteed results'
+        },
+        description: {
+          part1: 'No surprises. No hidden costs. Just technology that',
+          highlight: 'drives your growth',
+          part2: '.'
+        }
+      },
+      aiAgents: {
+        badge: 'AI Agents',
+        title: 'Monthly Subscription',
+        subtitle: 'Recurring payment + initial implementation investment',
+        whatsapp: {
+          name: 'WhatsApp',
+          subtitle: 'Intelligent Agent',
+          monthlyPrice: '$55',
+          perMonth: '/month',
+          setupLabel: 'Initial implementation:',
+          setupPrice: 'From $600 USD',
+          setupNote: '(Depending on complexity and requirements)',
+          features: [
+            '24/7 WhatsApp assistant',
+            'Automatic intelligent responses',
+            'Calendar integration',
+            'Data capture',
+            'Analytics and reports',
+            'Technical support included'
+          ],
+          button: 'Request quote'
+        },
+        telegram: {
+          name: 'Telegram',
+          subtitle: 'Intelligent Agent',
+          monthlyPrice: '$45',
+          perMonth: '/month',
+          popularBadge: 'Most Popular',
+          setupLabel: 'Initial implementation:',
+          setupPrice: 'From $600 USD',
+          setupNote: '(Depending on complexity and requirements)',
+          features: [
+            'Intelligent Telegram bot',
+            'Contextual responses',
+            'Custom commands',
+            'System integration',
+            'Conversation analytics',
+            'Technical support included'
+          ],
+          button: 'Request quote'
+        },
+        customAi: {
+          name: 'Custom AI',
+          subtitle: 'Tailored Agent',
+          monthlyPrice: 'From $60',
+          perMonth: '/month',
+          setupLabel: 'Initial implementation:',
+          setupPrice: 'From $1,500 USD',
+          setupNote: '(Based on features and complexity)',
+          features: [
+            '100% personalized design',
+            'Training with your data',
+            'Multiple integrations',
+            'Custom functionalities',
+            'Guaranteed scalability',
+            'Dedicated support'
+          ],
+          button: 'Request quote'
+        },
+        voiceAgent: {
+          name: 'Voice Agent',
+          subtitle: 'AI Phone Calls',
+          monthlyPrice: 'From $1,000',
+          perMonth: '/month',
+          setupLabel: 'Initial implementation:',
+          setupPrice: 'From $1,500 USD',
+          setupNote: '(Includes phone integration)',
+          features: [
+            'Inbound and outbound calls',
+            'Natural conversations',
+            'CRM integration',
+            'Automatic transcriptions',
+            'Sentiment analysis',
+            'Priority technical support'
+          ],
+          button: 'Request quote'
+        }
+      },
+      customServices: {
+        badge: 'Custom Projects',
+        title: 'Data, ML & Development',
+        subtitle: 'Unique projects with pricing based on scope and complexity',
+        dataMl: {
+          name: 'Data & Machine Learning',
+          subtitle: 'Custom Projects',
+          priceFrom: 'From',
+          price: '1,500',
+          currency: 'USD',
+          note: 'Final price based on specific requirements, project scope and technologies used.',
+          features: [
+            'Custom ML models',
+            'Strategic data consulting',
+            'AWS/Azure architecture',
+            'Automated data pipelines',
+            'Executive dashboards',
+            'Post-implementation support'
+          ],
+          button: 'Request proposal'
+        },
+        software: {
+          name: 'Software Development',
+          subtitle: 'Custom Projects',
+          priceFrom: 'From',
+          price: '1,500',
+          currency: 'USD',
+          note: 'Final price based on specific requirements, project scope and technologies used.',
+          features: [
+            'Custom web applications',
+            'iOS/Android mobile apps',
+            'Enterprise systems',
+            'Complex integrations',
+            'Scalable architecture',
+            'Maintenance included'
+          ],
+          button: 'Request proposal'
+        }
+      },
+      combinationNote: {
+        question: 'Need to combine services?',
+        answer: 'We offer special discounts for clients who integrate multiple solutions.'
+      },
+      finalCta: {
+        title: 'Ready to transform your business?',
+        description: 'Schedule a free consultation and receive a personalized proposal within 24 hours.',
+        buttonPrimary: 'Schedule free consultation',
+        buttonSecondary: 'View all solutions'
+      }
+    },
+
+    // ===== CONTACT PAGE =====
+    contactPage: {
+      hero: {
+        badge: 'Your success starts here!',
+        title: {
+          part1: 'Let\'s talk and',
+          highlight: 'transform your business'
+        },
+        subtitle: 'Tell us about your project and receive a personalized proposal in less than 24 hours.',
+        trustIndicators: [
+          {
+            value: '< 2h',
+            label: 'Response time',
+            description: 'We respond quickly'
+          },
+          {
+            value: 'Free',
+            label: 'Personalized demo',
+            description: 'No commitments'
+          },
+          {
+            value: '30 days',
+            label: 'Total guarantee',
+            description: 'No risks'
+          }
+        ],
+        cta: {
+          primary: 'Request free proposal',
+          secondary: 'Direct WhatsApp'
+        }
+      },
+      mainSection: {
+        badge: 'Choose your preferred way',
+        title: 'Multiple ways to contact us',
+        subtitle: 'Choose the method you prefer. We will respond in less than 2 hours.'
+      }
+    },
+
+    // ===== VALUES SECTION =====
+    values: {
+      badge: 'The pillars of our success',
+      title: 'Our Values',
+      subtitle: {
+        part1: 'These values are not just words on the wall. They are the principles that',
+        highlight: 'guide every decision',
+        part2: ', every line of code and every interaction with our customers.'
+      },
+      practiceLabel: 'In practice:',
+      items: [
+        {
+          title: 'Constant Innovation',
+          subtitle: 'Always one step ahead',
+          description: 'We constantly seek new ways to improve and expand our solutions, keeping up with the latest trends in AI.',
+          detailedDescription: 'We don\'t settle for the status quo. Every day we explore new technologies, methodologies and approaches to create solutions that make a difference. Innovation is in our DNA.',
+          examples: [
+            'Continuous research in new AI models',
+            'Implementation of emerging technologies',
+            'Constant improvement of our algorithms',
+            'Anticipation of market needs'
+          ],
+          stats: {
+            metric: '50+',
+            label: 'New features per year'
+          }
+        },
+        {
+          title: 'Excellence Without Compromise',
+          subtitle: 'Quality in every detail',
+          description: 'We are committed to superior quality in every aspect of our work, from code to customer service.',
+          detailedDescription: 'Excellence is not an act, but a habit. Every line of code, every customer interaction, every strategic decision goes through our quality filter without exceptions.',
+          examples: [
+            'Code thoroughly reviewed and tested',
+            'Automated testing at all levels',
+            'Complete and updated documentation',
+            'First-class technical support'
+          ],
+          stats: {
+            metric: '99.9%',
+            label: 'Guaranteed uptime'
+          }
+        },
+        {
+          title: 'Elegant Simplicity',
+          subtitle: 'The complex made simple',
+          description: 'We create advanced technology that is surprisingly easy to use, without sacrificing functionality or power.',
+          detailedDescription: 'We believe that true genius lies in making the complex simple. Our most sophisticated AI solutions feel natural and intuitive to any user.',
+          examples: [
+            'Intuitive and user-friendly interfaces',
+            'Setup in less than 48 hours',
+            'Visual configuration without code',
+            'Clear and concise documentation'
+          ],
+          stats: {
+            metric: '< 5min',
+            label: 'Learning time'
+          }
+        },
+        {
+          title: 'Measurable Results',
+          subtitle: 'Real and tangible impact',
+          description: 'We focus on generating real and measurable impact for our clients, not just technology for technology\'s sake.',
+          detailedDescription: 'Every solution we develop has a clear purpose: to generate real and measurable value for our clients. We work oriented to KPIs and concrete results.',
+          examples: [
+            'Clear performance metrics',
+            'Detailed impact reports',
+            'Optimization based on real data'
+          ],
+          stats: {
+            metric: '',
+            label: ' '
+          }
+        },
+        {
+          title: 'Total Transparency',
+          subtitle: 'Honesty in every interaction',
+          description: 'We maintain open and honest communication with our clients, without empty promises or confusing terms.',
+          detailedDescription: 'Trust is built with transparency. We openly share our processes, limitations and capabilities. There is no fine print or surprises.',
+          examples: [
+            'Clear communication about times and costs',
+            'No contracts with fine print',
+            'Open performance reports',
+            'Full access to metrics and data'
+          ],
+          stats: {
+            metric: '100%',
+            label: 'Transparency'
+          }
+        },
+        {
+          title: 'Passion for the Customer',
+          subtitle: 'Your success is our success',
+          description: 'Every client is a partner in our mission. We work tirelessly to ensure their success and growth.',
+          detailedDescription: 'We are not just a provider, we are strategic allies. The success of our customers is the most important metric we track. When they grow, we grow.',
+          examples: [
+            '24/7 support in Spanish',
+            'Personalized onboarding',
+            'Proactive success tracking',
+            'Adjustments at no additional cost'
+          ],
+          stats: {
+            metric: '98%',
+            label: 'Customer satisfaction'
+          }
+        }
+      ]
+    },
+
+    // Footer update
+    footerNew: {
+      sections: {
+        company: {
+          services: 'Services'
         }
       }
     }

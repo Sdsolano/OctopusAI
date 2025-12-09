@@ -1,259 +1,244 @@
-// components/sections/home/Features.jsx - Modernizado para sintonía
+// components/sections/home/Features.jsx - Actualizado para 3 Verticales
 import { motion } from 'framer-motion';
-import { MessageSquare, Calendar, Mail, Database, ArrowRight, CheckCircle2, Sparkles } from 'lucide-react';
+import { Bot, Database, Code2, ArrowRight, CheckCircle2, Sparkles, Zap, TrendingUp } from 'lucide-react';
 import Button from '../../ui/Button';
 import { useTranslation } from '../../../hooks/useTranslation';
 
 function Features() {
   const { t } = useTranslation();
-  
-  // Características principales con datos mejorados y colores específicos
-  const features = [
-    { 
-      icon: MessageSquare, 
-      title: t('services.whatsapp.title'), 
-      description: t('services.whatsapp.description'),
-      color: "from-green-500 via-emerald-500 to-teal-600",
-      benefits: t('services.whatsapp.benefits'),
-      path: "/services#whatsapp",
-      metrics: { 
-        satisfaction: t('services.whatsapp.stats.satisfaction'), 
-        response: t('services.whatsapp.stats.response'), 
-        availability: t('services.whatsapp.stats.availability') 
-      }
+
+  // Las 3 verticales principales con highlights
+  const verticals = [
+    {
+      icon: Bot,
+      title: t('homeFeatures.verticals.ai.title'),
+      description: t('homeFeatures.verticals.ai.description'),
+      color: 'from-purple-500 via-indigo-500 to-purple-600',
+      highlights: t('homeFeatures.verticals.ai.highlights'),
+      metrics: t('homeFeatures.verticals.ai.metrics'),
+      path: '/services'
     },
-    { 
-      icon: Calendar, 
-      title: t('services.appointments.title'), 
-      description: t('services.appointments.description'),
-      color: "from-blue-500 via-indigo-500 to-purple-600",
-      benefits: t('services.appointments.benefits'),
-      path: "/services#appointments",
-      metrics: { 
-        efficiency: t('services.appointments.stats.efficient'), 
-        cancellations: t('services.appointments.stats.cancels'), 
-        automation: t('services.appointments.stats.automation') 
-      }
+    {
+      icon: Database,
+      title: t('homeFeatures.verticals.data.title'),
+      description: t('homeFeatures.verticals.data.description'),
+      color: 'from-blue-500 via-cyan-500 to-blue-600',
+      highlights: t('homeFeatures.verticals.data.highlights'),
+      metrics: t('homeFeatures.verticals.data.metrics'),
+      path: '/services'
     },
-    { 
-      icon: Mail, 
-      title: t('services.gmail.title'), 
-      description: t('services.gmail.description'),
-      color: "from-purple-500 via-violet-500 to-indigo-600",
-      benefits: t('services.gmail.benefits'),
-      path: "/services#gmail",
-      metrics: { 
-        timesSaved: t('services.gmail.stats.timesSaved'), 
-        accuracy: t('services.gmail.stats.accuracy'), 
-        productivity: t('services.gmail.stats.productivity') 
-      }
-    },
-    { 
-      icon: Database, 
-      title: t('services.excel.title'), 
-      description: t('services.excel.description'),
-      color: "from-rose-500 via-pink-500 to-purple-600",
-      benefits: t('services.excel.benefits'),
-      path: "/services#excel",
-      metrics: { 
-        accuracy: t('services.excel.stats.accuracy'), 
-        processing: t('services.excel.stats.processing'), 
-        errors: t('services.excel.stats.error') 
-      }
+    {
+      icon: Code2,
+      title: t('homeFeatures.verticals.software.title'),
+      description: t('homeFeatures.verticals.software.description'),
+      color: 'from-green-500 via-emerald-500 to-green-600',
+      highlights: t('homeFeatures.verticals.software.highlights'),
+      metrics: t('homeFeatures.verticals.software.metrics'),
+      path: '/services'
     }
   ];
 
-  // Variantes de animación optimizadas para mejor rendimiento
+  // Variantes de animación
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { 
+    visible: {
       opacity: 1,
-      transition: { 
-        staggerChildren: 0.1,
+      transition: {
+        staggerChildren: 0.15,
         delayChildren: 0.1
       }
     }
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
       y: 0,
-      transition: { 
-        duration: 0.4, 
+      transition: {
+        duration: 0.5,
         ease: "easeOut"
-      } 
+      }
     }
   };
 
   return (
-    <motion.div 
+    <motion.div
       className="w-full overflow-hidden relative"
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
     >
-      {/* Elementos decorativos de fondo optimizados */}
+      {/* Elementos decorativos de fondo */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 -right-20 w-96 h-96 bg-purple-600/5 rounded-full filter blur-3xl" />
-        <div className="absolute bottom-20 -left-20 w-80 h-80 bg-indigo-500/5 rounded-full filter blur-3xl" />
+        <div className="absolute bottom-20 -left-20 w-80 h-80 bg-blue-500/5 rounded-full filter blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-green-600/5 rounded-full filter blur-3xl" />
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
-        {features.map((feature, index) => {
-          const Icon = feature.icon;
-          
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        {verticals.map((vertical, index) => {
+          const Icon = vertical.icon;
+
           return (
-            <motion.div 
+            <motion.div
               key={index}
               className="relative group"
               variants={cardVariants}
             >
-              {/* Efecto glow exterior optimizado */}
-              <div className={`absolute -inset-1 bg-gradient-to-r ${feature.color} rounded-2xl blur opacity-0 group-hover:opacity-20 transition-all duration-300`} />
-              
-              <motion.div 
+              {/* Efecto glow exterior */}
+              <div className={`absolute -inset-1 bg-gradient-to-r ${vertical.color} rounded-2xl blur opacity-0 group-hover:opacity-25 transition-all duration-300`} />
+
+              <motion.div
                 className="relative bg-gray-800/90 backdrop-blur-xl rounded-2xl overflow-hidden border border-gray-700 group-hover:border-purple-500/50 transition-all duration-300 h-full flex flex-col"
-                whileHover={{ y: -5 }}
-                transition={{ duration: 0.2 }}
               >
                 {/* Barra de color superior */}
-                <motion.div 
-                  className={`h-2 w-full bg-gradient-to-r ${feature.color}`}
+                <motion.div
+                  className={`h-2 w-full bg-gradient-to-r ${vertical.color}`}
                   initial={{ width: 0 }}
                   whileInView={{ width: "100%" }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  transition={{ duration: 0.8, delay: index * 0.15 }}
                   viewport={{ once: true }}
                 />
-                
+
                 <div className="p-6 flex-grow">
-                  {/* Header con icono mejorado */}
-                  <div className="flex items-start mb-6">
-                    <div 
-                      className={`p-4 rounded-xl bg-gradient-to-br ${feature.color} mr-4 relative overflow-hidden group-hover:scale-105 transition-transform duration-200`}
-                    >
-                      <Icon className="h-8 w-8 text-white relative z-10" />
-                    </div>
-                    
-                    <div className="flex-1">
-                      <motion.h3 
-                        className="text-2xl font-bold text-white mb-2 group-hover:text-purple-300 transition-colors duration-300"
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{ duration: 0.3, delay: index * 0.05 }}
-                        viewport={{ once: true }}
-                      >
-                        {feature.title}
-                      </motion.h3>
-                      
-                      {/* Línea decorativa animada */}
-                      <motion.div 
-                        className={`h-1 bg-gradient-to-r ${feature.color} rounded-full mb-3`}
-                        initial={{ width: 0 }}
-                        whileInView={{ width: '80%' }}
-                        transition={{ duration: 0.4, delay: index * 0.05 }}
-                        viewport={{ once: true }}
-                      />
-                    </div>
-                  </div>
-                  
+                  {/* Icono destacado */}
+                  <motion.div
+                    className={`p-4 rounded-xl bg-gradient-to-br ${vertical.color} w-fit mb-6 relative overflow-hidden`}
+                    whileHover={{ rotate: 5, scale: 1.1 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <Icon className="h-10 w-10 text-white relative z-10" />
+
+                    {/* Efecto de brillo */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                      initial={{ x: '-100%' }}
+                      whileHover={{ x: '100%' }}
+                      transition={{ duration: 0.6 }}
+                    />
+                  </motion.div>
+
+                  {/* Título */}
+                  <motion.h3
+                    className="text-2xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-blue-400 transition-all duration-300"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                  >
+                    {vertical.title}
+                  </motion.h3>
+
+                  {/* Línea decorativa */}
+                  <motion.div
+                    className={`h-1 bg-gradient-to-r ${vertical.color} rounded-full mb-4`}
+                    initial={{ width: 0 }}
+                    whileInView={{ width: '70%' }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                  />
+
                   {/* Descripción */}
-                  <motion.p 
-                    className="text-gray-300 mb-6 leading-relaxed"
+                  <motion.p
+                    className="text-gray-300 mb-6 leading-relaxed text-sm"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                    transition={{ duration: 0.3, delay: index * 0.1 }}
                     viewport={{ once: true }}
                   >
-                    {feature.description}
+                    {vertical.description}
                   </motion.p>
-                  
+
                   {/* Métricas destacadas */}
-                  <motion.div 
-                    className="grid grid-cols-3 gap-3 mb-6"
+                  <motion.div
+                    className="grid grid-cols-3 gap-2 mb-6"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                    transition={{ duration: 0.3, delay: index * 0.1 }}
                     viewport={{ once: true }}
                   >
-                    {Object.entries(feature.metrics).map(([key, value], i) => (
-                      <div
+                    {Object.entries(vertical.metrics).map(([key, value], i) => (
+                      <motion.div
                         key={i}
-                        className="text-center p-2 bg-gray-700/50 rounded-lg border border-gray-600/30 group-hover:border-purple-500/30 transition-all duration-200 hover:scale-105"
+                        className="text-center p-2 bg-gray-700/50 rounded-lg border border-gray-600/30 group-hover:border-purple-500/30 transition-all duration-200"
+                        whileHover={{ scale: 1.05, y: -2 }}
                       >
-                        <div className={`text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r ${feature.color}`}>
+                        <div className={`text-base font-bold text-transparent bg-clip-text bg-gradient-to-r ${vertical.color}`}>
                           {value}
                         </div>
                         <div className="text-xs text-gray-400 capitalize">
-                          {key.replace(/([A-Z])/g, ' $1').trim()}
+                          {key}
                         </div>
-                      </div>
+                      </motion.div>
                     ))}
                   </motion.div>
-                  
-                  {/* Lista de beneficios mejorada */}
+
+                  {/* Highlights */}
                   <div className="mb-6">
-                    <motion.h4 
-                      className="text-sm uppercase text-purple-400 font-semibold mb-3 flex items-center"
+                    <motion.h4
+                      className="text-xs uppercase text-purple-400 font-semibold mb-3 flex items-center"
                       initial={{ opacity: 0 }}
                       whileInView={{ opacity: 1 }}
-                      transition={{ duration: 0.3, delay: index * 0.05 }}
+                      transition={{ duration: 0.3, delay: index * 0.1 }}
                       viewport={{ once: true }}
                     >
-                      <Sparkles className="h-4 w-4 mr-2" />
-                      {t('keyBenefits')}
+                      <Sparkles className="h-3 w-3 mr-1" />
+                      {t('homeFeatures.includesLabel')}
                     </motion.h4>
-                    
-                    <div className="grid grid-cols-2 gap-2">
-                      {Array.isArray(feature.benefits) ? feature.benefits.map((benefit, i) => (
+
+                    <div className="space-y-2">
+                      {vertical.highlights.map((highlight, i) => (
                         <motion.div
                           key={i}
-                          className="flex items-center text-gray-300 text-sm group"
-                          initial={{ opacity: 0 }}
-                          whileInView={{ opacity: 1 }}
-                          transition={{ duration: 0.3, delay: index * 0.05 + i * 0.02 }}
+                          className="flex items-start text-gray-300 text-sm group/item"
+                          initial={{ opacity: 0, x: -10 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.3, delay: index * 0.1 + i * 0.05 }}
                           viewport={{ once: true }}
+                          whileHover={{ x: 5 }}
                         >
-                          <CheckCircle2 className="h-4 w-4 text-green-400 mr-2 flex-shrink-0 transition-transform duration-200 group-hover:scale-110" />
-                          <span className="group-hover:text-white transition-colors duration-300">
-                            {benefit}
+                          <CheckCircle2 className="h-4 w-4 text-green-400 mr-2 flex-shrink-0 mt-0.5 transition-transform duration-200 group-hover/item:scale-110" />
+                          <span className="group-hover/item:text-white transition-colors duration-300">
+                            {highlight}
                           </span>
                         </motion.div>
-                      )) : null}
+                      ))}
                     </div>
                   </div>
                 </div>
-                
-                {/* Footer con enlace mejorado */}
-                <div className="p-4 border-t border-gray-700/50 mt-auto bg-gray-900/30">
-                  <Button.Link 
-                    to={feature.path} 
-                    className="text-purple-400 font-medium flex items-center justify-center w-full group hover:text-white transition-all duration-300"
-                  >
-                    <span>{t('explore')} {feature.title}</span>
-                    
-                  </Button.Link>
-                </div>
-                
-                {/* Efecto overlay sutil en hover */}
-                <div className={`absolute inset-0 bg-gradient-to-t ${feature.color.replace('from-', 'from-').replace('via-', 'via-').replace('to-', 'to-')} opacity-0 group-hover:opacity-5 transition-opacity duration-300 pointer-events-none`} />
+
+                {/* Efecto overlay en hover */}
+                <div className={`absolute inset-0 bg-gradient-to-t ${vertical.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300 pointer-events-none`} />
               </motion.div>
             </motion.div>
           );
         })}
       </div>
-      
-      {/* CTA mejorado */}
-      <motion.div 
+
+      {/* CTA final */}
+      <motion.div
         className="mt-16 text-center"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.4, delay: 0.2 }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
         viewport={{ once: true }}
       >
+        <div className="mb-4">
+          <p className="text-gray-300 text-lg mb-2">
+            {t('homeFeatures.cta.question')}{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-green-400 font-semibold">
+              {t('homeFeatures.cta.highlight')}
+            </span>
+          </p>
+          <p className="text-gray-400 text-sm">
+            {t('homeFeatures.cta.subtitle')}
+          </p>
+        </div>
+
         <Button.Action to="/services">
-          <span>{t('viewAllSolutions')}</span>
+          {t('homeFeatures.cta.button')}
         </Button.Action>
       </motion.div>
     </motion.div>

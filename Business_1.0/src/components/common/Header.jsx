@@ -114,7 +114,6 @@ function Header({ isScrolled }) {
   const navItems = [
     { name: t('nav.home'), path: '/' },
     { name: t('nav.services'), path: '/services' },
-    { name: t('nav.features'), path: '/features' },
     { name: t('nav.pricing'), path: '/pricing' },
     { name: t('nav.about'), path: '/about' }
   ];

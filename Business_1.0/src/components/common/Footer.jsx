@@ -219,7 +219,7 @@ function Footer() {
                 <ul className="space-y-4">
                   {[
                     { name: t('footer.sections.company.home'), path: "/", icon: Rocket },
-                    { name: t('footer.sections.company.features'), path: "/features", icon: Zap },
+                    { name: t('footerNew.sections.company.services'), path: "/services", icon: Zap },
                     { name: t('footer.sections.company.pricing'), path: "/pricing", icon: Target },
                     { name: t('footer.sections.company.about'), path: "/about", icon: Heart },
                     { name: t('footer.sections.company.contact'), path: "/contact", icon: MessageSquare }

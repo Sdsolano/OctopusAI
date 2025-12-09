@@ -249,30 +249,17 @@ function FAQ() {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button.Action to="/contact">
-                <MessageSquare className="h-5 w-5 mr-2" />
+                
                 {t('faq.cta.primaryButton')}
               </Button.Action>
               
               <Button.Secondary href="https://wa.me/1234567890">
-                <Phone className="h-4 w-4 mr-2" />
+                
                 {t('faq.cta.secondaryButton')}
               </Button.Secondary>
             </div>
             
-            {/* Trust indicators */}
-            <div className="mt-6 flex flex-wrap justify-center gap-6 text-sm text-gray-400">
-              {t('faq.cta.trustIndicators').map((item, index) => (
-                <motion.div
-                  key={index}
-                  className="flex items-center"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.8 + index * 0.1 }}
-                >
-                  {item}
-                </motion.div>
-              ))}
-            </div>
+          
           </div>
         </motion.div>
       </div>

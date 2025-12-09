@@ -25,10 +25,10 @@ function Hero() {
     },
     {
       id: 'telegram',
-      src: telegramVideo, 
+      src: telegramVideo,
       title: t('services.telegram.title'),
-      subtitle: 'Inteligencia avanzada',
-      description: 'Bot personalizado que aprende de tu negocio y responde como un experto',
+      subtitle: t('homeHero.videos.telegram.subtitle'),
+      description: t('homeHero.videos.telegram.description'),
       icon: Send,
       color: 'from-blue-500 to-indigo-700'
     }
@@ -161,38 +161,41 @@ function Hero() {
         {/* Contenido */}
         <div className="flex flex-col lg:w-1/2 text-center lg:text-left order-2 lg:order-1">
           {/* Badge */}
-          <motion.div 
-            className="inline-block bg-purple-900/30 border border-purple-500/30 rounded-full px-4 py-1 text-sm font-medium text-purple-300 mb-6 mx-auto lg:mx-0"
+          <motion.div
+            className="inline-block bg-gradient-to-r from-purple-900/30 via-blue-900/30 to-green-900/30 border border-purple-500/30 rounded-full px-4 py-1 text-sm font-medium text-purple-300 mb-6 mx-auto lg:mx-0"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
             <span className="flex items-center">
-              <Star className="h-3 w-3 mr-1 text-purple-400" fill="currentColor" /> 
-              {t('hero.title')}
+              <Star className="h-3 w-3 mr-1 text-purple-400" fill="currentColor" />
+              {t('homeHero.badge')}
             </span>
           </motion.div>
           
-          <motion.h1 
+          <motion.h1
             className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-white mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <span className="inline lg:block">{t('hero.titlePart1')}</span>{" "}
-            <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400 pb-2">
-              {t('hero.titleHighlight')}
-            </span>{" "}
-            <span className="inline lg:block">{t('hero.titlePart2')}</span>
+            <span className="inline lg:block">{t('homeHero.title.part1')}</span>{" "}
+            <span className="inline lg:block">{t('homeHero.title.part2')}</span>{" "}
+            <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-blue-400 to-green-400 pb-2">
+              {t('homeHero.title.highlight')}
+            </span>
           </motion.h1>
-          
-          <motion.p 
+
+          <motion.p
             className="text-lg lg:text-xl text-gray-300 leading-relaxed mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            {t('hero.description')}
+            {t('homeHero.description.part1')} <span className="text-purple-400 font-semibold">{t('homeHero.description.ai')}</span> {t('homeHero.description.part2')}{' '}
+            <span className="text-blue-400 font-semibold">{t('homeHero.description.data')}</span> {t('homeHero.description.part3')}{' '}
+            <span className="text-green-400 font-semibold">{t('homeHero.description.software')}</span>.{' '}
+            {t('homeHero.description.part4')}
           </motion.p>
           
 
@@ -236,18 +239,19 @@ function Hero() {
 </motion.div>
           
           {/* Estadísticas */}
-          <motion.div 
-            className="flex flex-wrap justify-center lg:justify-start gap-6 mt-12 text-center"
+          <motion.div
+            className="flex flex-wrap justify-center lg:justify-start gap-8 mt-12 text-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
           >
             {[
-              { value: '98%', label: t('stats.satisfaction') },
-              { value: '24/7', label: t('stats.availability') }
+              { value: '3', label: t('homeHero.stats.verticals'), color: 'text-purple-400' },
+              { value: '12+', label: t('homeHero.stats.solutions'), color: 'text-blue-400' },
+              { value: '24/7', label: t('homeHero.stats.support'), color: 'text-green-400' }
             ].map((stat, index) => (
               <div key={index} className="flex flex-col">
-                <span className="text-2xl font-bold text-purple-400">{stat.value}</span>
+                <span className={`text-3xl font-bold ${stat.color}`}>{stat.value}</span>
                 <span className="text-sm text-gray-400">{stat.label}</span>
               </div>
             ))}
