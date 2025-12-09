@@ -1068,7 +1068,7 @@ export const translations = {
     process: {
       title: '¿Cómo funciona Octopus AI?',
       subtitle: 'Un proceso simple',
-      description: 'Un proceso simple para transformar la comunicación de tu negocio con asistentes hechos a medida',
+      description: 'Un proceso simple para transformar tu negocio con soluciones tecnológicas hechas a medida',
       
       steps: [
         {
@@ -3405,7 +3405,7 @@ export const translations = {
     process: {
       title: 'How does Octopus AI work?',
       subtitle: 'A simple process',
-      description: 'A simple process to transform your business communication with custom-made assistants',
+      description: 'A simple process to transform your business with custom-made technology solutions',
       
       steps: [
         {
