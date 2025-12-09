@@ -38,26 +38,26 @@ function Features() {
     }
   ];
 
-  // Variantes de animación
+  // Variantes de animación optimizadas - más simples y rápidas
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1
+        staggerChildren: 0.1,
+        delayChildren: 0.05
       }
     }
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
-        ease: "easeOut"
+        duration: 0.3,
+        ease: [0.25, 0.1, 0.25, 1] // easeOut más suave
       }
     }
   };
@@ -68,13 +68,12 @@ function Features() {
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, margin: "-50px" }}
     >
-      {/* Elementos decorativos de fondo */}
+      {/* Elementos decorativos de fondo - simplificados */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 -right-20 w-96 h-96 bg-purple-600/5 rounded-full filter blur-3xl" />
-        <div className="absolute bottom-20 -left-20 w-80 h-80 bg-blue-500/5 rounded-full filter blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-green-600/5 rounded-full filter blur-3xl" />
+        <div className="absolute top-20 -right-20 w-96 h-96 bg-purple-600/5 rounded-full filter blur-2xl" />
+        <div className="absolute bottom-20 -left-20 w-80 h-80 bg-blue-500/5 rounded-full filter blur-2xl" />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
@@ -87,83 +86,47 @@ function Features() {
               className="relative group"
               variants={cardVariants}
             >
-              {/* Efecto glow exterior */}
-              <div className={`absolute -inset-1 bg-gradient-to-r ${vertical.color} rounded-2xl blur opacity-0 group-hover:opacity-25 transition-all duration-300`} />
+              {/* Efecto glow exterior - simplificado */}
+              <div className={`absolute -inset-1 bg-gradient-to-r ${vertical.color} rounded-2xl blur-sm opacity-0 group-hover:opacity-20 transition-opacity duration-200`} />
 
-              <motion.div
-                className="relative bg-gray-800/90 backdrop-blur-xl rounded-2xl overflow-hidden border border-gray-700 group-hover:border-purple-500/50 transition-all duration-300 h-full flex flex-col"
+              <div
+                className="relative bg-gray-800/90 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700 group-hover:border-purple-500/50 transition-all duration-200 h-full flex flex-col"
               >
-                {/* Barra de color superior */}
-                <motion.div
+                {/* Barra de color superior - animación simplificada con CSS */}
+                <div 
                   className={`h-2 w-full bg-gradient-to-r ${vertical.color}`}
-                  initial={{ width: 0 }}
-                  whileInView={{ width: "100%" }}
-                  transition={{ duration: 0.8, delay: index * 0.15 }}
-                  viewport={{ once: true }}
+                  style={{
+                    animation: `slideIn 0.4s ease-out ${index * 0.1}s both`
+                  }}
                 />
 
                 <div className="p-6 flex-grow">
-                  {/* Icono destacado */}
-                  <motion.div
-                    className={`p-4 rounded-xl bg-gradient-to-br ${vertical.color} w-fit mb-6 relative overflow-hidden`}
-                    whileHover={{ rotate: 5, scale: 1.1 }}
-                    transition={{ type: "spring", stiffness: 300 }}
+                  {/* Icono destacado - sin animaciones complejas */}
+                  <div
+                    className={`p-4 rounded-xl bg-gradient-to-br ${vertical.color} w-fit mb-6 relative overflow-hidden group/icon transition-transform duration-200 hover:scale-105`}
                   >
                     <Icon className="h-10 w-10 text-white relative z-10" />
-
-                    {/* Efecto de brillo */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                      initial={{ x: '-100%' }}
-                      whileHover={{ x: '100%' }}
-                      transition={{ duration: 0.6 }}
-                    />
-                  </motion.div>
+                  </div>
 
                   {/* Título */}
-                  <motion.h3
-                    className="text-2xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-blue-400 transition-all duration-300"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                  >
+                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-blue-400 transition-all duration-200">
                     {vertical.title}
-                  </motion.h3>
+                  </h3>
 
-                  {/* Línea decorativa */}
-                  <motion.div
-                    className={`h-1 bg-gradient-to-r ${vertical.color} rounded-full mb-4`}
-                    initial={{ width: 0 }}
-                    whileInView={{ width: '70%' }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                  />
+                  {/* Línea decorativa - estática */}
+                  <div className={`h-1 w-[70%] bg-gradient-to-r ${vertical.color} rounded-full mb-4`} />
 
                   {/* Descripción */}
-                  <motion.p
-                    className="text-gray-300 mb-6 leading-relaxed text-sm"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                  >
+                  <p className="text-gray-300 mb-6 leading-relaxed text-sm">
                     {vertical.description}
-                  </motion.p>
+                  </p>
 
                   {/* Métricas destacadas */}
-                  <motion.div
-                    className="grid grid-cols-3 gap-2 mb-6"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                  >
+                  <div className="grid grid-cols-3 gap-2 mb-6">
                     {Object.entries(vertical.metrics).map(([key, value], i) => (
-                      <motion.div
+                      <div
                         key={i}
-                        className="text-center p-2 bg-gray-700/50 rounded-lg border border-gray-600/30 group-hover:border-purple-500/30 transition-all duration-200"
-                        whileHover={{ scale: 1.05, y: -2 }}
+                        className="text-center p-2 bg-gray-700/50 rounded-lg border border-gray-600/30 group-hover:border-purple-500/30 transition-all duration-200 hover:scale-105"
                       >
                         <div className={`text-base font-bold text-transparent bg-clip-text bg-gradient-to-r ${vertical.color}`}>
                           {value}
@@ -171,47 +134,36 @@ function Features() {
                         <div className="text-xs text-gray-400 capitalize">
                           {key}
                         </div>
-                      </motion.div>
+                      </div>
                     ))}
-                  </motion.div>
+                  </div>
 
                   {/* Highlights */}
                   <div className="mb-6">
-                    <motion.h4
-                      className="text-xs uppercase text-purple-400 font-semibold mb-3 flex items-center"
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      transition={{ duration: 0.3, delay: index * 0.1 }}
-                      viewport={{ once: true }}
-                    >
+                    <h4 className="text-xs uppercase text-purple-400 font-semibold mb-3 flex items-center">
                       <Sparkles className="h-3 w-3 mr-1" />
                       {t('homeFeatures.includesLabel')}
-                    </motion.h4>
+                    </h4>
 
                     <div className="space-y-2">
                       {vertical.highlights.map((highlight, i) => (
-                        <motion.div
+                        <div
                           key={i}
-                          className="flex items-start text-gray-300 text-sm group/item"
-                          initial={{ opacity: 0, x: -10 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.3, delay: index * 0.1 + i * 0.05 }}
-                          viewport={{ once: true }}
-                          whileHover={{ x: 5 }}
+                          className="flex items-start text-gray-300 text-sm group/item transition-transform duration-200 hover:translate-x-1"
                         >
                           <CheckCircle2 className="h-4 w-4 text-green-400 mr-2 flex-shrink-0 mt-0.5 transition-transform duration-200 group-hover/item:scale-110" />
-                          <span className="group-hover/item:text-white transition-colors duration-300">
+                          <span className="group-hover/item:text-white transition-colors duration-200">
                             {highlight}
                           </span>
-                        </motion.div>
+                        </div>
                       ))}
                     </div>
                   </div>
                 </div>
 
-                {/* Efecto overlay en hover */}
-                <div className={`absolute inset-0 bg-gradient-to-t ${vertical.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300 pointer-events-none`} />
-              </motion.div>
+                {/* Efecto overlay en hover - simplificado */}
+                <div className={`absolute inset-0 bg-gradient-to-t ${vertical.color} opacity-0 group-hover:opacity-5 transition-opacity duration-200 pointer-events-none`} />
+              </div>
             </motion.div>
           );
         })}
@@ -220,9 +172,9 @@ function Features() {
       {/* CTA final */}
       <motion.div
         className="mt-16 text-center"
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.4 }}
+        transition={{ duration: 0.3, delay: 0.2 }}
         viewport={{ once: true }}
       >
         <div className="mb-4">
